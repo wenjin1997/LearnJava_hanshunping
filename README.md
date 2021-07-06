@@ -2,7 +2,7 @@
 B站学习Java代码  
 课程:[零基础30天学会Java](https://www.bilibili.com/video/BV1fh411y7R8)
 
-## 第二章 Java概述
+## 第2章 Java概述
 * 现在长期支持的Java版本是Java8和Java11。
 * Java最早版本是1995年发布的，创始人是Gosling
 * 现在最新版本为Java15。
@@ -13,3 +13,6 @@ B站学习Java代码
 * 一个源文件中最多只能有一个 public 类。其它类的个数不限。也可以将 main 方法写在非 public 类中，然后指定运行非 public 类，这样入口方法就是非 public 的 main 方法。
 * 类、方法的注释，要以javadoc的方式来写。
 * **多行注释不能嵌套。**
+
+## 第7章 面向对象编程（基础部分）
+* [第7章笔记](/code/chapter07/chapter07.md)
