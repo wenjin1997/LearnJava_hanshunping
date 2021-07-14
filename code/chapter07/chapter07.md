@@ -120,3 +120,39 @@ Person p = new Person("小倩",20);
       2.  显式初始化`age = 90, name = null`
       3.  构造器初始化`age = 20, name = 小倩`
   4. 把对象在堆中的地址返回给p（p是对象名，也可以理解成是对象的引用）
+
+## 7.10 this关键字
+### this的注意事项和使用细节
+1) `this`关键字可以用来访问本类的属性、方法、构造器 
+2) `this`用于区分当前类的属性和局部变量
+3) 访问成员方法的语法:`this.方法名(参数列表)`;
+4) 访问构造器语法:`this(参数列表); `注意只能在构造器中使用(**即只能在构造器中访问另外一个构造器, 必须放在第一条语句**)
+5) `this`不能在类定义的外部使用，只能在类定义的方法中使用。
+* 哪个对象调用，`this`就代表哪个对象
+* `this.hashCode()`可以返回一个整数，可以看作是地址，但严格来说不是实际的地址。
+### this关键字练习
+定义 `Person` 类，里面有 `name`、`age` 属性，并提供 `compareTo` 比较方法，用于判断是否和另一个人相等，提供测试类 `TestPerson` 用于测试, 名字和年龄完全一样，就返回 `true`, 否则返回 `false`
+* [this关键字练习代码](TestPerson.java)
+* 注意：判断字符串是否相等时用`str1.equals(str2)`
+
+## 本章作业
+1. 编写类A01,定义方法max，实现求某个double数组的最大值，并返回.[Homework01.java](Homework01.java)
+2. 编写类A02,定义方法find，实现查找某字符串是否在字符串数组中，并返回索引，如果找不到，返回-1.[Homework02.java](Homework02.java)
+3. 编写类Book,定义方法updatePrice，实现更改某本书的价格，具体：如果价格>150，则更改为150，如果价格>100，更改为100，否则不变。[Homework03.java](Homework03.java)
+4. 编写类A03,实现数组的复制功能copyArr，输入旧数组，返回一个新数组，元素和旧数组一样。[Homework04.java](Homework04.java)
+5. 定义一个圆类Circle，定义属性：半径，提供显示圆周长功能的方法，提供显示圆面积的方法。[Homework05.java](Homework05.java)
+   * 使用圆周率用`Math.PI`。 
+6. 编程创建一个Cale计算类，在其中定义2个变量表示两个操作数，定义四个方法实现求和、差、乘、商（要求除数为0的话，要提示）并创建两个对象，分别测试。[Homework06.java](Homework06.java)
+7. 设计一个Dog类，有名字、颜色和年龄属性，定义输出方法show()显示其信息。并创建对象，进行测试。【提示this.属性】[Homework07.java](Homework07.java)
+8. 给定一个Java程序代码[Homework08.java](Homework08.java)，则编译运行后，输出的结果是多少？
+   * 输出结果为10, 9, 10
+   * 注意表达式`count++`，先取表达式的值为`count` ，再执行+1操作。
+9.  定义Music类，里面有音乐名name、音乐时长times属性，并有播放play功能和返回本身属性信息的功能getInfo.[Homework09.java](Homework09.java)
+10. 试写出以下代码的运行结果。[Homework10.java](Homework10.java)
+    * 输出结果为101, 100, 101, 101 
+11. 在测试方法中，调用method方法，代码如下，编译正确，试写出method方法的定义形式，调用语句为：`System.out.println(method(method(10.0,20.0),100));`。 [Homework11.java](Homework11.java)
+12. 创建一个Employee类，属性有（名字，性别，年龄，职位，薪水），提供3个构造方法，可以初始化
+    1.  （名字，性别，年龄，职位，薪水）
+    2.  （名字，性别，年龄）
+    3.  （职位，薪水）
+要求充分复用构造器。
