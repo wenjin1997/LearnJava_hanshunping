@@ -99,3 +99,24 @@
   * 在前面定义的 Person 类中添加两个构造器: 第一个无参构造器:利用构造器设置所有人的 age 属性初始值都为18。
   * 第二个带pName和pAge两个参数的构造器:使得每次创建Person对象的同时初始化对象的age属性值和name属性值。 
   * 分别使用不同的构造器，创建对象。
+
+## 7.9 对象创建的流程分析
+```java
+class Person{//类Person
+  int age = 90;
+  String name;
+  Person(String n, int a) {//构造器
+    name = n;//给属性赋值
+    age = a;//...
+  }
+}
+Person p = new Person("小倩",20);
+```
+* **流程分析**（面试题）
+  1.  加载`Person`类信息（`Person.class`），只会加载一次
+  2.  在堆中分配空间（地址）
+  3.  完成对象初始化
+      1.  默认初始化`age = 0, name = null`
+      2.  显式初始化`age = 90, name = null`
+      3.  构造器初始化`age = 20, name = 小倩`
+  4. 把对象在堆中的地址返回给p（p是对象名，也可以理解成是对象的引用）
