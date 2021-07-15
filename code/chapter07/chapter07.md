@@ -4,11 +4,48 @@
   * 数据类型体现不出来
   * 只能通过[下标]获取信息，造成变量名字和内容的对应关系不明确
   * 不能体现猫的行为
+* [对象实例猫类](Object01.java)
+* 从类到对象的几种说法：
+  1. 创建一个对象
+  2. 实例化一个对象
+  3. 把类实例化
 * 类与对象的区别
   1) 类是抽象的，概念的，代表一类事物,比如人类,猫类.., 即它是数据类型. 
   2) 对象是具体的，实际的，代表一个具体事物, 即 是实例.
   3) 类是对象的模板，对象是类的一个个体，对应一个实例
-* 对象在内存中存在形式(重要的)必须搞清楚
+* 对象在内存中存在形式(重要)，必须搞清楚，脑海中要有对应的图形。
+
+## 7.2 成员方法
+* **方法的调用机制原理**
+* 方法不能嵌套定义。
+* 成员方法的好处
+  1. 提高代码的复用性
+  2. 可以将实现的细节封装起来，然后供其他用户来调用即可
+### 返回数据类型
+1) 一个方法最多有一个返回值[如何返回多个结果 返回数组]
+2) 返回类型可以为任意类型，包含基本类型或引用类型(数组，对象)
+3) 如果方法要求有返回数据类型，则方法体中最后的执行语句必须为return值;而且要求返回值类型必须和return的值类型一致或兼容
+4) 如果方法是void，则方法体中可以没有return语句，或者只写return;
+
+### 方法名
+* 遵循驼峰命名法，最好见名知义，表达出该功能的意思即可, 比如得到两个数的和getSum, 开发中按照规范。
+
+### 方法调用细节说明
+1. 同一个类中的方法调用：直接调用即可。
+2. 跨类中的方法A类调用B类方法：需要通过对象名调用。
+
+### 成员方法练习题
+[MethodExercise01.java](MethodExercise01.java)
+1) 编写类AA，有一个方法:判断一个数是奇数odd还是偶数,返回boolean
+2) 根据行、列、字符打印对应行数和列数的字符，比如:行:4，列:4，字符#,则打印相应的效果
+## 7.3 成员方法传参机制（非常非常重要）
+* 基本数据类型，传递的是值（值拷贝），形参的任何改变不影响实参。
+* 引用类型传递的是地址（传递也是值，但是值是地址），可以通过形参影响实参！
+### 成员方法传参机制练习题
+[MethodExercise02.java](MethodExercise02.java)
+1) 编写类MyTools类，编写一个方法可以打印二维数组的数据。
+2) 编写一个方法copyPerson，可以复制一个Person对象，返回复制的对象。克隆对象，注意要求得到新对象和原来的
+  对象是两个独立的对象，只是他们的属性相同
 
 ## 7.4 方法递归调用（非常非常重要）
 * 递归就是方法自己调用自己。
@@ -137,16 +174,44 @@ Person p = new Person("小倩",20);
 
 ## 本章作业
 1. 编写类A01,定义方法max，实现求某个double数组的最大值，并返回.[Homework01.java](Homework01.java)
+  * 为了增强代码的健壮性，这里需要考虑一些情况，需要保证给的数组不能为`null`并且至少有一个元素，这样再找数组的最大值。在写方法时，可以返回一个`Double`包装类，不满足情况返回`null`。
+  ```java
+  public Double max(double[] nums) {
+		if(nums != null && nums.length > 0) {
+			...
+		} else {
+		  return null;
+	  }
+  }
+  ```
 2. 编写类A02,定义方法find，实现查找某字符串是否在字符串数组中，并返回索引，如果找不到，返回-1.[Homework02.java](Homework02.java)
 3. 编写类Book,定义方法updatePrice，实现更改某本书的价格，具体：如果价格>150，则更改为150，如果价格>100，更改为100，否则不变。[Homework03.java](Homework03.java)
+  * 显示书籍信息时，可以在类中写一个方法。
+  ```java
+  public void info() {
+		System.out.println("【书籍信息】 书名：" + name + " 价格：" + price);
+	}
+  ```
 4. 编写类A03,实现数组的复制功能copyArr，输入旧数组，返回一个新数组，元素和旧数组一样。[Homework04.java](Homework04.java)
 5. 定义一个圆类Circle，定义属性：半径，提供显示圆周长功能的方法，提供显示圆面积的方法。[Homework05.java](Homework05.java)
    * 使用圆周率用`Math.PI`。 
 6. 编程创建一个Cale计算类，在其中定义2个变量表示两个操作数，定义四个方法实现求和、差、乘、商（要求除数为0的话，要提示）并创建两个对象，分别测试。[Homework06.java](Homework06.java)
+  * 注意对除数不为0的处理，方法类似于作业1，用封装类`Double`。
+  ```java
+  public Double divide() {
+		if(op2 == 0) {
+			System.out.println("除数不能为0！");
+			return null;
+		} else {
+			return op1 / op2;
+		}
+	}
+  ```
 7. 设计一个Dog类，有名字、颜色和年龄属性，定义输出方法show()显示其信息。并创建对象，进行测试。【提示this.属性】[Homework07.java](Homework07.java)
-8. 给定一个Java程序代码[Homework08.java](Homework08.java)，则编译运行后，输出的结果是多少？
+8. 给定一个Java程序代码[Test.java](Test.java)，则编译运行后，输出的结果是多少？
    * 输出结果为10, 9, 10
    * 注意表达式`count++`，先取表达式的值为`count` ，再执行+1操作。
+   * `new Test()`是匿名对象，匿名对象使用后，就不能使用。
 9.  定义Music类，里面有音乐名name、音乐时长times属性，并有播放play功能和返回本身属性信息的功能getInfo.[Homework09.java](Homework09.java)
 10. 试写出以下代码的运行结果。[Homework10.java](Homework10.java)
     * 输出结果为101, 100, 101, 101 
@@ -155,4 +220,21 @@ Person p = new Person("小倩",20);
     1.  （名字，性别，年龄，职位，薪水）
     2.  （名字，性别，年龄）
     3.  （职位，薪水）
-要求充分复用构造器。
+要求充分复用构造器。[Homework12.java](Homework12.java)
+  * 性别可以用`char`类型，`char gender;`。
+13. 将对象作为参数传递给方法。[Homework13.java](Homework13.java)
+    题目要求：
+    1. 定义一个Circle类，包含一个double型的radius属性代表圆的半径，findArea()方法返回圆的面积。
+    2. 定义一个类PassObject，在类中定义一个方法printAreas()，该方法的定义如下：public void printAreas(Circle c, int times)
+    3. 在printAreas方法中打印输出1到times之间的每个整数半径值，以及对应的面积。例如，times为5，则输出半径1,2,3,4,5,以及对应的圆面积。
+    4. 在main方法中调用printAreas()方法，调用完毕后输出当前半径值。
+  * 修改半径的值时，可以在Circle类中加一个方法，后面再调用该方法。
+  ```java
+  //修改radius值
+	public void setRadius(double radius) {
+		this.radius = radius;
+	}
+  ```
+14.  扩展题。[Homework14.java](Homework14.java)
+有个人Tom设计他的成员变量.成员方法，可以电脑猜拳。电脑每次都会随机生成0，1，2。0表示石头，1表示剪刀，2表示布，并要可以显示Tom的输赢次数（清单）。
+ * 生成随机数0-2：`(int)(Math.random() * 3)`

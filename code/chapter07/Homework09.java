@@ -3,7 +3,7 @@ public class Homework09 {
 		Time t1 = new Time(0, 3, 33);
 		Music m1 = new Music("拖延症", t1);
 		m1.play();
-		m1.getInfo();
+		System.out.println(m1.getInfo());
 	
 	}
 }
@@ -25,9 +25,9 @@ class Music {
 		System.out.println("正在播放歌曲" + this.name);
 	}
 
-	public void getInfo() {
-		System.out.println("歌曲信息 歌曲名 " + this.name + " 音乐时长 " + times.hour + ":" +
-			times.mins + ":" + times.secs);
+	public String getInfo() {
+		return "歌曲信息 歌曲名 " + this.name + " 音乐时长 " + times.hour + ":" +
+			times.mins + ":" + times.secs;
 	}
 }
 
