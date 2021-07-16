@@ -58,3 +58,36 @@ MacOS版本下的常用快捷键如下，如果要自定义可以找到Preferenc
 3. 关于在子类中的访问权限，学完继承后再看。
 4. 成员方法的访问规则和属性完全一样。
 代码位置：`/code/chapter08/src/com/jinjin/modifier`
+
+## 8.6 封装
+面向对象编程的三大特征：封装、继承、多态。
+### 封装介绍
+封装（encapsulation）就是把抽象出的数据[属性]和对数据的操作[方法]封装在一起，数据被保护在内部，程序的其它部分只有通过被授权的操作[方法],才能对数据进行操作。
+### 封装的好处
+1. 隐藏实现细节
+2. 可以对数据进行验证，保证安全合理
+
+### 封装的实现步骤（三步）
+1. 将属性进行私有化private【不能直接修改属性】
+2. 提供一个公共的(public)set方法，用于对属性判断并赋值
+  
+```java
+public void setXxx(类型 参数名){//Xxx表示某个属性
+  //加入数据验证的业务逻辑
+  属性 = 参数名;
+}
+```
+3. 提供一个公共的(public)get方法，用于获取属性的值
+
+```java
+public 数据类型 getXxx(){//权限判断，Xxx表示某个属性
+  return xx;
+}
+```
+### 代码
+1. 不能随便查看人的年龄，工资等隐私，并对设置的年龄进行合理的验证。年龄合理就设置，否则给默认年龄，必须在1-120，年龄、工资不能直接查看，name的长度在2-6个字符之间。[Encapsulation01.java](./code/chapter08/src/com/jinjin/encap/Encapsulation01.java)
+  * 构造器可以和setXxx方法结合，用于数据的验证，实现封装。
+2. 创建程序，在其中定义两个类：Account和AccoutTese类体会Java的封装性。[Account.java](./code/chapter08/src/com/jinjin/encap/Account.java) [AccountTest.java](./code/chapter08/src/com/jinjin/encap/AccountTest.java)
+   1. Account类要求具有属性：姓名（长度为2位3位或4位）、余额（必须>20）、密码（必须是六位），如果不满足，则给出提示信息，并给默认值。
+   2. 通过setXxx的方法给Account的属性赋值。
+   3. 在AccountTest中测试。
