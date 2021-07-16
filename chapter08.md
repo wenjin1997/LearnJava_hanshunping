@@ -53,7 +53,7 @@ MacOS版本下的常用快捷键如下，如果要自定义可以找到Preferenc
 |私有|privated|✔️|×|×|×|
 
 ### 使用的注意事项
-1. 修饰符可以用力啊修饰类中的属性，成员方法以及类
+1. 修饰符可以用修饰类中的属性，成员方法以及类
 2. 只有默认的和public才能修饰类！并且遵循上述访问权限的特点。
 3. 关于在子类中的访问权限，学完继承后再看。
 4. 成员方法的访问规则和属性完全一样。
@@ -84,10 +84,10 @@ public 数据类型 getXxx(){//权限判断，Xxx表示某个属性
   return xx;
 }
 ```
-### 代码
+### 封装练习
 1. 不能随便查看人的年龄，工资等隐私，并对设置的年龄进行合理的验证。年龄合理就设置，否则给默认年龄，必须在1-120，年龄、工资不能直接查看，name的长度在2-6个字符之间。[Encapsulation01.java](./code/chapter08/src/com/jinjin/encap/Encapsulation01.java)
-  * 构造器可以和setXxx方法结合，用于数据的验证，实现封装。
-2. 创建程序，在其中定义两个类：Account和AccoutTese类体会Java的封装性。[Account.java](./code/chapter08/src/com/jinjin/encap/Account.java) [AccountTest.java](./code/chapter08/src/com/jinjin/encap/AccountTest.java)
+   * 构造器可以和setXxx方法结合，用于数据的验证，实现封装。
+2. 创建程序，在其中定义两个类：Account和AccoutTese类体会Java的封装性。[Account.java](./code/chapter08/src/com/jinjin/encap/Account.java)及[AccountTest.java](./code/chapter08/src/com/jinjin/encap/AccountTest.java)
    1. Account类要求具有属性：姓名（长度为2位3位或4位）、余额（必须>20）、密码（必须是六位），如果不满足，则给出提示信息，并给默认值。
    2. 通过setXxx的方法给Account的属性赋值。
    3. 在AccountTest中测试。
