@@ -155,3 +155,22 @@ class 子类 extends 父类 {
 - [PC.java](/code/chapter08/src/com/jinjin/extend_/exercise/PC.java)
 - [NotePad.java](/code/chapter08/src/com/jinjin/extend_/exercise/NotePad.java)
 - [ExtendsExercise03.java](/code/chapter08/src/com/jinjin/extend_/exercise/ExtendsExercise03.java) //测试类
+
+## 8.9 `super`关键字
+* `super`代表父类的引用，用于访问父类的属性、方法、构造器
+* 基本语法
+  * 访问父类的属性，但不能访问父类的`private`属性,`super.属性名`
+  * 访问父类的方法，不能访问父类的`private`方法，`super.方法名(参数列表);`
+  * 访问父类的构造器，`super(参数列表);`只能放在构造器的第一句，只能出现一句！
+* `super`细节
+  * 调用父类的构造器的好处（分工明确，父类属性由父类初始化，子类的属性由子类初始化）
+  * 当子类中有和父类中的成员（属性和方法）重名时，为了访问父类的成员，必须通过`super`。如果没有重名，使用`super`、`this`、直接访问是一样的效果！
+  * `super`的访问不限于直接父类，如果爷爷类和本类中有同名的成员，也可以使用`super`去访问爷爷类的成员；如果多个基类（上级类）中都有同名的成员，使用super访问遵循就近原则。A->B->C，当然也需要遵守访问权限相关规则。
+* ⭐️**super和this的比较**
+
+|序号|区别点|this|super|
+|----|----|----|----|
+|1|访问属性|访问本类中的属性，如果本类没有此属性，则从父类中继续查找|从父类开始查找属性|
+|2|调用方法|访问本类中的方法，如果本类没有此方法，则从父类中继续查找|从父类开始查找方法|
+|3|调用构造器|访问本类构造器，必须放在构造器的首行|调用父类构造器，必须放在子类构造器的首行|
+|4|特殊|表示当前对象|子类中访问父类对象|
