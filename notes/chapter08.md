@@ -106,8 +106,8 @@ class 子类 extends 父类 {
 3. 子类又叫派生类。
    
 ### 案例
-父类:[Student.java](/code/chapter08/src/com/jinjin/extend_/improve_/Student.java)
-子类:[Pupil.java](/code/chapter08/src/com/jinjin/extend_/improve_/Pupil.java)、[Graduate.java](/code/chapter08/src/com/jinjin/extend_/improve_/Graduate.java)
+父类:[Student.java](/code/chapter08/src/com/jinjin/extend_/improve_/Student.java)  
+子类:[Pupil.java](/code/chapter08/src/com/jinjin/extend_/improve_/Pupil.java)、[Graduate.java](/code/chapter08/src/com/jinjin/extend_/improve_/Graduate.java)  
 测试：[Extends01.java](/code/chapter08/src/com/jinjin/extend_/improve_/Extends01.java)
 
 ### 继承给编程带来的便利
@@ -132,10 +132,10 @@ class 子类 extends 父类 {
 ⭐️内存图：
 <img src="/notes/img-ch8/img1.png">
 如果要访问属性，按照查找关系来返回信息：
-(1) 首先看子类是否有该属性
-(2) 如果子类有这个属性，并且可以访问，则返回信息
-(3) 如果子类没有这个属性，就看父类有没有这个属性(如果父类有该属性，并且可以访问，就返回信息..)
-(4) 如果父类没有就按照(3)的规则，继续找上级父类，直到 Object... 
+1. 首先看子类是否有该属性
+2. 如果子类有这个属性，并且可以访问，则返回信息
+3. 如果子类没有这个属性，就看父类有没有这个属性(如果父类有该属性，并且可以访问，就返回信息..)
+4. 如果父类没有就按照(3)的规则，继续找上级父类，直到 Object... 
 
 ### 继承练习
 1. [ExtendsExercise01.java](/code/chapter08/src/com/jinjin/extend_/exercise/ExtendsExercise01.java)  
@@ -143,13 +143,13 @@ class 子类 extends 父类 {
 2. [ExtendsExercise02.java](/code/chapter08/src/com/jinjin/extend_/exercise/exercise02/ExtendsExercise02.java) 
 执行main方法输出结果如下：
 <img src="/notes/img-ch8/img2.png">
-3. 需求
+3. 需求  
    1. 编写 Computer 类，包含 CPU、内存、硬盘等属性，getDetails 方法用于返回 Computer 的详细信息
    2. 编写 PC 子类，继承 Computer 类，添加特有属性【品牌 brand】
    3. 编写 NotePad 子类，继承 Computer 类，添加特有属性【color】
    4. 编写 Test 类，在 main 方法中创建 PC 和 NotePad 对象，分别给对象中特有的属性赋值，以及从 Computer 类继承的 属性赋值，并使用方法并打印输出信息
 
-练习3代码： 
+**练习3代码：** 
 - [Computer.java](/code/chapter08/src/com/jinjin/extend_/exercise/Computer.java)
 - [PC.java](/code/chapter08/src/com/jinjin/extend_/exercise/PC.java)
 - [NotePad.java](/code/chapter08/src/com/jinjin/extend_/exercise/NotePad.java)
