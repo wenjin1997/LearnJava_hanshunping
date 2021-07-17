@@ -53,7 +53,7 @@ MacOS版本下的常用快捷键如下，如果要自定义可以找到Preferenc
 |私有|privated|✔️|×|×|×|
 
 ### 使用的注意事项
-1. 修饰符可以用修饰类中的属性，成员方法以及类
+1. 修饰符可以用来修饰类中的属性，成员方法以及类
 2. 只有默认的和public才能修饰类！并且遵循上述访问权限的特点。
 3. 关于在子类中的访问权限，学完继承后再看。
 4. 成员方法的访问规则和属性完全一样。
@@ -67,7 +67,7 @@ MacOS版本下的常用快捷键如下，如果要自定义可以找到Preferenc
 1. 隐藏实现细节
 2. 可以对数据进行验证，保证安全合理
 
-### 封装的实现步骤（三步）
+### ⭐️封装的实现步骤（三步）
 1. 将属性进行私有化private【不能直接修改属性】
 2. 提供一个公共的(public)set方法，用于对属性判断并赋值
   
@@ -91,3 +91,66 @@ public 数据类型 getXxx(){//权限判断，Xxx表示某个属性
    1. Account类要求具有属性：姓名（长度为2位3位或4位）、余额（必须>20）、密码（必须是六位），如果不满足，则给出提示信息，并给默认值。
    2. 通过setXxx的方法给Account的属性赋值。
    3. 在AccountTest中测试。
+
+## 8.8 继承
+### 为什么需要继承
+提高代码的复用性。
+### 继承的基本语法
+```java
+class 子类 extends 父类 {
+
+}
+```
+1. 子类会自动拥有父类定义的属性和方法
+2. 父类又叫超类、基类。
+3. 子类又叫派生类。
+   
+### 案例
+父类:[Student.java](/code/chapter08/src/com/jinjin/extend_/improve_/Student.java)
+子类:[Pupil.java](/code/chapter08/src/com/jinjin/extend_/improve_/Pupil.java)、[Graduate.java](/code/chapter08/src/com/jinjin/extend_/improve_/Graduate.java)
+测试：[Extends01.java](/code/chapter08/src/com/jinjin/extend_/improve_/Extends01.java)
+
+### 继承给编程带来的便利
+1) 代码的复用性提高了
+2) 代码的扩展性和维护性提高了
+
+### ⭐️继承的细节问题
+1) 子类继承了所有的属性和方法，非私有的属性和方法可以在子类直接访问, 但是私有属性和方法不能在子类直接访问，要通过父类提供公共的方法去访问；
+2) 子类必须调用父类的构造器，完成父类的初始化；
+3) 当创建子类对象时，不管使用子类的哪个构造器，默认情况下总会去调用父类的无参构造器，如果父类没有提供无参构造器，则必须在子类的构造器中用`super`去指定使用父类的哪个构造器完成对父类的初始化工作，否则，编译不通过；
+4) 如果希望指定去调用父类的某个构造器，则显式的调用一下 : `super(参数列表)`；
+5) `super`在使用时，必须放在构造器第一行(`super`只能在构造器中使用)；
+6) `super()`和`this()`都只能放在构造器第一行，因此这两个方法不能共存在一个构造器；
+7) java所有类都是Object类的子类, Object是所有类的基类；
+8) 父类构造器的调用不限于直接父类!将一直往上追溯直到Object类(顶级父类)；
+9) 子类最多只能继承一个父类(指直接继承)，即**java中是单继承机制**。  
+思考:如何让A类继承B类和C类? 【A 继承 B， B继承C】；
+10) 不能滥用继承，子类和父类之间必须满足 is-a 的逻辑关系。
+
+### ⭐️⭐️继承的本质分析
+实例：[ExtendsTheory.java](/code/chapter08/src/com/jinjin/extend_/ExtendsTheory.java)    
+⭐️内存图：
+<img src="/notes/img-ch8/img1.png">
+如果要访问属性，按照查找关系来返回信息：
+(1) 首先看子类是否有该属性
+(2) 如果子类有这个属性，并且可以访问，则返回信息
+(3) 如果子类没有这个属性，就看父类有没有这个属性(如果父类有该属性，并且可以访问，就返回信息..)
+(4) 如果父类没有就按照(3)的规则，继续找上级父类，直到 Object... 
+
+### 继承练习
+1. [ExtendsExercise01.java](/code/chapter08/src/com/jinjin/extend_/exercise/ExtendsExercise01.java)  
+执行main方法输出`a,b name,b`。
+2. [ExtendsExercise02.java](/code/chapter08/src/com/jinjin/extend_/exercise/exercise02/ExtendsExercise02.java) 
+执行main方法输出结果如下：
+<img src="/notes/img-ch8/img2.png">
+3. 需求
+   1. 编写 Computer 类，包含 CPU、内存、硬盘等属性，getDetails 方法用于返回 Computer 的详细信息
+   2. 编写 PC 子类，继承 Computer 类，添加特有属性【品牌 brand】
+   3. 编写 NotePad 子类，继承 Computer 类，添加特有属性【color】
+   4. 编写 Test 类，在 main 方法中创建 PC 和 NotePad 对象，分别给对象中特有的属性赋值，以及从 Computer 类继承的 属性赋值，并使用方法并打印输出信息
+
+练习3代码： 
+- [Computer.java](/code/chapter08/src/com/jinjin/extend_/exercise/Computer.java)
+- [PC.java](/code/chapter08/src/com/jinjin/extend_/exercise/PC.java)
+- [NotePad.java](/code/chapter08/src/com/jinjin/extend_/exercise/NotePad.java)
+- [ExtendsExercise03.java](/code/chapter08/src/com/jinjin/extend_/exercise/ExtendsExercise03.java) //测试类
