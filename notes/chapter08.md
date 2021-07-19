@@ -174,3 +174,34 @@ class 子类 extends 父类 {
 |2|调用方法|访问本类中的方法，如果本类没有此方法，则从父类中继续查找|从父类开始查找方法|
 |3|调用构造器|访问本类构造器，必须放在构造器的首行|调用父类构造器，必须放在子类构造器的首行|
 |4|特殊|表示当前对象|子类中访问父类对象|
+
+## 8.10 方法重写/方法覆盖(Override)
+* 子类的方法的形参列表，方法名称，要和父类方法的形参列表，方法名称完全一样。
+* 子类方法的返回类型和父类方法的返回类型一样，或者是父类返回类型的子类，比如父类返回类型是`Object`，子类方法返回类型是`String`。
+* 子类方法不能缩小父类方法的访问权限。public->protected->默认->private。
+
+### 重写和重载的比较
+
+|名称|发生范围|方法名|形参列表|返回类型|修饰符|
+|----|----|----|----|----|----|
+|重载（overload）|本类|必须一样|类型、个数或顺序至少有一个不同|无要求|无要求|
+|重写（override）|父子类|必须一样|相同|子类重写的方法，返回的类型和父类返回的类型一致，或者是其子类|子类方法不能缩小父类方法的访问范围|
+
+### 重写/重载练习
+1) 编写一个Person类，包括属性/private(name、age)，构造器、方法say(返回自我介绍的字符串)。
+2) 编写一个Student类，继承Person类，增加id、score属性/private，以及构造器，定义say方法(返回自我介绍的信息)。 
+3) 在main中,分别创建Person和Student对象，调用say方法输出自我介绍
+
+**代码**
+- [Person.java](/code/chapter08/src/com/jinjin/override_/Person.java)
+- [Student.java](/code/chapter08/src/com/jinjin/override_/Student.java)
+- [OverrideExercise02.java](/code/chapter08/src/com/jinjin/override_/OverrideExercise02.java)
+* 注意：在Student类的say方法中，可以用super关键字调用其父类Person的say方法,提高代码复用。
+
+```java
+public String say() {
+//        return " 你好，我叫" + getName() + "，今年" + getAge() +
+//                "岁" + "我的id是：" + id + "，我考了" + score + "分。";
+        return super.say() + "我的id是：" + id + "，我考了" + score + "分。";
+    }
+```

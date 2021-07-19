@@ -2,7 +2,7 @@ package com.jinjin.extend_.exercise.exercise02;
 
 public class ExtendsExercise02 {
     public static void main(String[] args) {
-        C c = new C();
+        new C();
     }
 }
 class A {
