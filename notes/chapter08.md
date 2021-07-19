@@ -205,3 +205,92 @@ public String say() {
         return super.say() + "我的id是：" + id + "，我考了" + score + "分。";
     }
 ```
+
+## 8.11 面向对象编程——多态
+* 方法或对象具有多种状态，是面向对象的第三大特征，多态是建立在封装和继承基础之上的。
+* 方法的多态：重写和重载就体现多态。
+* 关于多态的重点：
+  1. 一个对象的编译类型和运行类型可以不一致；
+  2. 编译类型在定义对象时，就确定了，不能改变；
+  3. 运行类型是可以变化的；
+  4. 编译类型看定义时 = 号的左边，运行类型看 = 号的右边。
+
+例如：
+```java
+//animal编译类型就是 Animal，运行类型是Dog
+Animal animal = new Dog();
+//因为运行时，执行到该行时，animal运行类型是Dog，所以cry就是Dog的cry
+animal.cry();
+```
+多态实例代码：
+- [Animal.java](/code/chapter08/src/com/jinjin/poly_/objectpoly_/Animal.java)
+- [Dog.java](/code/chapter08/src/com/jinjin/poly_/objectpoly_/Dog.java)
+- [Cat.java](/code/chapter08/src/com/jinjin/poly_/objectpoly_/Cat.java)
+- [PolyObject.java](/code/chapter08/src/com/jinjin/poly_/objectpoly_/PolyObject.java)
+
+### 多态细节
+[PolyDetail.java](/code/chapter08/src/com/jinjin/poly_/detail_/PolyDetail.java)
+* 多态的前提是：两个对象（类）存在继承关系
+* **多态的向上转型**：
+  * 本质：父类的引用指向了子类的对象
+  * 语法：`父类类型 引用名 = new 子类类型();`
+  * 特点：编译类型看左边，运行类型看右边。可以调用父类中的所有成员（需遵守访问权限），不能调用子类中特有成员；最终运行效果看子类的具体实现！
+* **多态的向下转型**
+  * 语法：`子类类型 引用名 = （子类类型）父类引用;`
+  * 只能强转父类的引用，不能强转父类的对象
+  * **要求父类的引用必须指向的是当前目标类型的对象**
+  * 当向下转型后，可以调用子类类型中所有的成员
+* 属性没有重写之说！属性的值看编译类型。[PolyDetail02.java](/code/chapter08/src/com/jinjin/poly_/detail_/PolyDetail02.java)
+* `instanceOf`比较操作符，用于判断**对象的运行类型**是否位XX类型或XX类型的子类型。[PolyDetail03.java](/code/chapter08/src/com/jinjin/poly_/detail_/PolyDetail03.java)
+
+### 多态练习题
+判断输出什么：[PolyExercise02.java](/code/chapter08/src/com/jinjin/poly_/PolyExercise02.java)
+
+### ⭐️⭐️⭐️ java的动态绑定机制
+1. 当调用对象方法的时候，**该方法会和该对象的内存地址/运行类型**绑定
+2. 当调用对象属性时，**没有动态绑定机制**，哪里声明，哪里使用
+
+例子：[DynamicBinding.java](../code/chapter08/src/com/jinjin/poly_/dynamic_/DynamicBinding.java)
+
+### 多态数组
+* 数组的定义类型位父类类型，里面保存的实际元素类型为子类类型。
+
+* 应用实例:现有一个继承结构如下:要求创建 1 个 Person 对象、2 个 Student 对象和 2 个 Teacher 对象, 统一放在数组 中，并调用每个对象say 方法.
+
+* 应用实例代码：
+  - [Person.java](../code/chapter08/src/com/jinjin/poly_/polyarr_/Person.java)
+  - [Student.java](../code/chapter08/src/com/jinjin/poly_/polyarr_/Student.java)
+  - [Teacher.java](../code/chapter08/src/com/jinjin/poly_/polyarr_/Teacher.java)
+  - [PloyArray.java](../code/chapter08/src/com/jinjin/poly_/polyarr_/PloyArray.java)
+
+### 多态参数
+* 方法定义的形参类型为父类类型，实参类型允许为子类类型。
+* 应用实例：
+  * 定义员工类Employee，包含姓名和月工资[private]，以及计算年工资getAnnual方法。
+  * 普通员工和经理继承了员工，经理类多了奖金bonus属性和管理manage方法，普通员工类多了work方法，普通员工和经理类要求分别重写getAnnual方法。
+  * 测试类中添加一个方法showEmpAnnual(Employee e)，实现获取任何员工对象的年工资，并在main方法中调用该方法。
+  
+  ```java
+  public void showEmpAnnual(Employee e) {
+          System.out.println(e.getAnnual());//动态绑定机制
+      }
+  ```
+
+  * 测试类中添加一个方法，testWork，如果是普通员工，则调用work方法，如果是经理，则调用manage方法。
+
+  ```java
+  public void testWork(Employee e) {
+          if (e instanceof Worker) {
+              ((Worker) e).work();//向下转型
+          } else if (e instanceof Manager) {
+              ((Manager) e).manager();//向下转型
+          } else {
+              System.out.println("不做处理...");
+          }
+      }
+  ```
+* 应用实例代码：
+  - [Employee.java](../code/chapter08/src/com/jinjin/poly_/polyparameter/Employee.java)
+  - [Worker.java](../code/chapter08/src/com/jinjin/poly_/polyparameter/Worker.java)
+  - [Manager.java](../code/chapter08/src/com/jinjin/poly_/polyparameter/Manager.java)
+  - [PolyParameter.java](../code/chapter08/src/com/jinjin/poly_/polyparameter/PolyParameter.java)
