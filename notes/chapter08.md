@@ -33,6 +33,8 @@
     - [⭐️⭐️⭐️ java的动态绑定机制](#️️️-java的动态绑定机制)
     - [多态数组](#多态数组)
     - [多态参数](#多态参数)
+  - [Object类详解](#object类详解)
+    - [equals方法](#equals方法)
 
 # 第8章 面向对象编程（中级部分）
 ## IDEA的使用
@@ -330,3 +332,12 @@ animal.cry();
   - [Worker.java](../code/chapter08/src/com/jinjin/poly_/polyparameter/Worker.java)
   - [Manager.java](../code/chapter08/src/com/jinjin/poly_/polyparameter/Manager.java)
   - [PolyParameter.java](../code/chapter08/src/com/jinjin/poly_/polyparameter/PolyParameter.java)
+
+## Object类详解
+### equals方法
+* ==和equals的对比
+  * ==：既可以判断基本类型，又可以判断引用类型
+  * ==：如果判断基本类型，判断的是值是否相等。
+  * ==：如果判断引用类型，判断的是地址是否相等，即判定是不是同一个对象。
+  * equals：是Object类中的方法，只能判断引用类型。
+  * 默认判断的是地址是否相等，子类中往往重写该方法，用于判断内容是否相等。
