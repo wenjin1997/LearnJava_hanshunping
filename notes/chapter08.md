@@ -34,7 +34,11 @@
     - [多态数组](#多态数组)
     - [多态参数](#多态参数)
   - [Object类详解](#object类详解)
-    - [equals方法](#equals方法)
+    - [`equals`方法](#equals方法)
+    - [`equals`方法练习](#equals方法练习)
+    - [`hashCode`方法](#hashcode方法)
+    - [`toString`方法](#tostring方法)
+    - [`finalize`方法](#finalize方法)
 
 # 第8章 面向对象编程（中级部分）
 ## IDEA的使用
@@ -334,10 +338,54 @@ animal.cry();
   - [PolyParameter.java](../code/chapter08/src/com/jinjin/poly_/polyparameter/PolyParameter.java)
 
 ## Object类详解
-### equals方法
-* ==和equals的对比
-  * ==：既可以判断基本类型，又可以判断引用类型
-  * ==：如果判断基本类型，判断的是值是否相等。
-  * ==：如果判断引用类型，判断的是地址是否相等，即判定是不是同一个对象。
-  * equals：是Object类中的方法，只能判断引用类型。
-  * 默认判断的是地址是否相等，子类中往往重写该方法，用于判断内容是否相等。
+### `equals`方法
+* `==`和`equals`的对比
+  * `==`：既可以判断基本类型，又可以判断引用类型
+  * `==`：如果判断基本类型，判断的是值是否相等。
+  * `==`：如果判断引用类型，判断的是地址是否相等，即判定是不是同一个对象。
+  * `equals`：是`Object`类中的方法，**只能判断引用类型**。
+  * 默认判断的是地址是否相等，子类中往往重写该方法，用于判断内容是否相等，比如`Integer`、`String`。
+* `==`和`equals`代码：[Equals01.java](/code/chapter08/src/com/jinjin/object_/Equals01.java)
+* 查看JDK源码：command + B
+
+### `equals`方法练习
+* **重写equals方法** [EqualsExercise01.java](/code/chapter08/src/com/jinjin/object_/EqualsExercise01.java)
+判断两个`Person`对象的内容是否相等，如果两个`Person`对象的各个属性值都一样，则返回`true`，反之`false`。  
+`Person`属性如下：
+
+```java
+class Person {
+    private String name;
+    private int age;
+    private char gender;
+}
+```
+* 判断输出什么?
+
+```java
+System.out.println(“hello” == new java.sql.Date()); //编译错误
+```
+注意这里不是输出`false`，而是编译不能通过，因为两边比较的是不同的类，**直接编译报错**。
+
+### `hashCode`方法
+1. 提高具有哈希结构的容器的效率！
+2. 两个引用，如果指向的是同一个对象，则哈希值肯定是一样的！
+3. 两个引用，如果指向的是不同对象，则哈希值是不一样的。
+4. 哈希值主要是根据地址号来的！但不能将哈希值等价于地址。
+5. 在集合中，`hashCode`方法如果需要的话，也会重写。
+
+### `toString`方法
+1. 基本介绍
+   默认返回：全类名（包名+类名）+@+哈希值的十六进制，子类往往会重写`toStrin`g方法，用于返回对象的属性信息。
+2. 重写`toString`方法，打印对象或拼接对象时，都会自动调用该对象的`toString`形式。
+3. 当直接输出一个对象时，`toString`方法会被默认的调用，比如`System.out.println(monster);`等价于`System.out.println(monster.toString());`。
+
+代码：[ToString_.java](/code/chapter08/src/com/jinjin/object_/ToString_.java)
+
+### `finalize`方法
+1) 当对象被回收时，系统自动调用该对象的`finalize`方法。子类可以重写该方法，做一些释放资源的操作。
+2) 什么时候被回收:当某个对象没有任何引用时，则jvm就认为这个对象是一个垃圾对象，就会使用垃圾回收机制来销毁该对象，在销毁该对象前，会先调用`finalize`方法。
+3) 垃圾回收机制的调用，是由系统来决定(即有自己的GC算法),也可以通过`System.gc()`主动触发垃圾回收机制。
+* 我们在实际开发中，几乎不会运用`finalize`, 所以更多就是为了应付面试.
+
+代码：[Finalize_.java](/code/chapter08/src/com/jinjin/object_/Finalize_.java)
