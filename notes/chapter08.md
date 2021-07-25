@@ -349,7 +349,7 @@ animal.cry();
 * 查看JDK源码：command + B
 
 ### `equals`方法练习
-* **重写equals方法** [EqualsExercise01.java](/code/chapter08/src/com/jinjin/object_/EqualsExercise01.java)
+* **重写equals方法** [EqualsExercise01.java](/code/chapter08/src/com/jinjin/object_/EqualsExercise01.java)  
 判断两个`Person`对象的内容是否相等，如果两个`Person`对象的各个属性值都一样，则返回`true`，反之`false`。  
 `Person`属性如下：
 
@@ -375,7 +375,7 @@ System.out.println(“hello” == new java.sql.Date()); //编译错误
 5. 在集合中，`hashCode`方法如果需要的话，也会重写。
 
 ### `toString`方法
-1. 基本介绍
+1. 基本介绍  
    默认返回：全类名（包名+类名）+@+哈希值的十六进制，子类往往会重写`toStrin`g方法，用于返回对象的属性信息。
 2. 重写`toString`方法，打印对象或拼接对象时，都会自动调用该对象的`toString`形式。
 3. 当直接输出一个对象时，`toString`方法会被默认的调用，比如`System.out.println(monster);`等价于`System.out.println(monster.toString());`。
