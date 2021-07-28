@@ -39,6 +39,10 @@
     - [`hashCode`方法](#hashcode方法)
     - [`toString`方法](#tostring方法)
     - [`finalize`方法](#finalize方法)
+  - [断点调试(Debug)](#断点调试debug)
+    - [断点调试介绍](#断点调试介绍)
+    - [断点调试快捷键](#断点调试快捷键)
+    - [断点调试应用案例](#断点调试应用案例)
 
 # 第8章 面向对象编程（中级部分）
 ## IDEA的使用
@@ -389,3 +393,26 @@ System.out.println(“hello” == new java.sql.Date()); //编译错误
 * 我们在实际开发中，几乎不会运用`finalize`, 所以更多就是为了应付面试.
 
 代码：[Finalize_.java](/code/chapter08/src/com/jinjin/object_/Finalize_.java)
+
+## 断点调试(Debug)
+### 断点调试介绍
+* 在断点调试过程中，是运行状态，是以对象的运行类型来执行的。
+* 断点调试是指在程序的某一行设置一个断点，调试时，程序运行到这一行就会停住，然后可以一步一步往下调试，调试过程中可以看各个变量当前的值，出错的话，调试到出错的代码行即显示错误，停下。进行分析从而找到这个Bug。
+* 断点调试能帮助我们查看Java底层源代码的执行过程，提高程序员的Java水平。
+
+### 断点调试快捷键
+* F7 跳入方法内
+* F8 逐行执行代码
+* shift + F8 跳出方法内
+* F9 resume，执行到下一个断点
+
+### 断点调试应用案例
+* 查看变量变化的情况 [Debug01.java](/code/chapter08/src/com/jinjin/debug_/Debug01.java)
+* 查看数组越界的异常 [Debug02.java](/code/chapter08/src/com/jinjin/debug_/Debug02.java)
+* 追溯源码 [Debug03.java](/code/chapter08/src/com/jinjin/debug_/Debug03.java)
+* IDEA Debug 如何进入JDK源码
+  1. 使用force step into: 快捷键 alt + shift + F7
+  2. 配置：点击Setting --> Build,Execution,Deployment --> Debugger --> Stepping把Do not step into the classes中的java.*，javax.*取消勾选，其他的随意，然后就可以进入源码了。
+* 执行到下一个断点F9,断点可以在debug过程中，动态的下断点。[Debug04.java](/code/chapter08/src/com/jinjin/debug_/Debug04.java)
+* 使用断点调试的方法，追踪下一个对象创建的过程。Person[name, age, 构造器...] [DebugExercise.java](/code/chapter08/src/com/jinjin/debug_/DebugExercise.java)
+* 使用断点调试，查看动态绑定机制如何工作 [DynamicBinding.java](/code/chapter08/src/com/jinjin/poly_/dynamic_/DynamicBinding.java)
