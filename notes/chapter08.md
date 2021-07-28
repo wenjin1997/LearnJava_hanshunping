@@ -43,6 +43,7 @@
     - [断点调试介绍](#断点调试介绍)
     - [断点调试快捷键](#断点调试快捷键)
     - [断点调试应用案例](#断点调试应用案例)
+  - [零钱通项目](#零钱通项目)
 
 # 第8章 面向对象编程（中级部分）
 ## IDEA的使用
@@ -416,3 +417,7 @@ System.out.println(“hello” == new java.sql.Date()); //编译错误
 * 执行到下一个断点F9,断点可以在debug过程中，动态的下断点。[Debug04.java](/code/chapter08/src/com/jinjin/debug_/Debug04.java)
 * 使用断点调试的方法，追踪下一个对象创建的过程。Person[name, age, 构造器...] [DebugExercise.java](/code/chapter08/src/com/jinjin/debug_/DebugExercise.java)
 * 使用断点调试，查看动态绑定机制如何工作 [DynamicBinding.java](/code/chapter08/src/com/jinjin/poly_/dynamic_/DynamicBinding.java)
+
+## 零钱通项目
+* 面向过程编写 [SmallChangeSys.java](/code/chapter08/src/com/jinjin/smallchange/SmallChangeSys.java)
+* OOP思想编写 [SmallChangeSysOOP.java](/code/chapter08/src/com/jinjin/smallchange/oop/SmallChangeSysOOP.java)、[SmallChangeSysApp.java](/code/chapter08/src/com/jinjin/smallchange/oop/SmallChangeSysApp.java)
