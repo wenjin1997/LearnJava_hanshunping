@@ -44,6 +44,12 @@
     - [断点调试快捷键](#断点调试快捷键)
     - [断点调试应用案例](#断点调试应用案例)
   - [零钱通项目](#零钱通项目)
+  - [本章作业](#本章作业)
+    - [作业1](#作业1)
+    - [作业2](#作业2)
+    - [作业3](#作业3)
+    - [作业4](#作业4)
+    - [作业5](#作业5)
 
 # 第8章 面向对象编程（中级部分）
 ## IDEA的使用
@@ -82,12 +88,11 @@ MacOS版本下的常用快捷键如下，如果要自定义可以找到Preferenc
 3. `java.net.* `：网络包，网络开发
 4. `java.awt.*`：做java的界面开发，GUI
 
-### 引入包 
-[Import01.java](./code/chapter08/src/com/jinjin/pkg/Import01.java)  
+### 引入包  
 需要使用到哪个类，就导入哪个包，不建议使用*导入，如`import java.util.Arrays;`。引入一个包的主要目的是要使用该包下的类。
 
 ### 注意事项和使用细节
-* package的作业是声明当前类所在的包，需要放在类的最上面，一个类最多只有一句package。
+* package的作用是声明当前类所在的包，需要放在类的最上面，一个类最多只有一句package。
 * import指令位置放在package的下面，在类定义前面，可以有多句且没有顺序要求。
   
 ## 访问修饰符
@@ -100,9 +105,9 @@ MacOS版本下的常用快捷键如下，如果要自定义可以找到Preferenc
 |私有|privated|✔️|×|×|×|
 
 ### 使用的注意事项
-1. 修饰符可以用来修饰类中的属性，成员方法以及类
+1. 修饰符可以用来修饰类中的属性，成员方法以及类。
 2. 只有默认的和public才能修饰类！并且遵循上述访问权限的特点。
-3. 关于在子类中的访问权限，学完继承后再看。
+3. 关于在子类中的访问权限，涉及到继承相关知识。
 4. 成员方法的访问规则和属性完全一样。
 代码位置：`/code/chapter08/src/com/jinjin/modifier`
 
@@ -132,9 +137,9 @@ public 数据类型 getXxx(){//权限判断，Xxx表示某个属性
 }
 ```
 ### 封装练习
-1. 不能随便查看人的年龄，工资等隐私，并对设置的年龄进行合理的验证。年龄合理就设置，否则给默认年龄，必须在1-120，年龄、工资不能直接查看，name的长度在2-6个字符之间。[Encapsulation01.java](./code/chapter08/src/com/jinjin/encap/Encapsulation01.java)
+1. 不能随便查看人的年龄，工资等隐私，并对设置的年龄进行合理的验证。年龄合理就设置，否则给默认年龄，必须在1-120，年龄、工资不能直接查看，name的长度在2-6个字符之间。[Encapsulation01.java](/code/chapter08/src/com/jinjin/encap/Encapsulation01.java)
    * 构造器可以和setXxx方法结合，用于数据的验证，实现封装。
-2. 创建程序，在其中定义两个类：Account和AccoutTese类体会Java的封装性。[Account.java](./code/chapter08/src/com/jinjin/encap/Account.java)及[AccountTest.java](./code/chapter08/src/com/jinjin/encap/AccountTest.java)
+2. 创建程序，在其中定义两个类：Account和AccoutTese类体会Java的封装性。[Account.java](/code/chapter08/src/com/jinjin/encap/Account.java)及[AccountTest.java](/code/chapter08/src/com/jinjin/encap/AccountTest.java)
    1. Account类要求具有属性：姓名（长度为2位3位或4位）、余额（必须>20）、密码（必须是六位），如果不满足，则给出提示信息，并给默认值。
    2. 通过setXxx的方法给Account的属性赋值。
    3. 在AccountTest中测试。
@@ -224,8 +229,8 @@ class 子类 extends 父类 {
 
 ## 方法重写/覆盖(Override)
 * 子类方法的形参列表，方法名称，要和父类方法的形参列表，方法名称完全一样。
-* 子类方法的返回类型和父类方法的返回类型一样，或者是父类返回类型的子类，比如父类返回类型是`Object`，子类方法返回类型是`String`。
-* 子类方法不能缩小父类方法的访问权限。public->protected->默认->private。如果父类方法的访问修饰符是protected，则子类的访问修饰符是protected或public。
+* **子类方法的返回类型和父类方法的返回类型一样，或者是父类返回类型的子类**，比如父类返回类型是`Object`，子类方法返回类型是`String`。
+* **子类方法不能缩小父类方法的访问权限**。public->protected->默认->private。如果父类方法的访问修饰符是protected，则子类的访问修饰符是protected或public。
 
 ### 重写和重载的比较
 
@@ -421,3 +426,84 @@ System.out.println(“hello” == new java.sql.Date()); //编译错误
 ## 零钱通项目
 * 面向过程编写 [SmallChangeSys.java](/code/chapter08/src/com/jinjin/smallchange/SmallChangeSys.java)
 * OOP思想编写 [SmallChangeSysOOP.java](/code/chapter08/src/com/jinjin/smallchange/oop/SmallChangeSysOOP.java)、[SmallChangeSysApp.java](/code/chapter08/src/com/jinjin/smallchange/oop/SmallChangeSysApp.java)
+
+## 本章作业
+### 作业1
+定义一个Person类{name, age, job}，初始化Person对象数组，有3个person对象，并按照age从大到小进行排序，提示，使用冒泡排序。[Homework01.java](/code/chapter08/src/com/jinjin/homework/Homework01.java)
+
+⭐️冒泡排序代码：
+
+```java
+//使用冒泡排序
+Person temp = null; //临时变量，用于交换
+for (int i = 0; i < persons.length; i++) {
+    for (int j = 0; j < persons.length - 1 - i; j++) {
+        if (persons[j].getAge() < persons[j+1].getAge()) {
+            temp = persons[j];
+            persons[j] = persons[j+1];
+            persons[j+1] = temp;
+        }
+    }
+}
+```
+
+### 作业2
+写出四种访问修饰符和各自的访问权限。见[4种访问修饰符的访问范围](#4种访问修饰符的访问范围)。
+
+### 作业3
+编写老师类：
+1. 要求有属性“姓名name”，“年龄age”，“职称post”，“基本工资salary”
+2. 编写业务方法，introduce()，实现输出一个教师的信息。
+3. 编写教师类的三个子类，教授类(Professor)、副教授类、讲师类。工资级别分别为：教授1.3、副教授1.2、讲师类1.1。在三个子类里面都重写父类的introduce()方法。
+4. 定义并初始化一个老师对象，调用业务方法，实现对象基本信息的后台打印。
+
+代码：
+- [Homework03.java](/code/chapter08/src/com/jinjin/homework/homework03/Homework03.java)
+- [Teacher.java](/code/chapter08/src/com/jinjin/homework/homework03/Teacher.java)
+- [Professor.java](/code/chapter08/src/com/jinjin/homework/homework03/Professor.java)
+- [AssociateProfessor.java](/code/chapter08/src/com/jinjin/homework/homework03/AssociateProfessor.java)
+- [Lecturer.java](/code/chapter08/src/com/jinjin/homework/homework03/Lecturer.java)
+
+### 作业4
+通过继承实现员工工资核算打印功能：   
+父类：员工类(Employee)  
+子类：部门经理类(Manager)、普通员工类(Worker)
+1. 部门经理工资 = 1000+单日工资 \* 天数 * 等级(1.2)
+2. 普通员工工资 = 单日工资 \* 天数 * 等级(1.0)
+3. 员工属性：姓名、单日工资、工作天数
+4. 员工方法：打印工资
+5. 普通员工及部门经理都是员工子类，需要重写打印工资方法。
+6. 定义并初始化普通员工对象，调用打印工资方法输出工资，定义并初始化部门经理对象，调用打印工资方法输出工资。
+
+作业4代码：
+- [Homework04.java](/code/chapter08/src/com/jinjin/homework/homework04/Homework04.java)
+- [Employee.java](/code/chapter08/src/com/jinjin/homework/homework04/Employee.java)
+- [Manager.java](/code/chapter08/src/com/jinjin/homework/homework04/Manager.java)
+- [Worker.java](/code/chapter08/src/com/jinjin/homework/homework04/Worker.java)
+
+### 作业5
+设计父类——员工类。子类：工人类(Worker)、农民类(Peasant)、教师类(Teacher)、科学家类(Scientist)、服务生类(Waiter)。
+1. 其中工人、农民、服务生只有基本工资sal
+2. 教师除基本工资外，还有课酬（元/天）classDay,classSal
+3. 科学家除基本工资外，还有年终奖bonus
+4. 编写一个测试类，将各种类型的员工的全年工资打印出来
+
+* 注意事项
+  * 教师类的classDay,classSal以及科学家的bonus属性可以不用设置在构造器中，用set和get方法更加灵活。
+  * Employee类中打印全年工资方法如下，不用单独设置全年工资属性。
+
+  ```java
+  //打印全全年工资
+  public void showSal() {
+      System.out.println(name + "\t全年工资 " + (salPerMon * salMonth));
+  }
+  ```
+
+作业5代码：
+- [homework05.java](/code/chapter08/src/com/jinjin/homework/homework05/homework05.java)
+- [Employee.java](/code/chapter08/src/com/jinjin/homework/homework05/Employee.java)
+- [Worker.java](/code/chapter08/src/com/jinjin/homework/homework05/Worker.java)
+- [Peasant.java](/code/chapter08/src/com/jinjin/homework/homework05/Peasant.java)
+- [Teacher.java](/code/chapter08/src/com/jinjin/homework/homework05/Teacher.java)
+- [Scientist.java](/code/chapter08/src/com/jinjin/homework/homework05/Scientist.java)
+- [Waiter.java](/code/chapter08/src/com/jinjin/homework/homework05/Waiter.java)
