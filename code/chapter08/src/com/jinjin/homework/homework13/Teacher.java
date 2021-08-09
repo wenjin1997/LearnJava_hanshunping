@@ -24,4 +24,19 @@ public class Teacher extends Person{
     public String play() {
         return super.play() + "象棋";
     }
+
+    public void printInfo() {
+        System.out.println("老师的信息：");
+        System.out.println(super.basicInfo());
+        System.out.println("工龄：" + work_age);
+        teach();
+        System.out.println(play());
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "work_age=" + work_age +
+                '}' + super.toString();
+    }
 }

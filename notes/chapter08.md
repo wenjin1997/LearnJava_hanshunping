@@ -60,6 +60,8 @@
     - [作业11](#作业11)
     - [⭐️⭐️⭐️作业12](#️️️作业12)
     - [作业13](#作业13)
+      - [代码](#代码-1)
+      - [⭐️Remark](#️remark)
     - [作业14](#作业14)
     - [⭐️⭐️作业15 多态](#️️作业15-多态)
     - [⭐️⭐️作业16 动态绑定机制](#️️作业16-动态绑定机制)
@@ -684,6 +686,50 @@ class Student extends Person{
 
 ### 作业13
 <img src="/notes/img-ch8/homework13.png">
+
+#### 代码
+* [Person.java](/code/chapter08/src/com/jinjin/homework/homework13/Person.java)
+* [Student.java](/code/chapter08/src/com/jinjin/homework/homework13/Student.java)
+* [Teacher.java](/code/chapter08/src/com/jinjin/homework/homework13/Teacher.java)
+* [Homework13.java](/code/chapter08/src/com/jinjin/homework/homework13/Homework13.java)
+
+#### ⭐️Remark
+* 关于第（6）小问，可以在父类Person中写一个basicInfo()方法，返回基本信息，子类中再写printInfo()方法。
+
+```java
+//Person类
+//返回一个基本信息
+    public String basicInfo() {
+        return "姓名：" + name + "\n年龄：" + age + "\n性别：" + sex;
+    }
+```
+
+```java
+//Student类
+//Teacher类中的printInfo()方法类似
+public void printInfo() {
+    System.out.println("学生的信息：");
+    System.out.println(super.basicInfo());
+    System.out.println("学号：" + stu_id);
+    study();
+    System.out.println(play());
+}
+```
+
+* 第（8）小问
+
+```java
+//定义方法, 形参为Person类型，功能：调用学生的study或教师的teach
+public void test(Person p) {
+    if (p instanceof Student) {
+        ((Student)p).study();
+    } else if (p instanceof Teacher) {
+        ((Teacher) p).teach();
+    } else {
+        System.out.println("do nothing...");
+    }
+}
+```
 
 ### 作业14
 <img src="/notes/img-ch8/homework14.png">

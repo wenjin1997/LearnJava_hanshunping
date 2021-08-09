@@ -38,4 +38,18 @@ public class Person {
     public String play() {
         return name + "爱玩";
     }
+
+    //返回一个基本信息
+    public String basicInfo() {
+        return "姓名：" + name + "\n年龄：" + age + "\n性别：" + sex;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", sex=" + sex +
+                ", age=" + age +
+                '}';
+    }
 }
