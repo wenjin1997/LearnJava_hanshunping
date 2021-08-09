@@ -50,6 +50,19 @@
     - [作业3](#作业3)
     - [作业4](#作业4)
     - [作业5](#作业5)
+    - [⭐️⭐️作业6](#️️作业6)
+    - [作业7](#作业7)
+    - [⭐️⭐️⭐️作业8](#️️️作业8)
+      - [代码：](#代码)
+      - [⭐️⭐️**Remark**](#️️remark)
+    - [作业9](#作业9)
+    - [⭐️⭐️⭐️作业10](#️️️作业10)
+    - [作业11](#作业11)
+    - [⭐️⭐️⭐️作业12](#️️️作业12)
+    - [作业13](#作业13)
+    - [作业14](#作业14)
+    - [⭐️⭐️作业15 多态](#️️作业15-多态)
+    - [⭐️⭐️作业16 动态绑定机制](#️️作业16-动态绑定机制)
 
 # 第8章 面向对象编程（中级部分）
 ## IDEA的使用
@@ -507,3 +520,208 @@ for (int i = 0; i < persons.length; i++) {
 - [Teacher.java](/code/chapter08/src/com/jinjin/homework/homework05/Teacher.java)
 - [Scientist.java](/code/chapter08/src/com/jinjin/homework/homework05/Scientist.java)
 - [Waiter.java](/code/chapter08/src/com/jinjin/homework/homework05/Waiter.java)
+
+### ⭐️⭐️作业6
+假定Grand、Father和Son在同一个包，问：父类和子类中通过this和super都可以调用哪些属性和方法？
+
+```java
+package com.jinjin.homework.homework06;
+
+public class Homework06 {
+}
+
+class Grand{ //超类
+    String name = "AA";
+    private int age = 100;
+    public void g1(){ }
+}
+
+class Father extends Grand{ // 父类
+    String id = "001";
+    private double score;
+    public void f1() {
+        // super可以调用哪些属性和方法？
+
+        // this可以调用哪些属性和方法？
+
+    }
+}
+
+class Son extends Father{ //子类
+    String name = "BB";
+    public void g1() {
+    }
+    public void show(){
+        // super可以调用哪些属性和方法？
+        // this可以调用哪些属性和方法？
+    }
+}
+```
+
+* 解答：[Homework06.java](/code/chapter08/src/com/jinjin/homework/homework06/Homework06.java)
+* ⭐️⭐️回顾笔记：[`super`关键字](#super关键字)
+
+### 作业7
+写出程序结果：[Homework07.java](/code/chapter08/src/com/jinjin/homework/homework07/Homework07.java)
+
+答案：`Test Demo Rose Jack john Jack`
+
+### ⭐️⭐️⭐️作业8
+扩展如下的BankAccount类：[BankAccount.java](/code/chapter08/src/com/jinjin/homework/homework08/BankAccount.java)
+
+要求：
+1. 在上面类的基础上扩展新类CheckingAccount,对每次存款和取款都收取1美元的手续费。
+2. 扩展前一个练习的BankAccount类，新类SavingAccount每个月都有利息产生（earnMonthlyInterest方法被调用），并且有每月三次免手续费的存款或取款。在earnMonthlyInterest方法中重置交易计数。
+3. 体会重写的好处。
+
+#### 代码：
+* [CheckingAccount.java](/code/chapter08/src/com/jinjin/homework/homework08/CheckingAccount.java)
+* [SavingsAccount.java](/code/chapter08/src/com/jinjin/homework/homework08/SavingsAccount.java)
+* [Homework08.java](/code/chapter08/src/com/jinjin/homework/homework08/Homework08.java)
+
+#### ⭐️⭐️**Remark**
+* CheckingAccount类中的存款和取款方法可以直接调用父类的方法进行重写。
+
+```java
+//存款
+@Override
+public void deposit(double amount) {
+    // setBalance(getBalance() + amount - 1);
+    super.deposit(amount - 1);
+}
+```
+
+* 实现每月三次免手续费的存款或取款，每月产生利息
+
+```java
+private int times = 3; // 每月免手续费次数
+
+public void earnMonthlyInterest() {
+        times = 3;
+        // 每个月产生利息
+        //setBalance(getBalance() + getBalance() * interest);
+        super.deposit(getBalance() * interest);
+    }
+
+//存款
+public void deposit(double amount) {
+    if (times > 0) {
+        super.deposit(amount);
+    } else {
+        super.deposit(amount - 1);
+    }
+    times --;
+}
+```
+
+### 作业9
+设计一个Point类，其x和y坐标可以通过构造器提供。提供一个子类LabeledPoint，其构造器接受一个标签值和x,y坐标，比如:`new LabeledPoint("Black", 1929, 230.07)`，写出对应的构造器即可。
+
+```java
+public LabeledPoint(String label, double x, double y) {
+        super(x, y);
+        this.label = label;
+    }
+```
+* 代码
+  * [Point.java](/code/chapter08/src/com/jinjin/homework/homework09/Point.java)
+  * [LabeledPoint.java](/code/chapter08/src/com/jinjin/homework/homework09/LabeledPoint.java)
+
+### ⭐️⭐️⭐️作业10
+编写Doctor类`{name, age, job, gender, sal}`
+相应的getter()和setter()方法，5个参数构造器，重写父类(Object)的equals()方法:`public boolean equals(Object obj)`，并判断测试类中创建的两个对象是否相等。相等就是判断属性是否相同。
+
+```java
+// 重写父类(Object)的equals()方法:`public boolean equals(Object obj)`
+public boolean equals(Object obj) {
+    if (this == obj) {
+        return true;
+    }
+    if (obj instanceof Doctor) {
+        Doctor aDoctor = (Doctor)obj; // 向下转型
+        return aDoctor.name.equals(this.name) &&
+                aDoctor.age == this.age &&
+                aDoctor.gender == this.gender &&
+                aDoctor.job.equals(this.job) &&
+                aDoctor.sal == this.sal;
+    }
+    return false;
+}
+```
+
+### 作业11
+现有Person类，里面有方法run、eat，Student类继承了Person类，并重写了run方法，自定义了study方法，试写出对象向上转型和向下转型的代码，并写出各自都可以调用哪些方法，并写出方法输出什么？
+
+```java
+class Person {
+  public void run() {System.out.println("person run");}
+  public void eat() {System.out.println("person eat");}
+}
+
+class Student extends Person{
+  public void run() {System.out.println("student run");}
+  public void study() {System.out.println("student study..");}
+}
+```
+
+* 对象向上转型
+  * `Person person = new Student();`
+  * 可以调用方法：`person.run();`输出`student run`
+  * 可以调用方法：`person.eat();`输出`person eat`
+
+* 对象向下转型
+  * ⭐️⭐️`Student s = (Student) person;`
+  * 可以调用方法：`s.run();`输出`student run`
+  * 可以调用方法：`s.study();`输出`student study..`
+
+### ⭐️⭐️⭐️作业12
+说出==和equals的区别。
+
+|名称|概念|用于基本数据类型|用于引用类型|
+|----|----|----|----|
+|==|比较运算符|可以，判断值是否相等|可以，判断两个对象是否相等|
+|equals|Object类的方法，Java类都可以使用equals|不可以|可以，默认是判断两个对象是否相等，但是子类往往重写该方法，比较对象的属性是否相等，比如`(String, Integer)`|
+
+### 作业13
+<img src="/notes/img-ch8/homework13.png">
+
+### 作业14
+<img src="/notes/img-ch8/homework14.png">
+
+输出内容：
+```
+我是A类
+hahah我是B类的有参构造
+我是c类的有参参构造
+我是c类的无参构造
+```
+
+⭐️⭐️注意事项：
+
+```java
+public B(String name){
+  //super();
+  //⭐️注意这里有`super();`,默认调用父类A的无参构造器
+  System.out.println(name+"我是B类的有参构造");
+}
+```
+
+### ⭐️⭐️作业15 多态
+什么是多态，多态具体体现有哪些？可举例说明: [Homework15.java](/code/chapter08/src/com/jinjin/homework/Homework15.java)
+
+**多态**：方法或对象具有多种形态，是OOP的第三大特征，是建立在封装和继承基础之上。
+
+**多态的具体体现**：
+1. 方法多态
+   1. 重载体现多态
+   2. 重写体现多态
+2. 对象多态
+   1. 对象的编译类型和运行类型可以不一致，编译类型在定义时，就确定，不能变化
+   2. 对象的运行类型是可以变化的，可以通过`getClass()`来查看运行类型
+   3. 编译类型看定义时 `=` 号的左边，运行类型看 `=` 号的右边
+
+### ⭐️⭐️作业16 动态绑定机制
+java的动态绑定机制是什么？
+
+1. 当调用对象的方法时，该方法会和对象的内存地址/运行类型绑定。
+2. 当调用对象的属性时，没有动态绑定机制，哪里声明，哪里使用。
