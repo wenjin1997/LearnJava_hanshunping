@@ -15,5 +15,6 @@ B站学习Java代码
 * **多行注释不能嵌套。**
 
 ## 笔记
-* [第7章 面向对象编程（基础部分）](/code/chapter07/chapter07.md)
+* [第7章 面向对象编程（基础部分）](/notes/chapter07.md)
 * [第8章 面向对象编程（中级部分）](/notes/chapter08.md)
+* [第9章 项目-房屋出租系统](/notes/chapter09.md)
