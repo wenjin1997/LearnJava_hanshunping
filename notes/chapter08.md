@@ -320,7 +320,7 @@ animal.cry();
 例子：[DynamicBinding.java](../code/chapter08/src/com/jinjin/poly_/dynamic_/DynamicBinding.java)
 
 ### 多态数组
-* 数组的定义类型位父类类型，里面保存的实际元素类型为子类类型。
+* 数组的定义类型为父类类型，里面保存的实际元素类型为子类类型。
 
 * 应用实例:现有一个继承结构如下:要求创建 1 个 Person 对象、2 个 Student 对象和 2 个 Teacher 对象, 统一放在数组 中，并调用每个对象say 方法.
 
@@ -347,15 +347,16 @@ animal.cry();
 
   ```java
   public void testWork(Employee e) {
-          if (e instanceof Worker) {
-              ((Worker) e).work();//向下转型
-          } else if (e instanceof Manager) {
-              ((Manager) e).manager();//向下转型
-          } else {
-              System.out.println("不做处理...");
-          }
+      if (e instanceof Worker) {
+          ((Worker) e).work();//向下转型
+      } else if (e instanceof Manager) {
+          ((Manager) e).manager();//向下转型
+      } else {
+          System.out.println("不做处理...");
       }
+  }
   ```
+  
 * 应用实例代码：
   - [Employee.java](../code/chapter08/src/com/jinjin/poly_/polyparameter/Employee.java)
   - [Worker.java](../code/chapter08/src/com/jinjin/poly_/polyparameter/Worker.java)
@@ -401,7 +402,7 @@ System.out.println(“hello” == new java.sql.Date()); //编译错误
 
 ### `toString`方法
 1. 基本介绍  
-   默认返回：全类名（包名+类名）+@+哈希值的十六进制，子类往往会重写`toStrin`g方法，用于返回对象的属性信息。
+   默认返回：全类名（包名+类名）+@+哈希值的十六进制，子类往往会重写`toString`方法，用于返回对象的属性信息。
 2. 重写`toString`方法，打印对象或拼接对象时，都会自动调用该对象的`toString`形式。
 3. 当直接输出一个对象时，`toString`方法会被默认的调用，比如`System.out.println(monster);`等价于`System.out.println(monster.toString());`。
 
