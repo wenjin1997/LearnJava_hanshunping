@@ -6,3 +6,4 @@
 * [第7章 面向对象编程（基础部分）](/notes/chapter07.md)
 * [第8章 面向对象编程（中级部分）](/notes/chapter08.md)
 * [第9章 项目-房屋出租系统](/notes/chapter09.md)
+* [第10章 面向对象编程（高级部分）](/notes/chapter10.md)
