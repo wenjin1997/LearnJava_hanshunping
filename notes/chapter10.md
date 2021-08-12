@@ -105,10 +105,15 @@ public static int count = 0;
 
 ### 在IDEA中如何传递参数：
 步骤1：
+
 <img src="/notes/img-ch10/main-idea1.png">
+
 步骤2:
+
 <img src="/notes/img-ch10/main-idea2.png">
+
 应用保存后，再执行就可以了。
+
 <img src="/notes/img-ch10/main-idea3.png">
 
 ## 10.3 代码块
@@ -156,6 +161,7 @@ public static int count = 0;
 3. 调用构造方法。
 
 ⭐️**细节5**:
+
 构造器的最前面其实隐含了`super()`和普通代码块。静态相关的代码块及属性初始化，在类加载时，就执行完毕，因此是优先于构造器和普通代码块执行的。
 ```java
 class A {
@@ -169,6 +175,7 @@ class A {
 ```
 
 🚩🚩⭐️**细节6**：
+
 我们看一下创建一个子类对象时（继承关系），它们的静态代码块，静态属性初始化，普通代码块，普通属性初始化，构造方法的调用顺序：
 1. 父类的静态代码块和静态属性（优先级一样，按定义顺序执行）
 2. 子类的静态代码块和静态属性（优先级一样，按定义顺序执行）
@@ -180,6 +187,7 @@ class A {
 例子：[CodeBlockDetail04.java](/code/chapter10/src/com/jinjin/codeblock_/CodeBlockDetail04.java)
 
 **细节7**：
+
 静态代码块只能直接调用静态成员（静态属性和静态方法），普通代码块可以调用任意成员。
 
 ### 练习题
@@ -216,4 +224,5 @@ class Test {
 }
 ```
 输出结果：
+
 <img src="/notes/img-ch10/codeblock-ex2.png">
