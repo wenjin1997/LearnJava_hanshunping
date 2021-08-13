@@ -20,7 +20,7 @@
     - [什么是设计模式](#什么是设计模式)
     - [什么是单例模式](#什么是单例模式)
     - [单例模式应用实例](#单例模式应用实例)
-      - [饿汉式VS懒汉式](#饿汉式vs懒汉式)
+      - [⭐️饿汉式VS懒汉式](#️饿汉式vs懒汉式)
   - [10.5 `final`关键字](#105-final关键字)
     - [基本介绍](#基本介绍-1)
     - [`final`使用注意事项和细节讨论](#final使用注意事项和细节讨论)
@@ -33,11 +33,20 @@
     - [基本介绍](#基本介绍-2)
     - [模板设计模式能解决的问题](#模板设计模式能解决的问题)
     - [最佳实践](#最佳实践)
+  - [10.8 接口](#108-接口)
+    - [快速入门](#快速入门)
+    - [基本介绍](#基本介绍-3)
+    - [深入讨论](#深入讨论)
+    - [注意事项和细节](#注意事项和细节)
+    - [课堂练习](#课堂练习)
+    - [实现接口 VS 继承类](#实现接口-vs-继承类)
+    - [接口的多态属性](#接口的多态属性)
+    - [课堂练习](#课堂练习-1)
 
 # 第10章 面向对象编程（高级部分）
 ## 10.1 类变量和类方法
 ### 类变量快速入门
-提出问题：有一群小孩在玩堆雪人,不时有新的小孩加入,请问如何知道现在共有多少人在玩?，编写程序解决。[ChildGame.java](/code/chapter10/src/com/jinjin/static_/ChildGame.java)
+提出问题：有一群小孩在玩堆雪人,不时有新的小孩加入,请问如何知道现在共有多少人在玩?编写程序解决。[ChildGame.java](/code/chapter10/src/com/jinjin/static_/ChildGame.java)
 
 在类Child中定义一个类变量，统计有多少小孩加入了游戏。
 ```java
@@ -69,27 +78,27 @@ public static int count = 0;
     * 类变量是随着类的加载而创建，所以即使没有创建对象实例也可以访问。
 
 ### 类变量使用注意事项和细节讨论
-1. 什么时候需要用类变量
+1. 什么时候需要用类变量  
     当我们需要让某个类的所有对象都共享一个变量时，就可以考虑类变量（静态变量）。比如：定义学生类，统计所有学生共交多少钱。
-2. 类变量与实例变量（普通属性）区别
+2. 类变量与实例变量（普通属性）区别  
     类变量是该类的所有对象共享的，而实例变量是每个对象独享的。
-3. 加上static称为类变量或静态变量，否则称为实例变量/普通变量/非静态变量。
+3. 加上`static`称为类变量或静态变量，否则称为实例变量/普通变量/非静态变量。
 4. 类变量可以通过`类名.类变量名`或者`对象名.类变量名`来访问，但java设计者推荐我们使用`类名.类变量名`方式访问。【**前提是**满足访问修饰符的权限和范围】
 5. 实例变量不能通过`类名.类变量名`方式访问。
 6. 类变量是在类加载时就初始化了，也就是说，即使你没有创建对象，只要类加载了，就可以使用类变量了。
 7. 类变量的生命周期是随类的加载开始，随着类消亡而销毁。
 
 ### 类方法
-* 类方法基本介绍
+* 类方法基本介绍  
 类方法也叫静态方法。形式如下：
     ```java
     访问修饰符 static 数据返回类型 方法名() { } //推荐
     static 访问修饰符 数据返回类型 方法名() { } 
     ```
-* 类方法的调用
+* 类方法的调用  
 使用方式：`类名.类方法名`或者`对象名.类方法名`，前提是满足访问修饰符的访问权限和范围。
 
-* 类方法经典的使用场景
+* 类方法经典的使用场景  
 当方法中不涉及到任何和对象相关的成员，则可以将方法设计成静态方法，提高开发效率。比如：工具类中的方法utils、Math类、Arrays类、Collections集合类。  
 在程序的实际开发中，往往会将一些通用的方法设计成静态方法，这样我们不需要创建对象就可以使用了，比如打印一维数组，冒泡排序，完成某个计算任务等。
 
@@ -98,7 +107,7 @@ public static int count = 0;
 2. 类方法可以通过类名调用，也可以通过对象名调用。
 3. 普通方法和对象有关，需要通过对象名调用，比如`对象名.方法名(参数)`，不能通过类名调用。
 4. 类方法中不允许使用和对象有关的关键字，比如`this`和`super`。普通方法（成员方法）可以。
-5. 类方法（静态方法）中只能访问静态变量或静态方法。
+5. **类方法（静态方法）中只能访问静态变量或静态方法。**
 6. 普通成员方法，既可以访问非静态成员，也可以访问静态成员。
 
 ⭐️**小结**：
@@ -108,7 +117,10 @@ public static int count = 0;
 
 ## 10.2 理解`main`方法语法
 ### 解释`main`方法的形式
-`public static void main(String[] args){}`
+```java
+public static void main(String[] args){}
+```
+
 1. `main()`方法是虚拟机调用
 2. java虚拟机需要调用类的`main()`方法，所以该方法的访问权限必须是`public`
 3. java虚拟机在执行`main()`方法时不必创建对象，所以该方法必须是`static`
@@ -117,7 +129,7 @@ public static int count = 0;
 <img src="/notes/img-ch10/main.png">
 
 ### 特别提示
-1. 在main()方法中，我们可以直接调用main方法所在类的静态方法或静态属性。
+1. 在`main()`方法中，我们可以直接调用`main`方法所在类的静态方法或静态属性。
 2. 但是，不能直接访问该类中的非静态成员，必须创建该类的一个实例对象后，才能通过这个对象去访问类中的非静态成员。
 
 ### 在IDEA中如何传递参数
@@ -135,7 +147,7 @@ public static int count = 0;
 
 ## 10.3 代码块
 ### 基本介绍
-代码块又称为初始化块，属于类中的成员[即是类的一部分]，类似于方法，讲逻辑语句封装在方法体中，通过`{}`包围起来。
+代码块又称为初始化块，属于类中的成员[即是类的一部分]，类似于方法，将逻辑语句封装在方法体中，通过`{}`包围起来。
 但和方法不同，没有方法名，没有返回，没有参数，只有方法体，而且不用通过对象或类显式调用，而是在加载类时，或创建对象时隐式调用。
 
 ### 基本语法
@@ -149,7 +161,7 @@ public static int count = 0;
 3. `;`号可以写上，也可以省略。
 
 ### 代码块的好处
-1. 相当于另外一种形式的构造器（对构造器的补充机制），可以做初始化操作。
+1. **相当于另外一种形式的构造器（对构造器的补充机制），可以做初始化操作。**
 2. 场景：如果多个构造器中都有重复的语句，可以抽取到初始化代码块中，提高代码的重用性。
 3. 代码块快速入门：[CodeBlock01.java](/code/chapter10/src/com/jinjin/codeblock_/CodeBlock01.java)
    * 不管调用哪个构造器，创建对象，都会先调用代码块的内容。
@@ -251,13 +263,13 @@ class Test {
 
 ### 什么是单例模式
 单例（单个的实例）  
-1. 所谓类的单例设计模式，就是采取一定的方法保证在整个的软件系统中，对其个类只能存在一个对象实例，并且该类只提供一个取得其对象实例的方法
+1. 所谓类的单例设计模式，就是采取一定的方法保证在整个的软件系统中，**对其个类只能存在一个对象实例，并且该类只提供一个取得其对象实例的方法**
 2. 单例模式有两种方式：
    1. 饿汉式
    2. 懒汉式
 
 ### 单例模式应用实例
-步骤如下：
+**步骤如下：**
 1. 构造器私有化，防止直接`new`
 2. 类的内部创建对象
 3. 向外暴露一个静态的公共方法
@@ -273,7 +285,7 @@ class Test {
 3. 提供一个`public`的`static`方法，可以返回一个`Cat`对象
 4. 懒汉式，只有当用户使用`getInstance`时，才返回`Cat`对象，后面再次调用时，会返回上次创建的的`Cat`对象，从而保证了单例
 
-#### 饿汉式VS懒汉式
+#### ⭐️饿汉式VS懒汉式
 1. 二者最主要的区别在于创建对象的**时机**不同：饿汉式是在类加载就创建了对象实例，而懒汉式是在使用时才创建。
 2. 饿汉式不存在线程安全问题，**懒汉式存在线程安全问题**。
 3. **饿汉式存在浪费资源的可能**。因为如果程序员一个对象实例都没有使用，那么饿汉式创建的对象就浪费了，懒汉式是使用时才创建，不存在这个问题。
@@ -302,16 +314,16 @@ class Test {
 5. 如果类不是`final`类，但是含有`final`方法，则该方法虽然不能重写，但是可以被继承。
 6. 一般来说，如果一个类已经是`final`类了，就没有必要再将方法修饰为`final`方法。
 7. `final`不能修饰构造方法（即构造器）
-8. ⭐️`final`和`static`往往搭配使用，效率更高，不会导致类加载。底层编译器做了优化处理。
+8. ⭐️❓`final`和`static`往往搭配使用，效率更高，不会导致类加载。底层编译器做了优化处理。
     ```java
     class Demo {
-        public static final int i = 16;
+        public static final int NUM = 16;
         static{
             System.out.println("进进");
         }
     }
     ```
-    当在`main`方法中执行`Demo.int`时，不会执行`static`代码块。
+    当在`main`方法中执行`Demo.NUM`时，不会执行`static`代码块。
 9. 包装类(Integer,Double,Float,Boolean等都是final),String类也是final类。
 
 ### `final`练习
@@ -344,13 +356,13 @@ abstract class Animal{
 
 ### 🚩抽象类使用的注意事项和细节讨论
 1. 抽象类不能被实例化
-2. 抽象类不一定要包含abstract方法。也就是说，抽象类可以没有abstract方法。
-3. 一旦类包含了abstract方法，则这个类必须声明为abstract。
-4. abstract只能修饰类和方法，不能修饰属性和其它的。
+2. 抽象类不一定要包含`abstract`方法。也就是说，抽象类可以没有`abstract`方法。
+3. 一旦类包含了`abstract`方法，则这个类必须声明为`abstract`。
+4. `abstract`只能修饰类和方法，不能修饰属性和其它的。
 5. 抽象类可以有任意成员（**抽象类本质还是类**），比如：非抽象方法、构造器、静态属性等等。
 6. 抽象方法不能有主体，即不能实现。
-7. 如果一个类继承了抽象类。则它必须实现抽象类的所有抽象方法，除非它自己也声明为abstract类。
-8. 抽象方法不能使用private、final和static来修饰，因为这些关键字和重写相违背。
+7. 如果一个类继承了抽象类。则它必须实现抽象类的所有抽象方法，除非它自己也声明为`abstract`类。
+8. 抽象方法不能使用`private`、`final`和`static`来修饰，因为这些关键字和重写相违背。
 
 ### 练习
 编写一个Employee类，声明为抽象类，包含如下三个属性：name,id,salary。提供必要的构造器和抽象方法：work()。对于Manager来说，他既是员工，还具有奖金(bonus)的属性。请使用继承的思想，设计CommonEmployee类和Manager类，要求类中提供必要的方法进行属性访问，实现work()，提示“经理/普通员工 名字 工作中...”
@@ -363,7 +375,7 @@ abstract class Animal{
 
 ## 10.7 抽象类最佳实践—模板设计模式
 ### 基本介绍
-抽象类体现的就是一种模板模式的设计，抽象类作为多个子类的通用模板，子类在抽象类的基础上进行扩展、改造，单子类总体上会保留抽象类的行为方式。
+抽象类体现的就是一种模板模式的设计，抽象类作为多个子类的通用模板，子类在抽象类的基础上进行扩展、改造，单个子类总体上会保留抽象类的行为方式。
 
 ### 模板设计模式能解决的问题
 1. 当功能内部一部分实现是确定，一部分实现是不确定的。这时可以把不确定的部分暴露出去，让子类去实现。
@@ -392,3 +404,140 @@ public abstract class Template {
     }
 }
 ```
+
+## 10.8 接口
+### 快速入门
+模拟生活中的电脑有很多USB接口，可以插入相机、手机、U盘等。
+
+**代码**：
+- [Camera.java](/code/chapter10/src/com/jinjin/interface_/Camera.java)
+- [Phone.java](/code/chapter10/src/com/jinjin/interface_/Phone.java)
+- [UsbInterface.java](/code/chapter10/src/com/jinjin/interface_/UsbInterface.java)
+- [Computer.java](/code/chapter10/src/com/jinjin/interface_/Computer.java)
+- [Interface01.java](/code/chapter10/src/com/jinjin/interface_/Interface01.java)
+
+### 基本介绍
+接口就是给出一些没有实现的方法，封装到一起，到某个类要使用的时候，再根据具体情况把这些方法写出来。语法：
+```java
+interface 接口名{
+    //属性
+    //抽象方法
+}
+class 类名 implements 接口{
+    自己属性;
+    自己方法;
+    必须实现的接口的抽象方法
+}
+```
+
+**小结**：
+* 接口体现了程序设计的多态和高内聚低耦合的设计思想。  
+* 接口是更加抽象的抽象的类，抽象类里可以有方法体，接口里的所有方法都没有方法体【JDK7.0】。  
+* JDK8.0后(包含JDK8.0)接口类可以有静态方法，默认方法，也就是说接口中可以有方法的具体实现。
+
+```java
+public interface AInterface {
+    //接口中可以有属性
+    public int n1 = 100;
+
+    //接口中的抽象方法
+    public void work();
+
+    //JDK8之后，接口中可以有实现的方法
+    // 1.默认方法，必须加上default关键字,
+    default public void hi() {
+        System.out.println("hi");
+    }
+    //2.静态方法
+    public static void say() {
+        System.out.println("say");
+    }
+}
+```
+### 深入讨论
+接口应用场景举例：
+1. 现在要制造战斗机，武装直升机。专家只需把飞机需要的功能/规格定下来即可，然后让别的人具体实现。
+2. 现在有一个项目经理，管理三个程序员，功能开发一个软件，为了控制和管理软件，项目经理可以定义一些接口，然后由程序员具体实现。
+
+<img src="/notes/img-ch10/ch10-interface/applying01.png">
+
+<img src="/notes/img-ch10/ch10-interface/applying02.png">
+
+### 注意事项和细节
+1. 接口不能被实例化
+2. 接口中所有方法是`public`方法，接口中抽象方法，可以不用`abstract`修饰。
+    ```java
+    void aaa();//实际上是 public abstract void aa();
+    ``` 
+3. 一个普通类实现接口，就必须将该接口的所有方法都实现。可以使用快捷键alt+enter。将光标放在要实现接口的类的第一行，使用快捷键alt+enter：
+
+    <img src="/notes/img-ch10/ch10-interface/details01.png">
+
+    <img src="/notes/img-ch10/ch10-interface/details02.png">
+
+    <img src="/notes/img-ch10/ch10-interface/details03.png">
+4. 抽象类实现接口，可以不用实现接口的方法。
+5. 一个类同时可以实现多个接口。
+6. 接口中的属性，只能是`final`的，而且是`public static final`修饰符。比如：`int a = 1;`实际上是`public static final int a = 1;`（必须初始化）。
+7. 接口中属性的访问形式：`接口名.属性名`
+8. 接口不能继承其它的类，但是可以继承多个别的接口。
+    ```java
+    interface A extends B,C{ }
+    ```
+9. 接口的修饰符只能是`public`和默认，这点和类的修饰符是一样的。
+
+### 课堂练习
+判断下列代码是否有错误？应该输出什么？
+```java
+public class InterfaceExercise01 {
+    public static void main(String[] args) {
+        B b = new B();
+        System.out.println(b.a);
+        System.out.println(A.a);
+        System.out.println(B.a);
+    }
+}
+
+interface A{
+    int a = 23;
+}
+class B implements A{
+}
+```
+答案见[InterfaceExercise01.java](/code/chapter10/src/com/jinjin/interface_/InterfaceExercise01.java)
+
+### 实现接口 VS 继承类
+例子：[ExtendsVsInterface.java](/code/chapter10/src/com/jinjin/interface_/ExtendsVsInterface.java)
+* 当子类继承了父类，就自动拥有父类的功能。如果子类需要扩展功能，可以通过实现接口的方式扩展。可以理解实现接口是对java单继承机制的一种补充。
+* 接口和继承解决的问题不同
+  * 继承的价值主要在于：解决代码的**复用性和可维护性**。
+  * 接口的价值主要在于：设计，设计好各种规范（方法），让其它类去实现这些方法，即更加地灵活。
+* 接口比继承更加灵活
+  * 接口比继承更加灵活，继承是满足is-a关系，而接口只需满足like-a的关系。
+* 接口在一定程度上实现代码解耦[即：接口规范性+动态绑定机制]
+
+### 接口的多态属性
+1. 多态参数
+   在前面的USB接口案例中，UsbInterface usb，既可以接收手机对象，又可以接收相机对象，就体现了接口多态（接口引用可以指向实现了接口的类的对象）。
+2. 多态数组
+   给Usb数组中，存放Phone和Camera对象，Phone类还有一个特有的方法call()，请遍历Usb数组，如果是Phone对象，除了调用接口Usb定义的方法外，还需要调用Phone特有的方法call。[InterfacePolyArr.java](/code/chapter10/src/com/jinjin/interface_/interfacePoly/InterfacePolyArr.java)
+   ```java
+    for (int i = 0; i < usbs.length; i++) {
+            usbs[i].work();
+            if (usbs[i] instanceof Phone) { //向下转型
+                ((Phone) usbs[i]).call();
+            }
+        }
+   ```
+3. 接口存在多态传递现象。[InterfacePolyPass.java](/code/chapter10/src/com/jinjin/interface_/interfacePoly/InterfacePolyPass.java)
+   ```java
+   //接口类型的变量可以指向，实现了该接口的类的对象实例
+    IG ig = new Teacher();
+    //如果 IG 继承了 IH 接口，而 Teacher 类实现了 IG 接口 
+    // 那么，实际上就相当于 Teacher 类也实现了 IH 接口. 
+    // 这就是所谓的 接口多态传递现象.
+    IH ih = new Teacher();
+    ```
+
+### 课堂练习
+判断代码是否正确？应该如何更改？[InterfaceExercise02.java](/code/chapter10/src/com/jinjin/interface_/interfaceExercise/InterfaceExercise02.java)
