@@ -614,7 +614,7 @@ class Other { //外部其他类
    ```java
    new 类或接口(参数列表){
        类体
-   }
+   };
    ```
    案例[AnonymousInnerClass.java](/code/chapter10/src/com/jinjin/innerclass/AnonymousInnerClass.java)
 2. 匿名内部类的语法比较奇特，因为匿名内部类既是一个类的定义，同时本身也是一个对象，因此从语法上看，它既有定义类的特征，也有创建对象的特征，对前面代码分析可以看出这个特点，因此可以调用匿名内部类的方法。
