@@ -41,6 +41,10 @@
     - [课堂练习](#课堂练习)
     - [实现接口 VS 继承类](#实现接口-vs-继承类)
     - [接口的多态属性](#接口的多态属性)
+    - [课堂练习](#课堂练习-1)
+  - [🚩🚩🚩10.9 内部类](#109-内部类)
+    - [基本介绍](#基本介绍-4)
+    - [基本语法](#基本语法-1)
     - [内部类的分类](#内部类的分类)
     - [局部内部类的使用](#局部内部类的使用)
     - [🚩🚩🚩匿名内部类的使用](#匿名内部类的使用)
@@ -538,14 +542,14 @@ class B implements A{
         }
    ```
 3. 接口存在多态传递现象。[InterfacePolyPass.java](/code/chapter10/src/com/jinjin/interface_/interfacePoly/InterfacePolyPass.java)
-   ```java
-   //接口类型的变量可以指向，实现了该接口的类的对象实例
-    IG ig = new Teacher();
-    //如果 IG 继承了 IH 接口，而 Teacher 类实现了 IG 接口 
-    // 那么，实际上就相当于 Teacher 类也实现了 IH 接口. 
-    // 这就是所谓的 接口多态传递现象.
-    IH ih = new Teacher();
-    ```
+```java
+//接口类型的变量可以指向，实现了该接口的类的对象实例
+IG ig = new Teacher();
+//如果 IG 继承了 IH 接口，而 Teacher 类实现了 IG 接口 
+// 那么，实际上就相当于 Teacher 类也实现了 IH 接口. 
+// 这就是所谓的 接口多态传递现象.
+IH ih = new Teacher();
+```
 
 ### 课堂练习
 判断代码是否正确？应该如何更改？[InterfaceExercise02.java](/code/chapter10/src/com/jinjin/interface_/interfaceExercise/InterfaceExercise02.java)
