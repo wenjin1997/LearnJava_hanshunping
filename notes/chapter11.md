@@ -11,6 +11,19 @@
   - [`enum`常用方法说明](#enum常用方法说明)
   - [`enum`常用方法应用举例](#enum常用方法应用举例)
   - [`enum`实现接口](#enum实现接口)
+  - [注解的理解](#注解的理解)
+  - [基本的Annotation介绍](#基本的annotation介绍)
+  - [基本的 Annotation 应用案例](#基本的-annotation-应用案例)
+    - [`@Override`注解的案例](#override注解的案例)
+    - [`@Deprecated`注解的案例](#deprecated注解的案例)
+    - [`@SuppressWarnings`注解的案例](#suppresswarnings注解的案例)
+  - [JDK的元Annotation(元注解， 了解)](#jdk的元annotation元注解-了解)
+    - [元注解的基本介绍](#元注解的基本介绍)
+    - [元注解的种类（了解）](#元注解的种类了解)
+    - [`@Retention`注解](#retention注解)
+    - [`@Target`](#target)
+    - [`@Documented`](#documented)
+    - [`@Inherited`注解](#inherited注解)
 
 # 第11章 枚举和注解
 ## 先看一个需求
@@ -125,6 +138,7 @@ public abstract class Enum<E extends Enum<E>> implements Comparable<E>, Serializ
 6) `compareTo`:比较两个枚举常量，比较的就是编号!
 
 **练习**
+
 声明`Week`枚举类，其中包含星期一至星期日的定义： `MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;`使用`values`返回所有的枚举数组,并遍历,输出效果如下图：
 
 <img src="/notes/img-ch11/enumWeek.png">
@@ -152,3 +166,80 @@ enum 类名 implements 接口 1，接口 2{
 ```
 
 代码：[EnumDetail.java](/code/chapter11/src/com/jinjin/enum_/EnumDetail.java)
+
+## 注解的理解
+1) 注解(Annotation)也被称为元数据(Metadata)，用于修饰解释包、类、方法、属性、构造器、局部变量等数据信息。
+2) 和注释一样，注解不影响程序逻辑，但注解可以被编译或运行，相当于嵌入在代码中的补充信息。
+3) 在JavaSE中，注解的使用目的比较简单，例如标记过时的功能，忽略警告等。在JavaEE中注解占据了更重要的角色，例如用来配置应用程序的任何切面，代替 java EE 旧版中所遗留的繁冗代码和 XML 配置等。
+
+## 基本的Annotation介绍
+使用Annotation时要在其前面增加`@`符号, 并把该Annotation当成一个修饰符使用。用于修饰它支持的程序元素。
+
+三个基本的 Annotation:
+1) `@Override`: 限定某个方法，是重写父类方法, 该注解只能用于方法
+2) `@Deprecated`: 用于表示某个程序元素(类, 方法等)已过时
+3) `@SuppressWarnings`: 抑制编译器警告
+
+## 基本的 Annotation 应用案例
+### `@Override`注解的案例
+案例代码:[Override_.java](/code/chapter11/src/com/jinjin/annotation_/Override_.java)
+
+* `@Override`:限定某个方法，是重写父类的方法，该注解只能用于方法。
+* `@interface`不是`interface`，是注解类，JDK5.0之后加入的。
+
+`@Override`使用说明：
+1. `@Override`表示指定重写父类的方法（从编译层面验证），如果父类没有`fly`方法，则会报错。
+2. 如果不写`@Override`注解，而父类仍有`public void fly(){};`，仍然构成重写。
+3. `@Override`只能修饰方法，不能修饰其他类、包、属性等等。
+4. 查看`@Override`注解源码为`@Target(ElementType.METHOD)`，说明只能修饰方法
+5. `@Target`是**修饰注解的注解，称为元注解**，记住这个概念。
+
+### `@Deprecated`注解的案例
+案例代码:[Deprecated_.java](/code/chapter11/src/com/jinjin/annotation_/Deprecated_.java)
+
+`@Deprecated`的说明: 
+1. 用于表示某个程序元素(类, 方法等)已过时
+2. 可以修饰方法、类、字段、包、参数等等
+3. `@Target(value={CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, MODULE, PARAMETER, TYPE})`
+4. `@Deprecated`的作用可以做到新旧版本的兼容和过渡
+
+###  `@SuppressWarnings`注解的案例
+案例代码:[Deprecated_.java](/code/chapter11/src/com/jinjin/annotation_/Deprecated_.java)
+
+`@SuppressWarnings`: 抑制编译器警告
+1. `unchecked` 是忽略没有检查的警告
+2. `rawtypes` 是忽略没有指定泛型的警告（传参时没有指定泛型的警告错误）
+3. `unused` 是忽略没有使用某个变量的警告错误
+4. `@SuppressWarnings`可以修饰的程序元素为，`@Target({TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE, MODULE})`
+5. 生成`@SuppressWarnings`时，不用背，直接点击左侧的黄色提示，就可以选择（注意可以指定生成的位置）
+
+## JDK的元Annotation(元注解， 了解)
+### 元注解的基本介绍
+JDK的元Annotation用于修饰其他Annotation。  
+元注解：本身作用不大，但是看源码时，要知道它是干什么的。
+
+### 元注解的种类（了解）
+1) `Retention` //指定注解的作用范围，三种`SOURCE,CLASS,RUNTIME`
+2) `Target` // 指定注解可以在哪些地方使用
+3) `Documented` //指定该注解是否会在 javadoc 体现
+4) `Inherited` //子类会继承父类注解
+
+### `@Retention`注解
+说明
+只能用于修饰一个 Annotation 定义, 用于指定该Annotation可以保留多长时间, `@Rentention`包含一个`RetentionPolicy`类型的成员变量, 使用`@Rentention` 时必须为该`value`成员变量指定值.
+
+`@Retention`的三种值
+1) `RetentionPolicy.SOURCE`: 编译器使用后，直接丢弃这种策略的注释
+2) `RetentionPolicy.CLASS`: 编译器将把注解记录在`class`文件中. 当运行 Java程序时, JVM不会保留注解。这是默认值
+3) `RetentionPolicy.RUNTIME`:编译器将把注解记录在`class`文件中. 当运行 Java程序时, JVM会保留注解. 程序可以通过反射获取该注解
+
+### `@Target`
+用于修饰Annotation定义，用于指定被修饰的Annotation能用于修饰哪些程序元素。`@Target`也包含一个名为`value`的成员变量。
+
+### `@Documented`
+`@Documented`：用于指定该元Annotation修饰Annotation类被javadoc工具提取成文档，即在生成文档时，可以看到该注解。
+
+说明：定义为`Documented`的注解必须设置`Retention`值为`RUNTIME`。
+
+### `@Inherited`注解
+被它修饰的Annotation将具有继承性。如果某个类使用了被`@inherited`修饰的Annotation，则其子类将自动具有该注解。
