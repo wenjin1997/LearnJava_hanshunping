@@ -44,7 +44,7 @@ try {
 ```
 
 ## 异常介绍
-* 基本概念
+* 基本概念  
     Java语言中，将程序执行中发生的不正常情况称为"异常"。（开发过程中的语法错误和逻辑错误不是异常）
 * 执行过程中所发生的异常事件可分为两大类
     1. Error(错误)：Java虚拟机无法解决的严重问题。如：JVM系统内部错误、资源耗尽等严重情况。比如：`StackOverflowError`[栈溢出]和OOM(out of memory),**Error是严重错误，程序会崩溃**。
@@ -69,15 +69,15 @@ try {
 5) `NumberFormatException` 数字格式不正确异常
 
 常见的运行时异常举例
-1) `NullPointerException` 空指针异常 [NullPointerException_.java](/code/chapter12/src/com/jinjin/exception_/NullPointerException_.java)
+1) `NullPointerException` 空指针异常 [NullPointerException_.java](/code/chapter12/src/com/jinjin/exception_/NullPointerException_.java)  
     当应用程序试图在需要对象的地方使用`null`时，抛出该异常。
 2) `ArithmeticException` 数学运算异常  
    当出现异常的运算条件时，抛出此异常。例如，一个整数“除以零”时，抛出此类的一个实例。
-3) `ArrayIndexOutOfBoundsException` 数组下标越界异常 [ArrayIndexOutOfBoundsException_.java](/code/chapter12/src/com/jinjin/exception_/ArrayIndexOutOfBoundsException_.java)
+3) `ArrayIndexOutOfBoundsException` 数组下标越界异常 [ArrayIndexOutOfBoundsException_.java](/code/chapter12/src/com/jinjin/exception_/ArrayIndexOutOfBoundsException_.java)  
     用非法索引访问数组时抛出的异常。如果索引为负或大于等于数组大小，则该索引为非法索引。
-4) `ClassCastException` 类型转换异常 [ClassCastException_.java](/code/chapter12/src/com/jinjin/exception_/ClassCastException_.java)
+4) `ClassCastException` 类型转换异常 [ClassCastException_.java](/code/chapter12/src/com/jinjin/exception_/ClassCastException_.java)  
    当试图将对象强制转换为不是实例的子类时，抛出该异常。
-5) `NumberFormatException` 数字格式不正确异常 [NumberFormatException_.java](/code/chapter12/src/com/jinjin/exception_/NumberFormatException_.java)
+5) `NumberFormatException` 数字格式不正确异常 [NumberFormatException_.java](/code/chapter12/src/com/jinjin/exception_/NumberFormatException_.java)  
    当应用程序试图将字符串转换成一种数值类型，但该字符串不能转换为适当格式时，抛出该异常 => 使用异常我们可以确保输入是满足条件数字.
 
 ## 编译异常
@@ -276,9 +276,9 @@ class ExceptionExe01 {
 
 ### 注意事项和使用细节
 1. 对于编译异常，程序中必须处理，比如`try-catch`或者`throws`
-2. 对于运行时异常，程序中如果没有处理，默认就是throws的方式处理
-3. 子类重写父类的方法时，对抛出异常的规定:子类重写的方法，所抛出的异常类型要么和父类抛出的异常一致，要么为父类抛出的异常类型的子类型
-4. 在`throws`过程中，如果有方法`try-catch`, 就相当于处理异常，就可以不必throws
+2. **对于运行时异常，程序中如果没有处理，默认就是throws的方式处理**
+3. 子类重写父类的方法时，对抛出异常的规定:**子类重写的方法，所抛出的异常类型要么和父类抛出的异常一致，要么为父类抛出的异常类型的子类型**
+4. 在`throws`过程中，如果有方法`try-catch`, 就相当于处理异常，就可以不必`throws`
 
 ⭐️⭐️**Remark**:
 1. 这里`f3()`抛出的是编译异常，如果`f1()`调用`f3()`一定会报错，必须对编译异常进行处理。
@@ -310,7 +310,7 @@ public static void f5() throws ArithmeticException {
 
 ## 自定义异常
 ### 基本概念
-当程序中出现了某些“错误”，但该错误信息并没有在Throwable子类中描述处理，这个时候可以自己设计异常，用于描述该错误信息。
+当程序中出现了某些“错误”，但该错误信息并没有在`Throwable`子类中描述处理，这个时候可以自己设计异常，用于描述该错误信息。
 
 ### 自定义异常的步骤
 1. 定义类：自定义异常类名（程序员自己写）继承`Exception`或`RuntimeException`
@@ -344,13 +344,13 @@ public static void f5() throws ArithmeticException {
 ### 作业1
 [EcmDef.java](/code/chapter12/src/com/jinjin/homework/EcmDef.java)
 
-编写应用程序EcmDef.java，接收命令行的两个参数(整数)，计算两数相除。计算两个数相除，要求使用方法 cal(int n1, int n2)对数据格式不正确(NumberFormatException)、缺少命令行参数(ArrayIndexOutOfBoundsException)、除0进行异常处理(ArithmeticException)。
+编写应用程序`EcmDef.java`，接收命令行的两个参数(整数)，计算两数相除。计算两个数相除，要求使用方法`cal(int n1, int n2)`对数据格式不正确(`NumberFormatException`)、缺少命令行参数(`ArrayIndexOutOfBoundsException`)、除0进行异常处理(`ArithmeticException`)。
 
 ### 作业2
 说出代码[Homework02.java](/code/chapter12/src/com/jinjin/homework/Homework02.java)是否会发生异常，如果会，是哪种异常？如果不会，则打印结果是什么？
 
-可能会出现的异常：ArrayIndexOutOfBoundsException、NullPointerException  
-一定会发生的异常：ClassCastException
+可能会出现的异常：`ArrayIndexOutOfBoundsException`、`NullPointerException`   
+一定会发生的异常：`ClassCastException`
 
 ### 作业3
 写出程序结果：[Homework03.java](/code/chapter12/src/com/jinjin/homework/Homework03.java)  
