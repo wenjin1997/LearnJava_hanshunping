@@ -53,6 +53,14 @@
     - [成员内部类的使用](#成员内部类的使用)
     - [静态内部类的使用](#静态内部类的使用)
     - [练习题](#练习题-1)
+  - [作业](#作业)
+    - [作业1](#作业1)
+    - [作业2](#作业2)
+    - [作业3](#作业3)
+    - [⭐️⭐️作业4](#️️作业4)
+    - [作业5](#作业5)
+    - [⭐️⭐️⭐️作业6](#️️️作业6)
+    - [作业7](#作业7)
 
 # 第10章 面向对象编程（高级部分）
 ## 10.1 类变量和类方法
@@ -696,3 +704,123 @@ class Test {
     }
 }
 ```
+
+## 作业
+### 作业1
+写出以下代码的执行结果，答案见[Homework01.java](/code/chapter10/src/com/jinjin/homework/homework01/Homework01.java)
+
+```java
+public class homework01 {
+    public static void main(String[] args) {
+        Car c = new Car();
+        Car c1 = new Car(100);
+        System.out.println(c);
+        System.out.println(c1);
+    }
+}
+
+class Car {
+    double price = 10;
+    static String color = "white";
+
+    public Car() {
+        this.price = 9;
+        this.color = "red";
+    }
+
+    public Car(double price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return price + "\t" + color;
+    }
+}
+```
+* 注意`price`是`double`，因此输出为`System.out.println(c); //9.0 red`
+
+### 作业2
+编程题
+1. 在Frock类中声明私有的静态属性currentNum[int 类型]，初始值为100000，作为衣服出厂的序列号起始值。
+2. 声明公有的静态方法getNextNum，作为生成上衣唯一序列号的方法。每调用一次，将currentNum增加100，并作为返回值。
+3. 在TestFrock类的main方法中，分别两次调用getNextNum方法，获取序列号并打印输出。
+4. 在Frock类中声明serialNumber（序列号）属性，并提供对应的get方法。
+5. 在Frock类的构造器中，通过调用getNextNum方法我Frock对象获取唯一序列号，赋给serialNumber属性。
+6. 在TestFrock类的main方法中，分别创建三个Frock对象，并打印三个对象的序列号，验证是否按100递增。
+
+代码：
+- [Frock.java](/code/chapter10/src/com/jinjin/homework/homework02/Frock.java)
+- [TestFrock.java](/code/chapter10/src/com/jinjin/homework/homework02/TestFrock.java)
+
+* 注意getNextNum方法：
+```java
+public static int getNextNum() {
+    currentNum += 100;
+    return currentNum;
+}
+```
+
+### 作业3
+编程题，按要求实现下列问题：[Homework03.java](/code/chapter10/src/com/jinjin/homework/Homework03.java)
+1. 动物类Animal包含了抽象方法 shout();
+2. Cat类继承了Animal，并实现方法shout，打印"猫会喵喵叫"
+3. Dog类继承了Animal，并实现方法shout，打印"狗会汪汪叫"
+4. 在测试类中实例化对象Animal cat = new Cat()，并调用cat的shout方法
+5. 在测试类中实例化对象Animal dog = new Dog()，并调用dog的shout方法
+
+### ⭐️⭐️作业4
+编程题 [Homework04.java](/code/chapter10/src/com/jinjin/homework/Homework04.java)
+1. 计算器接口具有work方法，功能是运算，有一个手机类Cellphone，定义方法testWork测试计算功能，调用计算接口的work方法
+2. 要求调用CellPhone对象的testWork方法，使用上匿名内部类
+
+考察匿名内部类相关知识点:[匿名内部类的使用](#匿名内部类的使用)
+
+### 作业5
+编程题 [Homework05.java](/code/chapter10/src/com/jinjin/homework/Homework05.java)
+1. 编一个类A，在类中定义局部内部类B，B中有一个私有final常量name，有一个方法show()打印常量name。进行测试
+2. 进阶：A中定义一个私有的变量name，在show方法中打印测试
+
+### ⭐️⭐️⭐️作业6
+编程题 [Homework06.java](/code/chapter10/src/com/jinjin/homework/Homework06.java)
+1. 有一个交通工具接口类Vehicles，有work接口
+2. 有Horse类和Boat类分别实现Vehicles
+3. 创建交通工具工厂类。有两个方法分别获得交通工具Horse和Boat
+4. 有Person类，有name和Vehicles属性，在构造器中为两个属性赋值
+5. 实例化Person对象"唐僧"，要求一般情况下用Horse作为交通工具，遇到大河时用Boat作为交通工具
+6. 使用代码实现上面的要求
+
+注意：
+* 为了不浪费之前`Person tang = new Person("唐僧", new Horse());`本来就有的交通工具`Horse`，那么在`common()`方法中要做一个判断。对于`passRiver()`方法类似，要对交通工具进行判断。
+    ```java
+    //一般情况下，使用马儿
+    public void common() {
+        //如果现在有的交通工具不是下列情况：
+        //  1.马儿或马儿的子类
+        //  2.没有马儿
+        //才获取一批马。
+        if (!(vehicles instanceof Horse)) {
+            vehicles = VehiclesFactory.makeHorse(); //向上转型
+        }
+        vehicles.work();
+    }
+    ```
+* 为了使得唐僧一直使用的是同一匹马，可以在`VehiclesFatory`中对`Horse`使用饿汉式。
+    ```java
+    class VehiclesFactory {
+        //1. 为了方便直接调用，将makeHorse()和makeBoat()
+        //   两个方法设置为static
+        //2. 我们知道唐僧一直用的是同一匹马西天取经，
+        //   那么这里不用每次都new一个Horse,这里使用饿汉式
+        private static Horse horse = new Horse();
+        public static Horse makeHorse() {
+            return horse;
+        }
+    }
+    ```
+* 通过上面的程序设计，该程序很容易扩展，例如要增加一个情况是过火焰山时使用飞机，具体代码见[Homework06.java](/code/chapter10/src/com/jinjin/homework/Homework06.java)。
+
+### 作业7
+编程题：内部类练习 [Homework07.java](/code/chapter10/src/com/jinjin/homework/Homework07.java)
+
+有一个Car类，有属性temperature(温度),车内有Air(空调)类，有吹风的功能flow，Air会监视车内的温度，如果温度超过40度则吹冷风。如果温度低于0度则吹暖风，如果在这之间则关掉空调。实例化具有不同温度的Car对象，调用空调的flow方法，测试空调吹的风是否正确。

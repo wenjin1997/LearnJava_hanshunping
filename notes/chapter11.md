@@ -24,6 +24,7 @@
     - [`@Target`](#target)
     - [`@Documented`](#documented)
     - [`@Inherited`注解](#inherited注解)
+  - [作业](#作业)
 
 # 第11章 枚举和注解
 ## 先看一个需求
@@ -243,3 +244,37 @@ JDK的元Annotation用于修饰其他Annotation。
 
 ### `@Inherited`注解
 被它修饰的Annotation将具有继承性。如果某个类使用了被`@inherited`修饰的Annotation，则其子类将自动具有该注解。
+
+## 作业
+编程题：枚举类[Homework.java](/code/chapter11/src/com/jinjin/homework/Homework.java)
+
+1. 创建一个Color枚举类
+2. 有RED,BLUE,BLACK,YELLOW,GREEN这五个枚举值/对象
+3. Color有三个属性redValue, greenValue, blueValue
+4. 创建构造方法，参数包括这三个属性
+5. 每个枚举值都要给这三个属性赋值，三个属性对应的值分别是red:255,0,0 blue:0,0,255 black:0,0,0 yellow:255,255,0 green:0,255,0
+6. 定义接口，里面有方法show。要求Color实现该接口
+7. show方法中显示三个属性的值
+8. 将枚举对象在switch语句中匹配使用
+
+注意：将枚举对象在switch语句中匹配使用的代码如下
+```java
+//将枚举对象在switch语句中匹配使用
+switch (blue) {
+    case RED:
+        System.out.println("匹配到红色");
+        break;
+    case BLUE:
+        System.out.println("匹配到蓝色");
+        break;
+    case BLACK:
+        System.out.println("匹配到黑色");
+        break;
+    case GREEN:
+        System.out.println("匹配到绿色");
+        break;
+    case YELLOW:
+        System.out.println("匹配到黄色");
+        break;
+}
+```
