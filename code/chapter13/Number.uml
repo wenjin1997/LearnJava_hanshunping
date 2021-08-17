@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>java.lang.Short</OriginalElement>
+  <nodes>
+    <node x="474.0" y="160.0">java.lang.Float</node>
+    <node x="-60.0" y="160.0">java.lang.Long</node>
+    <node x="333.0" y="160.0">java.lang.Double</node>
+    <node x="64.00000000000003" y="160.0">java.lang.Short</node>
+    <node x="-5.499999999999972" y="77.0">java.lang.Comparable</node>
+    <node x="302.25" y="-6.0">java.lang.Object</node>
+    <node x="-181.0" y="160.0">java.lang.Byte</node>
+    <node x="218.25" y="77.0">java.lang.Number</node>
+    <node x="192.0" y="160.0">java.lang.Integer</node>
+    <node x="127.25" y="-6.0">java.io.Serializable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.lang.Byte" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="-25.25" y="-16.5" />
+      <point x="-155.75" y="140.0" />
+      <point x="91.00000000000003" y="140.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.lang.Byte" target="java.lang.Number" relationship="GENERALIZATION">
+      <point x="25.25" y="-16.5" />
+      <point x="-105.25" y="130.0" />
+      <point x="282.75" y="130.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.lang.Integer" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="-30.25" y="-16.5" />
+      <point x="222.25" y="140.0" />
+      <point x="91.00000000000003" y="140.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.lang.Float" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="-26.0" y="-16.5" />
+      <point x="500.0" y="140.0" />
+      <point x="91.00000000000003" y="140.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.lang.Double" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="-30.25" y="-16.5" />
+      <point x="363.25" y="140.0" />
+      <point x="91.00000000000003" y="140.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.lang.Number" target="java.io.Serializable" relationship="REALIZATION">
+      <point x="-32.25000000000003" y="-16.5" />
+      <point x="250.49999999999997" y="52.0" />
+      <point x="204.75" y="52.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.lang.Double" target="java.lang.Number" relationship="GENERALIZATION">
+      <point x="30.25" y="-16.5" />
+      <point x="423.75" y="130.0" />
+      <point x="282.75" y="130.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.lang.Short" target="java.lang.Number" relationship="GENERALIZATION">
+      <point x="27.0" y="-16.5" />
+      <point x="145.00000000000003" y="130.0" />
+      <point x="282.75" y="130.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.lang.Long" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="-26.0" y="-16.5" />
+      <point x="-34.0" y="140.0" />
+      <point x="91.00000000000003" y="140.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.lang.Short" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="-27.0" y="-16.5" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.lang.Integer" target="java.lang.Number" relationship="GENERALIZATION">
+      <point x="30.25" y="-16.5" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.lang.Number" target="java.lang.Object" relationship="GENERALIZATION">
+      <point x="32.24999999999997" y="-16.5" />
+      <point x="315.0" y="52.0" />
+      <point x="360.75" y="52.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.lang.Float" target="java.lang.Number" relationship="GENERALIZATION">
+      <point x="26.0" y="-16.5" />
+      <point x="552.0" y="130.0" />
+      <point x="282.75" y="130.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.lang.Long" target="java.lang.Number" relationship="GENERALIZATION">
+      <point x="26.0" y="-16.5" />
+      <point x="18.0" y="130.0" />
+      <point x="282.75" y="130.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="177.5" y="99.5" />
+  <SelectedNodes>
+    <node>java.lang.Float</node>
+    <node>java.lang.Long</node>
+    <node>java.lang.Double</node>
+    <node>java.lang.Short</node>
+    <node>java.lang.Comparable</node>
+    <node>java.lang.Object</node>
+    <node>java.lang.Byte</node>
+    <node>java.lang.Number</node>
+    <node>java.lang.Integer</node>
+    <node>java.io.Serializable</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
