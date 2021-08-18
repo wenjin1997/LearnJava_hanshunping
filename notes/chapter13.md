@@ -13,6 +13,13 @@
     - [两种创建`String`对象的区别](#两种创建string对象的区别)
     - [课堂测试题](#课堂测试题)
     - [面试题](#面试题)
+  - [`String`类的常见方法](#string类的常见方法)
+    - [说明](#说明)
+    - [`String`类的常见方法一览](#string类的常见方法一览)
+  - [`StringBuffer`类](#stringbuffer类)
+    - [基本介绍](#基本介绍)
+    - [`String` VS `StringBuffer`](#string-vs-stringbuffer)
+    - [`String`和`StringBuffer`相互转换](#string和stringbuffer相互转换)
 
 # 第13章 常用类
 ## 包装类
@@ -265,7 +272,7 @@ System.out.println(i13==i14);
     System.out.println(s5 == s6);
     System.out.println(s5.equals(s6));
     ```
-4. 题4 下列程序运行的结果是什么，尝试画出内存布局图。答案见[StringExercise10.java](/code/chapter13/src/com/jinjin/string_/StringExercise10.java)
+4. 🚩🚩🚩题4 下列程序运行的结果是什么，尝试画出内存布局图。答案见[StringExercise10.java](/code/chapter13/src/com/jinjin/string_/StringExercise10.java)
     ```java
     public class Test1 {
         String str = new String("hsp");
@@ -286,3 +293,80 @@ System.out.println(i13==i14);
     ```
 
     <img src="/notes/img-ch13/StringExercise/ex10.png">
+
+## `String`类的常见方法
+### 说明
+`String`类是保存字符串常量的。每次更新都需要重新开辟空间，效率较低，因此java设计者还提供了`StringBuilder`和`StringBuffer`来增强`String`的功能，并提高效率。例如下面这段代码：  
+```java
+String s = new String("");
+for (int i = 0; i < 80000; i++) {
+    s += "hell0";
+}
+```
+
+### `String`类的常见方法一览
+* `equals` 区分大小写，判断内容是否相等
+* `equalsIgnoreCase` 忽略大小写的判断内容是否相等
+* `length` 获取字符的个数，字符串长度
+* `indexOf` 获取字符在字符串中第1次出现的索引，索引是从0开始，如果找不到，返回-1
+* `lastIndexOf` 获取字符在字符串中最后1次出现的索引，索引是从0开始，如果找不到，返回-1
+* `substring` 截取指定范围的字符串
+* `trim` 去前后空格
+* `charAt` 获取某索引处的字符，注意不能使用`Str[index]`这种方式。
+
+上述方法的使用案例见[StringMethod01.java](/code/chapter13/src/com/jinjin/string_/StringMethod01.java)
+
+* `toUpperCase` 转换成大写
+* `toLowerCase` 转换成小写
+* `concat` 拼接字符串
+* `replace` 替换字符串中的字符，注意`s1.replace()`方法执行后，返回的结果才是替换过的，对s1没有影响
+* `spilt` 分割字符串，对于某些分割字符，我们需要转义，比如`|` `\\`等
+* `compareTo` 比较两个字符串的大小，如果前者大，则返回正数，后者大，则返回负数，如果相等，返回0
+  * 如果长度相同，并且每个字符也相同，就返回`0`
+  * 如果长度相同或者不相同，但是在进行比较时，可以区分大小就返回 
+    ```java
+    if (c1 != c2) {
+        return c1 - c2;
+    }
+    ```
+  * 如果前面的部分都相同，就返回`str1.len - str2.len`
+* `toCharArray` 转换成字符数组
+* `format` 格式化字符串，`%s`字符串，`%c` 字符，`%d`整型，`%.2f`浮点数
+
+上述方法的使用案例见[StringMethod02.java](/code/chapter13/src/com/jinjin/string_/StringMethod02.java)
+
+## `StringBuffer`类
+### 基本介绍
+* `java.lang.StringBuffer`代表可变的字符序列，可以对字符串内容进行增删。
+* 很多方法与`String`相同，但`StringBuffer`是可变长度的。
+* `StringBuffer`是一个容器。
+
+举例[StringBuffer01.java](/code/chapter13/src/com/jinjin/stringbuffer_/StringBuffer01.java)
+1. `StringBuffer`的直接父类是`AbstractStringBuilder`
+2. `StringBuffer`实现了`Serializable`, 即`StringBuffer`的对象可以串行化
+3. 在父类`AbstractStringBuilder`中有属性`char[] value`,不是`final`,该 `value`数组存放字符串内容，引出存放在堆中的
+4. `StringBuffer`是一个`final`类，不能被继承
+5. 因为`StringBuffer`字符内容是存在`char[] value`, 所以在变化(增加/删除)不用每次都更换地址(即不是每次创建新对象)， 所以效率高于`String`
+
+`StringBuffer`类图：
+
+<img src="/notes/img-ch13/StringBuffer.png">
+
+### `String` VS `StringBuffer`
+1. `String`保存的是字符串常量，里面的值不能更改，每次`String`类的更新实际上就是地址，效率较低。
+   ```java
+   private final char value[]
+   ```
+2. `StringBuffer`保存的是字符串常量，里面的值可以更改，每次`StringBuffer`的更新实际上可以更新内容，不用每次更新地址，效率更高。
+   ```java
+   char[] value; //这个放在堆中
+   ```
+
+### `String`和`StringBuffer`相互转换
+[StringAndStringBuffer.java](/code/chapter13/src/com/jinjin/stringbuffer_/StringAndStringBuffer.java)
+* `String`->`StringBuffer`
+  1. 使用构造器
+  2. 使用`append`方法
+* `StringBuffer`->`String`
+  1. 使用`StringBuffer`提供的`toString`方法
+  2. 使用构造器
