@@ -55,7 +55,7 @@
 2. 跨类中的方法A类调用B类方法：需要通过对象名调用。
 
 ### 成员方法练习题
-[MethodExercise01.java](code/chapter07/MethodExercise01.java)
+[MethodExercise01.java](/code/chapter07/MethodExercise01.java)
 1) 编写类AA，有一个方法:判断一个数是奇数odd还是偶数,返回boolean
 2) 根据行、列、字符打印对应行数和列数的字符，比如:行:4，列:4，字符#,则打印相应的效果
 
@@ -63,7 +63,7 @@
 * 基本数据类型，传递的是值（值拷贝），形参的任何改变不影响实参。
 * 引用类型传递的是地址（传递也是值，但是值是地址），可以通过形参影响实参！
 ### 成员方法传参机制练习题
-[MethodExercise02.java](code/chapter07/MethodExercise02.java)
+[MethodExercise02.java](/code/chapter07/MethodExercise02.java)
 1) 编写类MyTools类，编写一个方法可以打印二维数组的数据。
 2) 编写一个方法copyPerson，可以复制一个Person对象，返回复制的对象。克隆对象，注意要求得到新对象和原来的对象是两个独立的对象，只是他们的属性相同
 
@@ -77,12 +77,12 @@
   5. 如果方法中使用的是引用类型变量（比如数组，对象），就会共享该引用类型的数据。
   6. 当一个方法执行完毕，或者遇到`return`，就会返回，遵守谁调用，就将结果返回给谁，同时当方法执行完毕或者返回时，该方法就执行完毕。
 * 重要的知道在调用递归时的内存情况，可以画图进行分析：
-  * [打印与阶乘问题](code/chapter07/Recursion01.java)   
-  * [斐波那契数与猴子吃桃子问题](code/chapter07/RecursionExercise01.java)
+  * [打印与阶乘问题](/code/chapter07/Recursion01.java) 
+  * [斐波那契数与猴子吃桃子问题](/code/chapter07/Recursion01.java)
 * 用递归的思想解决一些实际问题：
-  * [迷宫问题](code/chapter07/MiGong.java)
-  * [汉诺塔](code/chapter07/HanoiTower.java)
-  * [八皇后问题](code/chapter07/EightQueens.java)(代码需要更新，还有错误，未完成)
+  * [迷宫问题](/code/chapter07/MiGong.java)
+  * [汉诺塔](/code/chapter07/HanoiTower.java)
+  * [八皇后问题](/code/chapter07/EightQueens.java)(代码需要更新，还有错误，未完成)
 
 ## 7.5 方法重载
 * java中允许同一个类中，多个同名方法的存在，但要求**形参列表**不一致!
@@ -90,7 +90,7 @@
   1. 方法名：必须相同
   2. 形参列表：必须不同（形参类型或个数或顺序，至少有一样不同，参数名无要求）
   3. **返回类型：无要求**
-* [方法重载练习代码](code/chapter07/OverLoadExercise.java)
+* [方法重载练习代码](/code/chapter07/OverLoadExercise.java)
 
 ## 7.6 可变参数
 * Java允许将**同一个类中多个同名同功能但参数个数不同的方法**，封装成一个方法，通过可变参数实现。
@@ -100,14 +100,14 @@
   方法体
 }
 ```
-* 可变参数实例:[计算多个数的和](code/chapter07/VarParameter01.java)
+* 可变参数实例:[计算多个数的和](/code/chapter07/VarParameter01.java)
 * 注意事项和细节：
   1. 可变参数的实参可以为0个或任意多个；
   2. 可变参数的实参可以为数组；
   3. 可变参数的本质就是数组；
   4. **可变参数可以和普通类型的参数一起放在形参列表，但必须保证可变参数在最后**；
   5. 一个形参列表只能出现一个可变参数。
-* [可变参数练习代码](code/chapter07/VarParameterExercise.java)：有三个方法，分别实现返回姓名和两门课成绩(总分)， 返回姓名和三门课成绩(总分)，返回姓名和五门课成绩(总分)。 封装成一个可变参数的方法。
+* [可变参数练习代码](/code/chapter07/VarParameterExercise.java)：有三个方法，分别实现返回姓名和两门课成绩(总分)， 返回姓名和三门课成绩(总分)，返回姓名和五门课成绩(总分)。 封装成一个可变参数的方法。
 
 ## 7.7 作用域
 * 在java编程中，主要的变量就是属性（成员变量）和局部变量。
@@ -144,7 +144,7 @@
   1) 方法名和类名相同
   2) 没有返回值
   3) 在创建对象时，系统会自动的调用该类的构造器完成对象的初始化。
-* 注意事项和使用细节([构造器实例代码](code/chapter07/ConstructorDetail.java))
+* 注意事项和使用细节([构造器实例代码](/code/chapter07/ConstructorDetail.java))
   1. 一个类可以定义多个不同的构造器，即构造器重载
   2. 构造器名和类名要相同
   3. 构造器没有返回值
@@ -152,7 +152,7 @@
   5. 在创建对象时，系统自动的调用该类的构造方法
   6. 如果程序员没有定义构造器，系统会自动给类生成一个默认无参构造器（也叫默认构造器），比如`Dog(){}`，可以使用`javap`指令反编译查看
   7. 一旦定义了自己的构造器，默认的构造器就覆盖了，就不能再使用默认的无参构造器，除非显式的定义一下，即`Dog(){}`。（**这点很重要**） 
-* [构造器练习代码](code/chapter07/ConstructorExercise.java)：
+* [构造器练习代码](/code/chapter07/ConstructorExercise.java)：
   * 在前面定义的 Person 类中添加两个构造器: 第一个无参构造器:利用构造器设置所有人的 age 属性初始值都为18。
   * 第二个带pName和pAge两个参数的构造器:使得每次创建Person对象的同时初始化对象的age属性值和name属性值。 
   * 分别使用不同的构造器，创建对象。
@@ -189,11 +189,11 @@ Person p = new Person("小倩",20);
 * `this.hashCode()`可以返回一个整数，可以看作是地址，但严格来说不是实际的地址。
 ### this关键字练习
 定义 `Person` 类，里面有 `name`、`age` 属性，并提供 `compareTo` 比较方法，用于判断是否和另一个人相等，提供测试类 `TestPerson` 用于测试, 名字和年龄完全一样，就返回 `true`, 否则返回 `false`
-* [this关键字练习代码](code/chapter07/TestPerson.java)
+* [this关键字练习代码](/code/chapter07/TestPerson.java)
 * 注意：判断字符串是否相等时用`str1.equals(str2)`
 
 ## 本章作业
-1. 编写类A01,定义方法max，实现求某个double数组的最大值，并返回.[Homework01.java](code/chapter07/Homework01.java)
+1. 编写类A01,定义方法max，实现求某个double数组的最大值，并返回.[Homework01.java](/code/chapter07/Homework01.java)
   * 为了增强代码的健壮性，这里需要考虑一些情况，需要保证给的数组不能为`null`并且至少有一个元素，这样再找数组的最大值。在写方法时，可以返回一个`Double`包装类，不满足情况返回`null`。
   ```java
   public Double max(double[] nums) {
@@ -204,18 +204,18 @@ Person p = new Person("小倩",20);
 	  }
   }
   ```
-2. 编写类A02,定义方法find，实现查找某字符串是否在字符串数组中，并返回索引，如果找不到，返回-1.[Homework02.java](code/chapter07/Homework02.java)
-3. 编写类Book,定义方法updatePrice，实现更改某本书的价格，具体：如果价格>150，则更改为150，如果价格>100，更改为100，否则不变。[Homework03.java](code/chapter07/Homework03.java)
+2. 编写类A02,定义方法find，实现查找某字符串是否在字符串数组中，并返回索引，如果找不到，返回-1.[Homework02.java](/code/chapter07/Homework02.java)
+3. 编写类Book,定义方法updatePrice，实现更改某本书的价格，具体：如果价格>150，则更改为150，如果价格>100，更改为100，否则不变。[Homework03.java](/code/chapter07/Homework03.java)
   * 显示书籍信息时，可以在类中写一个方法。
   ```java
   public void info() {
 		System.out.println("【书籍信息】 书名：" + name + " 价格：" + price);
 	}
   ```
-4. 编写类A03,实现数组的复制功能copyArr，输入旧数组，返回一个新数组，元素和旧数组一样。[Homework04.java](code/chapter07/Homework04.java)
-5. 定义一个圆类Circle，定义属性：半径，提供显示圆周长功能的方法，提供显示圆面积的方法。[Homework05.java](code/chapter07/Homework05.java)
+4. 编写类A03,实现数组的复制功能copyArr，输入旧数组，返回一个新数组，元素和旧数组一样。[Homework04.java](/code/chapter07/Homework04.java)
+5. 定义一个圆类Circle，定义属性：半径，提供显示圆周长功能的方法，提供显示圆面积的方法。[Homework05.java](/code/chapter07/Homework05.java)
    * 使用圆周率用`Math.PI`。 
-6. 编程创建一个Cale计算类，在其中定义2个变量表示两个操作数，定义四个方法实现求和、差、乘、商（要求除数为0的话，要提示）并创建两个对象，分别测试。[Homework06.java](code/chapter07/Homework06.java)
+6. 编程创建一个Cale计算类，在其中定义2个变量表示两个操作数，定义四个方法实现求和、差、乘、商（要求除数为0的话，要提示）并创建两个对象，分别测试。[Homework06.java](/code/chapter07/Homework06.java)
   * 注意对除数不为0的处理，方法类似于作业1，用封装类`Double`。
   ```java
   public Double divide() {
@@ -227,22 +227,22 @@ Person p = new Person("小倩",20);
 		}
 	}
   ```
-7. 设计一个Dog类，有名字、颜色和年龄属性，定义输出方法show()显示其信息。并创建对象，进行测试。【提示this.属性】[Homework07.java](code/chapter07/Homework07.java)
-8. 给定一个Java程序代码[Test.java](code/chapter07/Test.java)，则编译运行后，输出的结果是多少？
+7. 设计一个Dog类，有名字、颜色和年龄属性，定义输出方法show()显示其信息。并创建对象，进行测试。【提示this.属性】[Homework07.java](/code/chapter07/Homework07.java)
+8. 给定一个Java程序代码[Test.java](/code/chapter07/Test.java)，则编译运行后，输出的结果是多少？
    * 输出结果为10, 9, 10
    * 注意表达式`count++`，先取表达式的值为`count` ，再执行+1操作。
    * `new Test()`是匿名对象，匿名对象使用后，就不能使用。
-9.  定义Music类，里面有音乐名name、音乐时长times属性，并有播放play功能和返回本身属性信息的功能getInfo.[Homework09.java](code/chapter07/Homework09.java)
-10. 试写出以下代码的运行结果。[Homework10.java](code/chapter07/Homework10.java)
+9.  定义Music类，里面有音乐名name、音乐时长times属性，并有播放play功能和返回本身属性信息的功能getInfo.[Homework09.java](/code/chapter07/Homework09.java)
+10. 试写出以下代码的运行结果。[Homework10.java](/code/chapter07/Homework10.java)
     * 输出结果为101, 100, 101, 101 
-11. 在测试方法中，调用method方法，代码如下，编译正确，试写出method方法的定义形式，调用语句为：`System.out.println(method(method(10.0,20.0),100));`。 [Homework11.java](code/chapter07/Homework11.java)
+11. 在测试方法中，调用method方法，代码如下，编译正确，试写出method方法的定义形式，调用语句为：`System.out.println(method(method(10.0,20.0),100));`。 [Homework11.java](/code/chapter07/Homework11.java)
 12. 创建一个Employee类，属性有（名字，性别，年龄，职位，薪水），提供3个构造方法，可以初始化
     1.  （名字，性别，年龄，职位，薪水）
     2.  （名字，性别，年龄）
     3.  （职位，薪水）
-要求充分复用构造器。[Homework12.java](code/chapter07/Homework12.java)
+要求充分复用构造器。[Homework12.java](/code/chapter07/Homework12.java)
   * 性别可以用`char`类型，`char gender;`。
-13. 将对象作为参数传递给方法。[Homework13.java](code/chapter07/Homework13.java)
+13. 将对象作为参数传递给方法。[Homework13.java](/code/chapter07/Homework13.java)
     题目要求：
     1. 定义一个Circle类，包含一个double型的radius属性代表圆的半径，findArea()方法返回圆的面积。
     2. 定义一个类PassObject，在类中定义一个方法printAreas()，该方法的定义如下：public void printAreas(Circle c, int times)
@@ -255,6 +255,6 @@ Person p = new Person("小倩",20);
 		this.radius = radius;
 	}
   ```
-14.  扩展题。[Homework14.java](code/chapter07/Homework14.java)
+14.  扩展题。[Homework14.java](/code/chapter07/Homework14.java)
 有个人Tom设计他的成员变量.成员方法，可以电脑猜拳。电脑每次都会随机生成0，1，2。0表示石头，1表示剪刀，2表示布，并要可以显示Tom的输赢次数（清单）。
  * 生成随机数0-2：`(int)(Math.random() * 3)`
