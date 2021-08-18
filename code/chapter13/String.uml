@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>java.lang.String</OriginalElement>
+  <nodes>
+    <node x="388.0" y="14.5">java.lang.CharSequence</node>
+    <node x="590.0" y="0.0">java.lang.Object</node>
+    <node x="174.99999999999997" y="14.5">java.lang.Comparable</node>
+    <node x="212.74999999999997" y="112.0">java.lang.String</node>
+    <node x="0.0" y="14.5">java.io.Serializable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.lang.String" target="java.lang.Object" relationship="GENERALIZATION">
+      <point x="109.875" y="-252.0" />
+      <point x="469.125" y="87.0" />
+      <point x="649.0" y="87.0" />
+      <point x="0.0" y="31.0" />
+    </edge>
+    <edge source="java.lang.String" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="-36.625" y="-252.0" />
+      <point x="322.625" y="87.0" />
+      <point x="271.5" y="87.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.lang.String" target="java.io.Serializable" relationship="REALIZATION">
+      <point x="-109.875" y="-252.0" />
+      <point x="249.375" y="87.0" />
+      <point x="77.5" y="87.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.lang.String" target="java.lang.CharSequence" relationship="REALIZATION">
+      <point x="36.625" y="-252.0" />
+      <point x="395.875" y="87.0" />
+      <point x="479.0" y="87.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="285.0" y="58.0" />
+  <SelectedNodes>
+    <node>java.lang.String</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
