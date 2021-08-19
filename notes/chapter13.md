@@ -20,6 +20,8 @@
     - [基本介绍](#基本介绍)
     - [`String` VS `StringBuffer`](#string-vs-stringbuffer)
     - [`String`和`StringBuffer`相互转换](#string和stringbuffer相互转换)
+    - [`StringBuffer`类常见方法](#stringbuffer类常见方法)
+    - [🚩🚩🚩`StringBuffer`类课后练习](#stringbuffer类课后练习)
 
 # 第13章 常用类
 ## 包装类
@@ -370,3 +372,33 @@ for (int i = 0; i < 80000; i++) {
 * `StringBuffer`->`String`
   1. 使用`StringBuffer`提供的`toString`方法
   2. 使用构造器
+
+### `StringBuffer`类常见方法
+[StringBufferMethod.java](/code/chapter13/src/com/jinjin/stringbuffer_/StringBufferMethod.java)
+
+主要掌握以下方法：
+* `s.append("张三丰");` 增加字符串
+* `s.delete(11,14);` 删除索引为[11,14)的字符
+* `s.repalce(9,11,"周芷若");` 使用“周芷若”替换索引为[9,11)处的字符
+* `s.indexOf("张三丰");` 查找指定的子串在字符串中第一次出现的索引，如果找不到返回-1
+* `s.insert(9,"赵敏");` 在索引为9的位置插入“赵敏”，原来索引为9的内容自动后移
+* `s.length()` 长度
+
+### 🚩🚩🚩`StringBuffer`类课后练习
+题1 下面代码会输出什么？有没有错误？[StringBufferExercise01.java](/code/chapter13/src/com/jinjin/stringbuffer_/StringBufferExercise01.java)
+```java
+String str = null;
+StringBuffer sb = new StringBuffer();
+sb.append(str);
+System.out.println(sb.length());
+
+System.out.println(sb);
+StringBuffer sb1 = new StringBuffer(str);
+System.out.println(sb1);
+```
+
+🚩🚩**题2**
+输入商品名称和价格，要求打印效果示例，使用前面学习的方法完成，答案见[StringBufferExercise02.java](/code/chapter13/src/com/jinjin/stringbuffer_/StringBufferExercise02.java) 
+商品名 商品价格  
+手机   123,564.59 //比如价格3,456,789,88  
+要求：价格的小数点前面每三位用逗号隔开，再输出。
