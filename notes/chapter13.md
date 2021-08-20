@@ -22,6 +22,15 @@
     - [`String`和`StringBuffer`相互转换](#string和stringbuffer相互转换)
     - [`StringBuffer`类常见方法](#stringbuffer类常见方法)
     - [🚩🚩🚩`StringBuffer`类课后练习](#stringbuffer类课后练习)
+  - [`StringBuilder`类](#stringbuilder类)
+    - [基本介绍](#基本介绍-1)
+    - [`StringBuilder`常用方法](#stringbuilder常用方法)
+    - [`String`、`StringBuffer`和`StringBuilder`的比较](#stringstringbuffer和stringbuilder的比较)
+    - [`String`、`StringBuffer`和`StringBuilder`的效率测试](#stringstringbuffer和stringbuilder的效率测试)
+    - [`String`、`StringBuffer`和`StringBuilder`的选择](#stringstringbuffer和stringbuilder的选择)
+  - [`Math`类](#math类)
+    - [基本介绍](#基本介绍-2)
+    - [方法一览（均为静态方法）](#方法一览均为静态方法)
 
 # 第13章 常用类
 ## 包装类
@@ -385,7 +394,9 @@ for (int i = 0; i < 80000; i++) {
 * `s.length()` 长度
 
 ### 🚩🚩🚩`StringBuffer`类课后练习
-题1 下面代码会输出什么？有没有错误？[StringBufferExercise01.java](/code/chapter13/src/com/jinjin/stringbuffer_/StringBufferExercise01.java)
+**题1** 
+
+下面代码会输出什么？有没有错误？[StringBufferExercise01.java](/code/chapter13/src/com/jinjin/stringbuffer_/StringBufferExercise01.java)
 ```java
 String str = null;
 StringBuffer sb = new StringBuffer();
@@ -398,7 +409,65 @@ System.out.println(sb1);
 ```
 
 🚩🚩**题2**
+
 输入商品名称和价格，要求打印效果示例，使用前面学习的方法完成，答案见[StringBufferExercise02.java](/code/chapter13/src/com/jinjin/stringbuffer_/StringBufferExercise02.java) 
-商品名 商品价格  
-手机   123,564.59 //比如价格3,456,789,88  
+```
+商品名  商品价格  
+手机    123,564.59 //比如价格3,456,789,88 
+``` 
 要求：价格的小数点前面每三位用逗号隔开，再输出。
+
+## `StringBuilder`类
+### 基本介绍
+1. 一个可变字符序列。此类提供一个与`StringBuffer`兼容的API，但不保证同步（`StringBuilder`不是线程安全）。该类被设计用作`StringBuffer`的一个简易替换，**用在字符串缓冲区被单个线程使用的时候**。如果可能，建议优先采用该类，因为在大多数实现中，它比`StringBuffer`要快。
+2. 在`StringBuilder`上的主要操作是`append`和`insert`方法，可重载这些方法，以接受任意类型的数据。
+
+关于`StringBuilder`要掌握的几点内容：
+1. `StringBuilder`继承`AbstractStringBuilder`类
+2. 实现了`Serializable`,说明`StringBuilder`对象是可以串行化(对象可以网络传输,可以保存到文件)
+3. `StringBuilder`是`final`类, 不能被继承
+4. `StringBuilder`对象字符序列仍然是存放在其父类`AbstractStringBuilder`的`char[] value;`因此，字符序列是堆中
+5. `StringBuilder`的方法，没有做互斥的处理,即没有`synchronized`关键字,因此在单线程的情况下使用`StringBuilder`
+
+`StringBuilder`的类图
+
+<img src="/notes/img-ch13/StringBuilder.png">
+
+### `StringBuilder`常用方法
+`StringBuilder`和`StringBuffer`均代表可变的字符序列，方法是一样的，所以使用和`StringBuffer`一样。
+
+* `StringBuilder`是`final`
+* `StringBuilder`继承了`AbstractStringBuilder`，属性`char[] value`，内容存到`value`
+* 实现了`Serializable`接口，序列化
+
+### `String`、`StringBuffer`和`StringBuilder`的比较
+1. `StrungBuilder`和`StringBuffer`非常类似，均代表可变字符序列，而且方法也一样
+2. `String`：不可变字符序列，效率低，**但是复用率高**（要明白复用率高是什么意思，即在常量池中已经存在的字符，不用再创建）。
+3. `StringBuffer`：可变字符序列，效率较高（增删）、线程安全。
+4. `StringBuilder`：可变字符序列，效率最高、线程不安全。
+5. `String`使用注意说明
+    ```java
+    String s = "a"; //创建了一个组反映
+    s += "b"; 
+    ```
+    执行`s += "b";`时，实际上原来的"a"字符串对象已经丢弃了，现在又产生了一个字符串`s+"b"`(也就是`"ab"`)。如果多次执行这些改变串内容的操作，会导致大量副本字符串对象存留在内存中，降低效率。如果这样的操作放到循环中，会极大地影响程序的性能。 
+
+    因此，**如果我们对字符串做大量的修改，不能使用`String`**。
+
+### `String`、`StringBuffer`和`StringBuilder`的效率测试
+效率：`StringBuilder` > `StringBuffer` > `String`  
+
+案例见:[StringVsStringBufferVsStringBuilder.java](/code/chapter13/src/com/jinjin/stringbuilder_/StringVsStringBufferVsStringBuilder.java)
+
+### `String`、`StringBuffer`和`StringBuilder`的选择
+使用原则，结论：
+1. 如果字符串存在大量的修改操作，一般使用`StringBuffer`或`StringBuilder`
+2. 如果字符串存在大量的修改操作，并在单线程的情况，使用`StringBuilder`
+3. 如果字符串存在大量的修改操作，并在多线程的情况，使用`StringBuffer`
+4. 如果我们对字符串很少修改，被多个对象引用，使用`String`，比如配置信息等
+
+## `Math`类
+### 基本介绍
+`Math`类包含用于执行基本数学运算的方法，比如初等指数、对数、平方根和三角函数。
+### 方法一览（均为静态方法）
+案例见[MathMethod.java](/code/chapter13/src/com/jinjin/math_/MathMethod.java)
