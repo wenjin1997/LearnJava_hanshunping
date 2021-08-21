@@ -31,6 +31,8 @@
   - [`Math`类](#math类)
     - [基本介绍](#基本介绍-2)
     - [方法一览（均为静态方法）](#方法一览均为静态方法)
+  - [`Arrays`类](#arrays类)
+    - [`Arrays`类常见方法应用案例](#arrays类常见方法应用案例)
 
 # 第13章 常用类
 ## 包装类
@@ -471,3 +473,36 @@ System.out.println(sb1);
 `Math`类包含用于执行基本数学运算的方法，比如初等指数、对数、平方根和三角函数。
 ### 方法一览（均为静态方法）
 案例见[MathMethod.java](/code/chapter13/src/com/jinjin/math_/MathMethod.java)
+
+## `Arrays`类
+### `Arrays`类常见方法应用案例
+`Arrays`里面包含了一系列静态方法，用于管理或操作数组（比如排序和搜索）。
+1. `toString` 返回数组的字符串形式，如`Arrays.toString(str);`
+2. `sort`排序（自然排序和定制排序）
+3. `binarySearch`通过二分搜索进行查找，要求必须排好序
+    ```java
+    int index = Arrays.binarySearch(arr, 3);
+    ```
+4. `copyOf` 数组元素的复制
+    ```java
+    Integer[] newArr = Arrays.copyOf(arr, arr.length);
+    ```
+5. `fill`数组元素的填充
+    ```java
+    Integer[] num = new Integer[]{9, 3, 2};
+    Arrays.fill(num, 99);
+    ```
+6. `equals`比较两个数值元素内容是否完全一致
+    ```java
+    boolean equals = Arrays.equals(arr, arr2);
+    ```
+7. `asList`将一组值，转换成`list`
+    ```java
+    List<Integer> asList = Arrays.asList(2, 3, 4, 5, 6, 1);
+    System.out.println("asList=" + asList);
+    ```
+
+代码：
+- [ArraysMethod01.java](/code/chapter13/src/com/jinjin/arrays_/ArraysMethod01.java)
+- [ArraysMethod02.java](/code/chapter13/src/com/jinjin/arrays_/ArraysMethod02.java)
+- [ArraysSortCustom.java](/code/chapter13/src/com/jinjin/arrays_/ArraysSortCustom.java)
