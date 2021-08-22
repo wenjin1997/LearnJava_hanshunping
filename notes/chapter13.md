@@ -33,6 +33,8 @@
     - [方法一览（均为静态方法）](#方法一览均为静态方法)
   - [`Arrays`类](#arrays类)
     - [`Arrays`类常见方法应用案例](#arrays类常见方法应用案例)
+  - [`System`类](#system类)
+    - [`System`类常见方法和案例](#system类常见方法和案例)
 
 # 第13章 常用类
 ## 包装类
@@ -506,3 +508,17 @@ System.out.println(sb1);
 - [ArraysMethod01.java](/code/chapter13/src/com/jinjin/arrays_/ArraysMethod01.java)
 - [ArraysMethod02.java](/code/chapter13/src/com/jinjin/arrays_/ArraysMethod02.java)
 - [ArraysSortCustom.java](/code/chapter13/src/com/jinjin/arrays_/ArraysSortCustom.java)
+
+## `System`类
+### `System`类常见方法和案例
+1. `exit` 退出当前程序
+2. `arraycopy` 复制数组元素，比较适合底层调用，一般使用`Arrays.copyOf`完成复制数组。
+    ```java
+    int[] src ={1, 2, 3};
+    int[] dest = new int[3];
+    System.arraycopy(src, 0, dest, 0, 3);
+    ```
+3. `currentTimeMillens` 返回当前时间距离1970-1-1的毫秒数
+4. `gc` 运行垃圾回收机制 `System.gc();`
+
+案例代码：[System_.java](/code/chapter13/src/com/jinjin/system_/System_.java)
