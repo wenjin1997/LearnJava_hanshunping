@@ -35,6 +35,9 @@
     - [`Arrays`类常见方法应用案例](#arrays类常见方法应用案例)
   - [`System`类](#system类)
     - [`System`类常见方法和案例](#system类常见方法和案例)
+  - [`BigInteger`和`BigDecimal`类](#biginteger和bigdecimal类)
+    - [`BigInteger`和`BigDecimal`介绍](#biginteger和bigdecimal介绍)
+    - [`BigInteger`和`BigDecimal`常见方法](#biginteger和bigdecimal常见方法)
 
 # 第13章 常用类
 ## 包装类
@@ -522,3 +525,15 @@ System.out.println(sb1);
 4. `gc` 运行垃圾回收机制 `System.gc();`
 
 案例代码：[System_.java](/code/chapter13/src/com/jinjin/system_/System_.java)
+
+## `BigInteger`和`BigDecimal`类
+### `BigInteger`和`BigDecimal`介绍
+应用场景：
+1. `BigInteger`适合保存比较大的整型
+2. `BigDecimal`适合保存精度更高的浮点数（小数）
+
+### `BigInteger`和`BigDecimal`常见方法
+1. `add`加
+2. `subtract` 减
+3. `multiply` 乘
+4. `divide` 除
