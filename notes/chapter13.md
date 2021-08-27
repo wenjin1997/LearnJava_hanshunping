@@ -33,11 +33,25 @@
     - [方法一览（均为静态方法）](#方法一览均为静态方法)
   - [`Arrays`类](#arrays类)
     - [`Arrays`类常见方法应用案例](#arrays类常见方法应用案例)
+    - [`Arrays`类课堂练习](#arrays类课堂练习)
   - [`System`类](#system类)
     - [`System`类常见方法和案例](#system类常见方法和案例)
   - [`BigInteger`和`BigDecimal`类](#biginteger和bigdecimal类)
     - [`BigInteger`和`BigDecimal`介绍](#biginteger和bigdecimal介绍)
     - [`BigInteger`和`BigDecimal`常见方法](#biginteger和bigdecimal常见方法)
+  - [日期类](#日期类)
+    - [第一代日期类](#第一代日期类)
+    - [第二代日期类](#第二代日期类)
+    - [第三代日期类](#第三代日期类)
+    - [`DateTimeFormatter`格式日期类](#datetimeformatter格式日期类)
+    - [`Instant`时间戳](#instant时间戳)
+    - [第三代日期类的更多方法](#第三代日期类的更多方法)
+  - [本章作业](#本章作业)
+    - [⭐️⭐️作业1](#️️作业1)
+    - [⭐️⭐️作业2](#️️作业2)
+    - [⭐️作业3](#️作业3)
+    - [⭐️作业4](#️作业4)
+    - [作业5](#作业5)
 
 # 第13章 常用类
 ## 包装类
@@ -477,7 +491,15 @@ System.out.println(sb1);
 ### 基本介绍
 `Math`类包含用于执行基本数学运算的方法，比如初等指数、对数、平方根和三角函数。
 ### 方法一览（均为静态方法）
+基本均为静态方法。
+
 案例见[MathMethod.java](/code/chapter13/src/com/jinjin/math_/MathMethod.java)
+
+**取随机数**：
+`random`返回的是0<=x<1之间的一个随机小数，如果想返回[a,b)之间的随机整数，可以这样进行计算：
+```java
+(int)(a + Math.random * (b - a + 1))
+```
 
 ## `Arrays`类
 ### `Arrays`类常见方法应用案例
@@ -507,22 +529,103 @@ System.out.println(sb1);
     System.out.println("asList=" + asList);
     ```
 
+**`Arrays`类中的定制排序方法：**
+[ArraysMethod01.java](/code/chapter13/src/com/jinjin/arrays_/ArraysMethod01.java)
+```java
+Arrays.sort(arr, new Comparator() {
+    @Override
+    public int compare(Object o1, Object o2) {
+        Integer i1 = (Integer) o1;
+        Integer i2 = (Integer) o2;
+        return i2 - i1;
+    }
+});
+```
+这里体现了接口编程的方式 , 看看源码，就明白
+
+源码分析:
+(1) `Arrays.sort(arr, new Comparator()`
+(2) 最终到`TimSort`类的`private static <T> void binarySort(T[] a, int lo, int hi, int start,Comparator<? super T> c)()`
+(3) 执行到`binarySort`方法的代码, 会根据动态绑定机制`c.compare()`执行我们传入的匿名内部类的 `compare ()`
+
+```java
+while (left < right) {
+    int mid = (left + right) >>> 1;
+    if (c.compare(pivot, a[mid]) < 0)
+        right = mid;
+    else
+        left = mid + 1;
+}
+```
+
+<img src="/notes/img-ch13/Arrays/compare.png">
+
+(4) 根据动态绑定，执行重写后的`compare`方法
+```java
+new Comparator() {
+    @Override
+    public int compare(Object o1, Object o2) {
+        Integer i1 = (Integer) o1;
+        Integer i2 = (Integer) o2;
+        return i2 - i1;
+    }
+}
+```
+(5) `public int compare(Object o1, Object o2)`返回的值`>0`还是`<0`会影响整个排序结果, 这就充分体现了接口编程+动态绑定+匿名内部类的综合使用,将来的底层框架和源码的使用方式，会非常常见。
+
+**`Arrays`类中定制排序+冒泡排序：**
+[ArraysSortCustom.java](/code/chapter13/src/com/jinjin/arrays_/ArraysSortCustom.java)
+
+
 代码：
 - [ArraysMethod01.java](/code/chapter13/src/com/jinjin/arrays_/ArraysMethod01.java)
 - [ArraysMethod02.java](/code/chapter13/src/com/jinjin/arrays_/ArraysMethod02.java)
 - [ArraysSortCustom.java](/code/chapter13/src/com/jinjin/arrays_/ArraysSortCustom.java)
 
+### `Arrays`类课堂练习
+[ArraysExercise.java](/code/chapter13/src/com/jinjin/arrays_/ArraysExercise.java)
+
+自定义Book类，里面包含name和price，按price排序（从大到小）。要求使用两种方式排序，有一个`Book[] books = 4本书对象`。
+
+使用前面学过的传递实现`Comparator`接口匿名内部类，也称为定制排序，可以按照价格从大到小、价格从小到大、书名长度从大到小排序。
+
+**Remark**：
+* 可以直接调用`Arrays.sort()`方法，因为这里`books`也是一个数组。由于`price`设置为`double`类型，而`compare`方法要求返回一个整型，可以进行如下处理：
+
+```java
+//1. 按照price从大到小排序
+Arrays.sort(books, new Comparator() {
+    @Override
+    public int compare(Object o1, Object o2) {
+        Book book1 = (Book) o1;
+        Book book2 = (Book) o2;
+        double priceValue = book1.getPrice() - book2.getPrice();
+        if (priceValue > 0) {
+            return -1;
+        } else if (priceValue < 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+});
+```
+
+
 ## `System`类
 ### `System`类常见方法和案例
-1. `exit` 退出当前程序
-2. `arraycopy` 复制数组元素，比较适合底层调用，一般使用`Arrays.copyOf`完成复制数组。
+1. `exit` 退出当前程序，0表示状态，正常退出：
+    ```java
+    System.exit(0);
+    ```
+1. `arraycopy` 复制数组元素，比较适合底层调用，一般使用`Arrays.copyOf`完成复制数组。
     ```java
     int[] src ={1, 2, 3};
     int[] dest = new int[3];
     System.arraycopy(src, 0, dest, 0, 3);
     ```
-3. `currentTimeMillens` 返回当前时间距离1970-1-1的毫秒数
-4. `gc` 运行垃圾回收机制 `System.gc();`
+2. `currentTimeMillens` 返回当前时间距离1970-1-1的毫秒数
+3. `gc` 运行垃圾回收机制 `System.gc();`
 
 案例代码：[System_.java](/code/chapter13/src/com/jinjin/system_/System_.java)
 
@@ -538,3 +641,203 @@ System.out.println(sb1);
 3. `multiply` 乘
 4. `divide` 除
 
+
+**Remark:**
+* 在小数进行除法时，有可能有无限循环小数，这时需要指定保留的精度，否则会出现`ArithmeticExceotion`异常。
+```java
+//System.out.println(bigDecimal.divide(bigDecimal2));//可能抛出异常ArithmeticException
+//在调用divide 方法时，指定精度即可. BigDecimal.ROUND_CEILING
+//如果有无限循环小数，就会保留 分子 的精度
+System.out.println(bigDecimal.divide(bigDecimal2, BigDecimal.ROUND_CEILING));
+```
+
+代码：
+- [BigInteger_.java](/code/chapter13/src/com/jinjin/bignum/BigInteger_.java)
+- [BigDecimal_.java](/code/chapter13/src/com/jinjin/bignum/BigDecimal_.java)
+
+## 日期类
+### 第一代日期类
+[Date01.java](/code/chapter13/src/com/jinjin/date_/Date01.java)
+1. `Date`: 精确到毫秒，表示特定的瞬间
+2. `SimpleDateFormat`格式化和解析日期的具体类。它允许进行格式化（日期 -> 文本）、解析（文本 -> 日期）和规范化。
+
+<img src="/notes/img-ch13/Date/SimpleDateFormat.png">
+
+```java
+//1. 可以把一个格式化的String转成对应的 Date
+//2. 得到Date仍然在输出时，还是按照国外的形式，如果希望指定格式输出，需要转换
+//3. 在把String -> Date， 使用的 sdf 格式需要和你给的String的格式一样，否则会抛出转换异常
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 hh:mm:ss E");
+String s = "1996年01月01日 10:20:30 星期一";
+Date parse = sdf.parse(s);
+System.out.println("parse=" + sdf.format(parse));
+```
+
+### 第二代日期类
+[Calendar_.java](/code/chapter13/src/com/jinjin/date_/Calendar_.java)
+1. 第二代日期类，主要是`Calendar`类（日历）。
+```java
+public abstract class Calendar implements Serializable, Cloneable, Comparable<Calendar> {
+
+}
+```
+2. `Calendar`类是一个抽象类，它为特定瞬间与一组诸如`YEAR`、`MONTH`、`DAY_OF_MONTH`、`HOUR`等日历字段之间的转换提供了一些方法，并为操作日历字段（例如获得下星期的日期）提供了一些方法。
+
+### 第三代日期类
+* 前面两代日期类的不足分析
+JDK 1.0中包含了一个`java.util.Date`类，但是它的大多数方法已经在`JDK 1.1`引入`Calendar`类之后被弃用了。而`Calendar`类也存在的问题是：
+    1. 可变性：像日期和时间这样的类应该是不可变的。
+    2. 偏移性：`Date`中的年份是从1990年开始的，而月份都从0开始。
+    3. 格式化：格式化只对`Date`有用，`Calendar`则不行。
+    4. 此外，它们也不是线程安全的；不能处理闰秒等（每隔两天，多出1s）
+
+* `LocalDate`（日期/年月日）、`LocalTime`（时间/时分秒）、`LocalDateTime`（日期时间/年月日时分秒）JDK8加入
+
+案例：[LocalDate_.java](/code/chapter13/src/com/jinjin/date_/LocalDate_.java)
+
+### `DateTimeFormatter`格式日期类
+JDK8之后有的，类似于`SimpleDateFormat`。
+
+```java
+DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+String format = dateTimeFormatter.format(ldt);
+System.out.println("格式化的日期=" + format);
+```
+
+### `Instant`时间戳
+类似于`Date`，提供了一系列和`Date`类转换的方式：
+* `Instant` -> `Date`:
+    ```java
+    Date date = Date.from(instant);
+    ```
+* `Date`  -> `Instant`:
+    ```java
+    Instant instant = date.toInstant();
+    ```
+案例：[Instant_.java](/code/chapter13/src/com/jinjin/date_/Instant_.java)
+
+### 第三代日期类的更多方法
+* `LocalDateTime`类
+* `MonthDay`类：检查重复事件
+* 是否是闰年
+* 增加日期的某个部分
+* 使用`plus`方法测试增加时间的某个部分
+* 使用`minus`方法测试查看一年前和一年后的日期
+* 其他方法可以查看API使用
+
+## 本章作业
+### ⭐️⭐️作业1
+编程题 [Homework01.java](/code/chapter13/src/com/jinjin/homework/Homework01.java)
+
+1. 将字符串中指定部分进行反转。比如将"a**bcde**f"反转为"a**edcb**f"。
+2. 编写方法`public static String reverse(String str, int start, int end)`搞定。
+
+* **关键思路**：将`String`字符串转换为`char[]`数组，然后进行反转，最后再将`char[]`数组转换为`String`字符串。
+* `String`字符串转换为`char[]`数组：`str.toCharArray()`
+* 将`char[]`数组转换为`String`字符串：`new String(chars)`
+* 注意有可能出现异常，因此需要抛出异常，处理异常时，先考虑正确的情况，再取反。
+```java
+public static String reverse(String str, int start, int end) {
+    if (!(str != null && start < end && start >= 0 && end < str.length())){
+        throw new RuntimeException("参数不正确");
+    }
+
+    char[] chars = str.toCharArray();
+    char temp = ' ';
+    //进行反转交换
+    for (int i = start, j = end; i < j; i++, j--) {
+        temp = chars[i];
+        chars[i] = chars[j];
+        chars[j] = temp;
+    }
+    return new String(chars);
+}
+```
+
+### ⭐️⭐️作业2
+编程题：[Homework02.java](/code/chapter13/src/com/jinjin/homework/Homework02.java)
+
+输入用户名、密码、邮箱，如果信息录入正确，则提示注册成功，否则生成异常对象。要求：
+1. 用户名长度为2或3或4
+2. 密码长度为3，要求全是数字
+3. 邮箱中包含`@`和`.`，并且`@`在`.`的前面。
+
+* 注册过程可以写成一个方法，在方法中对各个信息进行验证。
+* 验证一个字符串是否全是数字构成的方法：
+```java
+//校验字符串中全由数字构成
+public static boolean isDigital(String str){
+    char[] chars = str.toCharArray();
+    for (int i = 0; i < chars.length; i++) {
+        if (chars[i] < '0' || chars[i] > '9') {
+            return false;
+        }
+    }
+    return true;
+}
+```
+* 验证邮箱中包含`@`和`.`，并且`@`在`.`的前面
+```java
+//邮箱中包含@和.，并且@在.的前面。
+int i = email.indexOf('@');
+int j = email.indexOf('.');
+if (!(i > 0 && i < j)) {
+    throw new RuntimeException("邮箱中包含@和.，并且@在.的前面!");
+}
+```
+
+### ⭐️作业3
+编程题: [Homework03.java](/code/chapter13/src/com/jinjin/homework/Homework03.java)
+
+编写java程序，输入形式为`"Willian Jefferson Clinton"`，输出形式为`Clinton, Willian.J`
+
+* 输出姓名时，可以使用`String.format`。
+```java
+String format = String.format("%s,%s. %c", names[2], names[0], names[1].toUpperCase().charAt(0));
+System.out.println(format);
+```
+
+### ⭐️作业4
+编程题: [Homework04.java](/code/chapter13/src/com/jinjin/homework/Homework04.java)
+
+输入字符串，判断里面有多少个大写字母，多少个小写字母，多少个数字？
+
+* 这里在统计字符串中各个符号的个数时，可以使用`charAt()`，就不需要将`String`类型转换为`char[]`数组了。
+
+### 作业5
+判断输出什么？答案见[Homework05.java](/code/chapter13/src/com/jinjin/homework/Homework05.java)
+```java
+public class Homework05 {
+    public static void main(String[] args) {
+        String s1 = "hspedu";
+        Animal a = new Animal(s1);
+        Animal b = new Animal(s1);
+        System.out.println(a == b);
+        System.out.println(a.equals(b));
+        System.out.println(a.name == b.name);
+        String s4 = new String("hspedu");
+        String s5 = "hspedu";
+
+        System.out.println(s1 == s4);
+        System.out.println(s4 == s5);
+
+        String t1 = "hello" + s1;
+        String t2 = "hellohspedu";
+        System.out.println(t1.intern() == t2);
+
+
+    }
+}
+
+class Animal {
+    String name;
+
+    public Animal(String name) {
+        this.name = name;
+    }
+}
+```
+
+* 注意`String t1 = "hello" + s1;`，因为这里`s1`是一个变量，因此这里会在堆中建立一个`StringBuilder`，然后再指向常量池中的`"hellohspedu"`。
+
+<img src="/notes/img-ch13/homework05.png">

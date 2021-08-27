@@ -37,6 +37,5 @@ public class Date01 {
         String s = "1996年01月01日 10:20:30 星期一";
         Date parse = sdf.parse(s);
         System.out.println("parse=" + sdf.format(parse));
-
     }
 }

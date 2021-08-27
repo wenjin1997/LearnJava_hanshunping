@@ -12,7 +12,7 @@ public class BigDecimal_ {
         //可以是 BigDecimal
 //        double d = 1999.11111111111999999999999977788d;
 //        System.out.println(d);
-        BigDecimal bigDecimal = new BigDecimal("1999.11");
+        BigDecimal bigDecimal = new BigDecimal("1999.11999999999977788");
         BigDecimal bigDecimal2 = new BigDecimal("3");
         System.out.println(bigDecimal);
 
