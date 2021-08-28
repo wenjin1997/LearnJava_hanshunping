@@ -544,8 +544,11 @@ Arrays.sort(arr, new Comparator() {
 这里体现了接口编程的方式 , 看看源码，就明白
 
 源码分析:
+
 (1) `Arrays.sort(arr, new Comparator()`
-(2) 最终到`TimSort`类的`private static <T> void binarySort(T[] a, int lo, int hi, int start,Comparator<? super T> c)()`
+
+(2) 最终到`TimeSort`类的`private static <T> void binarySort(T[] a, int lo, int hi, int start,Comparator<? super T> c)()`
+
 (3) 执行到`binarySort`方法的代码, 会根据动态绑定机制`c.compare()`执行我们传入的匿名内部类的 `compare ()`
 
 ```java
@@ -659,7 +662,7 @@ System.out.println(bigDecimal.divide(bigDecimal2, BigDecimal.ROUND_CEILING));
 ### 第一代日期类
 [Date01.java](/code/chapter13/src/com/jinjin/date_/Date01.java)
 1. `Date`: 精确到毫秒，表示特定的瞬间
-2. `SimpleDateFormat`格式化和解析日期的具体类。它允许进行格式化（日期 -> 文本）、解析（文本 -> 日期）和规范化。
+2. `SimpleDateFormat`: 格式化和解析日期的具体类。它允许进行格式化（日期 -> 文本）、解析（文本 -> 日期）和规范化。
 
 <img src="/notes/img-ch13/Date/SimpleDateFormat.png">
 
