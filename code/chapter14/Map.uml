@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>java.util.Map</OriginalElement>
+  <nodes>
+    <node x="179.49999999999994" y="50.0">java.util.LinkedHashMap</node>
+    <node x="-249.5" y="50.0">java.util.Properties</node>
+    <node x="-57.00000000000006" y="-35.0">java.util.TreeMap</node>
+    <node x="66.99999999999994" y="-118.0">java.util.Map</node>
+    <node x="151.99999999999994" y="-35.0">java.util.HashMap</node>
+    <node x="-275.0" y="-35.0">java.util.Hashtable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.util.TreeMap" target="java.util.Map" relationship="REALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="37.49999999999994" y="-60.0" />
+      <point x="142.99999999999994" y="-60.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.util.Properties" target="java.util.Hashtable" relationship="GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.util.Hashtable" target="java.util.Map" relationship="REALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="-176.0" y="-60.0" />
+      <point x="142.99999999999994" y="-60.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.util.LinkedHashMap" target="java.util.HashMap" relationship="GENERALIZATION">
+      <point x="-61.25" y="-16.5" />
+      <point x="240.74999999999994" y="24.0" />
+      <point x="248.49999999999994" y="24.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.util.LinkedHashMap" target="java.util.Map" relationship="REALIZATION">
+      <point x="61.25" y="-16.5" />
+      <point x="363.24999999999994" y="24.0" />
+      <point x="355.5" y="24.0" />
+      <point x="355.5" y="-60.0" />
+      <point x="142.99999999999994" y="-60.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.util.HashMap" target="java.util.Map" relationship="REALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="248.49999999999994" y="-60.0" />
+      <point x="142.99999999999994" y="-60.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="76.0" y="16.5" />
+  <SelectedNodes>
+    <node>java.util.LinkedHashMap</node>
+    <node>java.util.Properties</node>
+    <node>java.util.TreeMap</node>
+    <node>java.util.Map</node>
+    <node>java.util.HashMap</node>
+    <node>java.util.Hashtable</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
