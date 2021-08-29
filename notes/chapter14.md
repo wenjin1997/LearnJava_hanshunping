@@ -13,6 +13,14 @@
     - [`List`接口的常用方法](#list接口的常用方法)
     - [`List`接口课堂练习](#list接口课堂练习)
     - [`List`的三种遍历方式（`ArrayList`、`LinkedList`、`Vector`）](#list的三种遍历方式arraylistlinkedlistvector)
+    - [实现类的课堂练习2](#实现类的课堂练习2)
+  - [`ArrayList`底层结构和源码分析](#arraylist底层结构和源码分析)
+    - [`ArrayList`的注意事项](#arraylist的注意事项)
+    - [🚩🚩🚩`ArrayList`的底层操作机制源码分析](#arraylist的底层操作机制源码分析)
+    - [配置IDEA-更改JDK版本](#配置idea-更改jdk版本)
+  - [`Vector`底层结构和源码剖析](#vector底层结构和源码剖析)
+    - [`Vector`的基本介绍](#vector的基本介绍)
+    - [`Vector`和`ArrayList`的比较](#vector和arraylist的比较)
 
 # 第14章 集合
 ## 集合的理解和好处
@@ -131,3 +139,108 @@ for(元素类型 元素名: 集合名或数组名){
 添加10个以上的元素（比如`String "hello"`），在2号位插入一个元素"进进"，获得第5个元素，删除第6个元素，修改第7个元素，再使用迭代器遍历集合，要求：使用`List`实现类`ArrayList`完成。
 
 ### `List`的三种遍历方式（`ArrayList`、`LinkedList`、`Vector`）
+[ListFor.java)](/code/chapter14/src/com/jinjin/list_/ListFor.java)
+1. 方式一：使用`iterator`
+    ```java
+    Iterator iterator = list.iterator();
+    while (iterator.hasNext()) {
+        Object obj =  iterator.next();
+        System.out.println(obj);
+
+    }
+    ```
+2. 方式二：使用增强`for`
+    ```java
+    for (Object o : list) {
+        System.out.println("o=" + o);
+    }
+    ```
+3. 方式三：使用普通`for`
+    ```java
+    for (Object o : list) {
+        System.out.println("o=" + o);
+    }
+    ```
+
+**说明：**使用`LinkedList`完成，使用方式和`ArrayList`一样。
+
+### 实现类的课堂练习2
+使用`List`的实现类添加三本图书，并遍历，打印如下效果：
+
+<img src="/notes/img-ch14/ListExercise02.png">
+
+要求：
+1. 按价格排序，从低到高（使用冒泡法）
+2. 要求使用`ArrayList`、`LinkedList`和`Vector`三种集合实现
+
+**代码：**[ListExercise02.java](/code/chapter14/src/com/jinjin/list_/ListExercise02.java)
+* 冒泡排序方法
+```java
+public static void sort(List list) {
+    for (int i = 0; i < list.size() - 1; i++) {
+        for (int j = 0; j < list.size() - i - 1; j++) {
+            Book book1 = (Book) list.get(j);
+            Book book2 = (Book) list.get(j + 1);
+            if (book1.getPrice() > book2.getPrice()) {
+                list.set(j + 1, book1);
+                list.set(j, book2);
+            }
+        }
+    }
+}
+```
+## `ArrayList`底层结构和源码分析
+### `ArrayList`的注意事项
+1. permits all elements, including null, `ArrayList`可以加入`null`，并且多个也可以
+2. `ArrayList`是由数组来实现数据存储的
+3. `ArrayList`基本等同于`Vector`，除了`ArrayList`是线程不安全的（执行效率高），在多线程情况下，不建议使用`ArrayList`。
+
+### 🚩🚩🚩`ArrayList`的底层操作机制源码分析
+[ArrayListSource.java](/code/chapter14/src/com/jinjin/list_/ArrayListSource.java)
+1. `ArrayList`中维护了一个`Object`类型的数组`elementData`
+    ```java
+    //transient 表示瞬间，短暂的，表示该属性不会被序列化
+    transient Object[] elementData; 
+    ```
+2. 当创建`ArrayList`对象时，如果使用的是无参构造器，则初始`elementData`容量为0，第1次添加，则扩容`elementData`为10，如需再次扩容，则扩容`elementData`为1.5倍。（JDK8）
+3. 如果使用的是指定大小的构造器，则初始`elementData`容量为指定大小，如果需要扩容，则直接扩容`elementData`为1.5倍。
+
+* `ArrayList`扩容机制
+
+<img src="/notes/img-ch14/ArrayList.png">
+
+* 默认情况下，IDEA显示的是简化后的数据。IDEA设置看到完整的数据步骤:选择Preferences-Buile,Execution,Deployment-Debugger-Data Viewer-Java，去掉勾选alternative view for Collections classes。
+
+<img src="/notes/img-ch14/IDEA-Debugger.png">
+
+### 配置IDEA-更改JDK版本
+参考[Mac配置JDK版本](https://www.cnblogs.com/diShuiZhiYi/p/13774075.html)，如果是某一个project需要更换JDK版本，可以进行如下设置。
+
+<img src="/notes/img-ch14/IDEA-SDK.png">
+
+## `Vector`底层结构和源码剖析
+### `Vector`的基本介绍
+[Vector_.java](/code/chapter14/src/com/jinjin/list_/Vector_.java)
+1. `Vector`类的定义说明
+    ```java
+    public class Vector<E>
+    extends AbstractList<E>
+    implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+    ```
+2. `Vector`底层也是一个对象数组，`protected Object[] elementData;`
+3. `Vector`是线程同步的，即线程安全，`Vector`类的操作方法带有`synchronized`
+    ```java
+    public synchronized E get(int index) {
+        if (index >= elementCount)
+            throw new ArrayIndexOutOfBoundsException(index);
+
+        return elementData(index);
+    }
+    ```
+
+### `Vector`和`ArrayList`的比较
+||底层结构|版本|线程安全（同步）效率|扩容倍数|
+|----|----|----|----|----|
+|`ArrayList`|可变数组|jdk1.2|不安全，效率高|如果有参构造1.5倍，如果是无参构造，第一次10，从第二次开始按1.5倍扩|
+|`Vector`|可变数组`Object[]`|jdk1.0|安全，效率不高|如果是无参构造，默认10，满后，就按2倍扩容。如果指定大小，则每次直接按2倍扩容。|
+
