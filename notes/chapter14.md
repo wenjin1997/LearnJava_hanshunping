@@ -21,6 +21,9 @@
   - [`Vector`底层结构和源码剖析](#vector底层结构和源码剖析)
     - [`Vector`的基本介绍](#vector的基本介绍)
     - [`Vector`和`ArrayList`的比较](#vector和arraylist的比较)
+  - [`LinkedList`底层结构](#linkedlist底层结构)
+    - [`LinkedList`的全面说明](#linkedlist的全面说明)
+    - [`LinkedList`的底层操作机制](#linkedlist的底层操作机制)
 
 # 第14章 集合
 ## 集合的理解和好处
@@ -244,3 +247,17 @@ public static void sort(List list) {
 |`ArrayList`|可变数组|jdk1.2|不安全，效率高|如果有参构造1.5倍，如果是无参构造，第一次10，从第二次开始按1.5倍扩|
 |`Vector`|可变数组`Object[]`|jdk1.0|安全，效率不高|如果是无参构造，默认10，满后，就按2倍扩容。如果指定大小，则每次直接按2倍扩容。|
 
+## `LinkedList`底层结构
+### `LinkedList`的全面说明
+1. `LinkedList`底层实现了双向**链表**和双端**队列**的特点。
+2. 可以添加任意元素（元素可以重复），包括`null`。
+3. 线程不安全，没有实现同步。
+
+### `LinkedList`的底层操作机制
+1. `LinkedList`底层维护了一个双向链表
+2. `LinkedList`中维护了两个属性`first`和`last`分别指向首节点和尾节点。
+3. 每个节点（`Node`对象），里面又维护了`prev`、`next`、`item`三个属性，其中通过`prev`指向前一个，通过`next`指向后一个节点，最终实现双向链表。
+4. 所以`LinkedList`的元素的**添加和删除**，不是通过数组完成的，相对来说效率较高。
+5. 模拟一个**简单**的双向链表。
+
+<img src="/notes/img-ch14/LinkedList.png">
