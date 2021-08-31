@@ -24,6 +24,14 @@
   - [`LinkedList`底层结构](#linkedlist底层结构)
     - [`LinkedList`的全面说明](#linkedlist的全面说明)
     - [`LinkedList`的底层操作机制](#linkedlist的底层操作机制)
+    - [`LinkedList`的增删改查案例](#linkedlist的增删改查案例)
+  - [`ArrayList`和`LinkedList`比较](#arraylist和linkedlist比较)
+    - [`ArrayList`和`LinkedList`的比较](#arraylist和linkedlist的比较)
+  - [`Set`接口和常用方法](#set接口和常用方法)
+    - [`Set`接口基本介绍](#set接口基本介绍)
+    - [`Set`接口的常用方法](#set接口的常用方法)
+    - [`Set`接口的遍历方式](#set接口的遍历方式)
+    - [`Set`接口的常用方法举例](#set接口的常用方法举例)
 
 # 第14章 集合
 ## 集合的理解和好处
@@ -261,3 +269,41 @@ public static void sort(List list) {
 5. 模拟一个**简单**的双向链表。
 
 <img src="/notes/img-ch14/LinkedList.png">
+
+### `LinkedList`的增删改查案例
+* 追源码，分析`LinkedList`底层操作 [LinkedListCRUD.java](/code/chapter14/src/com/jinjin/list_/LinkedListCRUD.java)
+
+<img src="/notes/img-ch14/LinkedListCRUD.png">
+
+## `ArrayList`和`LinkedList`比较
+### `ArrayList`和`LinkedList`的比较
+|    |底层结构|增删的效率|改查的效率|
+|----|----|----|----|
+|`ArrayList`|可变数组|较低，数组扩容|较高|
+|`LinkedList`|双向链表|较高，通过链表追加|较低|
+
+**如何选择`ArrayList`和`LinkedList`**
+1. 如果我们改查的操作多，选择`ArrayList`
+2. 如果我们增删的操作多，选择`LinkedList`
+3. 一般来说，在程序中，80%-90%都是查询，因此大部分情况下会选择`ArrayList`
+4. 在一个项目中，根据业务灵活选择，也可能这样，一个模块使用`ArrayList`，另外一个模块是`LinkedList`，也就是说，要根据业务来选择。
+
+## `Set`接口和常用方法
+### `Set`接口基本介绍
+1. 无序（添加和取出的顺序不一致），没有索引
+2. 不允许重复元素，所以最多包含一个`null`
+3. JDK API中`Set`接口的实现类有：
+
+<img src="/notes/img-ch14/Interface%20Set.png">
+
+### `Set`接口的常用方法
+和`List`接口一样，`Set`接口也是`Collection`的子接口，因此，常用方法和`Collection`接口一样。
+
+### `Set`接口的遍历方式
+同`Collection`的遍历方式一样，因为`Set`接口是`Collection`接口的子接口。
+1. 可以使用迭代器
+2. 增强`for`
+3. **不能使用**索引的方式来获取。
+
+### `Set`接口的常用方法举例
+[SetMethod.java](/code/chapter14/src/com/jinjin/set_/SetMethod.java)
