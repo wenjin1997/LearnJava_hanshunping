@@ -32,6 +32,12 @@
     - [`Set`接口的常用方法](#set接口的常用方法)
     - [`Set`接口的遍历方式](#set接口的遍历方式)
     - [`Set`接口的常用方法举例](#set接口的常用方法举例)
+  - [`Set`接口实现类——`HashSet`](#set接口实现类hashset)
+    - [`HashSet`的全面说明](#hashset的全面说明)
+    - [`HashSet`案例](#hashset案例)
+    - [`HashSet`底层机制说明](#hashset底层机制说明)
+    - [`HashSet`课堂练习1](#hashset课堂练习1)
+    - [`HashSet`课堂练习2](#hashset课堂练习2)
 
 # 第14章 集合
 ## 集合的理解和好处
@@ -168,12 +174,13 @@ for(元素类型 元素名: 集合名或数组名){
     ```
 3. 方式三：使用普通`for`
     ```java
-    for (Object o : list) {
-        System.out.println("o=" + o);
+    for (int i = 0; i < list.size(); i++) {
+        System.out.println("对象=" + list.get(i));
     }
     ```
 
-**说明：**使用`LinkedList`完成，使用方式和`ArrayList`一样。
+
+**说明**：使用`LinkedList`完成，使用方式和`ArrayList`一样。
 
 ### 实现类的课堂练习2
 使用`List`的实现类添加三本图书，并遍历，打印如下效果：
@@ -307,3 +314,67 @@ public static void sort(List list) {
 
 ### `Set`接口的常用方法举例
 [SetMethod.java](/code/chapter14/src/com/jinjin/set_/SetMethod.java)
+
+1. `Set`接口的实现类的对象(`Set`接口对象), 不能存放重复的元素, 可以添加一个`null`
+2. `Set`接口对象存放数据是无序(即添加的顺序和取出的顺序不一致)
+3. **注意**：取出的顺序的顺序虽然不是添加的顺序，但是它是固定的.
+4. 遍历方法只有两种，使用迭代器和增强`for`循环，不能使用普通`for`循环，因为`Set`接口对象不能通过索引来获取。
+
+## `Set`接口实现类——`HashSet`
+### `HashSet`的全面说明
+[HashSet_.java](/code/chapter14/src/com/jinjin/set_/HashSet_.java)
+1. `HashSet`实现了`Set`接口
+2. `HashSet`实际上是`HashMap`，源码：
+  ```java
+  public HashSet() {
+      map = new HashMap<>();
+  }
+  ```
+3. 可以存放`null`值，但是只能有一个`null`
+4. `HashSet`不保证元素是有序的，取`hash`后，再确定索引的结果。（即不保证存放元素的顺序和取出顺序一致）
+5. 不能有重复元素/对象。
+
+### `HashSet`案例
+案例：[HashSet01.java](/code/chapter14/src/com/jinjin/set_/HashSet01.java)
+
+**经典面试题**：第二句能否加入？
+```java
+set.add(new String("hsp"));//ok
+set.add(new String("hsp"));//加入不了.
+System.out.println("set=" + set);
+```
+
+### `HashSet`底层机制说明
+
+* `HashSet`底层是`HashMap`，`HashMap`底层是数组+链表+红黑树。[HashSetStructure.java](/code/chapter14/src/com/jinjin/set_/HashSetStructure.java)
+
+<img src="/notes/img-ch14/hashset/HashSet01.png">
+
+* `HashSet`的添加元素底层是如何实现?(hash()+equals()) [HashSetSource.java](/code/chapter14/src/com/jinjin/set_/HashSetSource.java)
+
+<img src="/notes/img-ch14/hashset/HashSetSource.png">
+
+* 分析`HashSet`的扩容和转成红黑树机制 [HashSetIncrement.java](/code/chapter14/src/com/jinjin/set_/HashSetIncrement.java)
+
+<img src="/notes/img-ch14/hashset/HashSetIncrement.png">
+
+* `threshold`的值，数组或者链表后添加的结点都纳入计算。
+* 在进行树化过程中，如果是在同一个`hash`值后，不停的挂载结点，如果结点数到达8，而`table`的大小没有到达64，则每在链表后挂载一个结点，`table`的`size`翻倍，直到达到64，则会进行树化（红黑树）。
+
+**Remark**：多追源码分析
+
+### `HashSet`课堂练习1
+[HashSetExercise.java](/code/chapter14/src/com/jinjin/set_/HashSetExercise.java)
+
+定义一个`Employee`类，该类包含：`private`成员属性`name`，`age`。要求：
+1. 创建3个`Employee`对象放入`HashSet`中
+2. 当`name`和`age`的值相同时，认为是相同员工，不能添加到`HashSet`集合中。
+
+### `HashSet`课堂练习2
+[HashSetExercise02.java](/code/chapter14/src/com/jinjin/set_/exercise2/HashSetExercise02.java)
+
+定义一个`Employee`类，该类包含：：`private`成员属性`name`，`sal`，`birthday`(`MyDate`类型)，其中`birthday`为`MyDate`类型（属性包括：`year`、`month`、`day`）。要求：
+1. 创建3个`Employee`对象放入`HashSet`中
+2. 当`name`和`birthday`的值相同时，认为是相同员工，不能添加到`HashSet`集合中。
+
+* 这里需要在`MyDate`类中重写`hashCode()`和`equals()`方法。
