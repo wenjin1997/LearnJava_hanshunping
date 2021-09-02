@@ -3,6 +3,7 @@
 
 ## 笔记
 * [第2章 Java概述](/notes/chapter02.md)
+* [第3章 变量](/notes/chapter03.md)
 * [第7章 面向对象编程（基础部分）](/notes/chapter07.md)
 * [第8章 面向对象编程（中级部分）](/notes/chapter08.md)
 * [第9章 项目-房屋出租系统](/notes/chapter09.md)
