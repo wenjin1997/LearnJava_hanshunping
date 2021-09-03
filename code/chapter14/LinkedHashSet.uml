@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>java.util.LinkedHashSet</OriginalElement>
+  <nodes>
+    <node x="230.69866071428572" y="334.0">java.util.HashSet</node>
+    <node x="0.0" y="249.0">java.lang.Cloneable</node>
+    <node x="90.5" y="166.0">java.util.AbstractCollection</node>
+    <node x="227.73883928571428" y="83.0">java.util.Collection</node>
+    <node x="164.0" y="249.0">java.util.AbstractSet</node>
+    <node x="369.09375" y="166.0">java.util.Set</node>
+    <node x="256.27232142857144" y="419.0">java.util.LinkedHashSet</node>
+    <node x="237.23883928571428" y="0.0">java.lang.Iterable</node>
+    <node x="425.0" y="249.0">java.io.Serializable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.util.HashSet" target="java.io.Serializable" relationship="REALIZATION">
+      <point x="61.875" y="-16.5" />
+      <point x="375.0736607142857" y="313.0" />
+      <point x="502.5" y="313.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.util.Set" target="java.util.Collection" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="431.09375" y="141.0" />
+      <point x="359.7388392857143" y="141.0" />
+      <point x="44.0" y="16.5" />
+    </edge>
+    <edge source="java.util.Collection" target="java.lang.Iterable" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.util.LinkedHashSet" target="java.lang.Cloneable" relationship="REALIZATION">
+      <point x="-81.375" y="-16.5" />
+      <point x="283.39732142857144" y="398.0" />
+      <point x="72.0" y="398.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.util.LinkedHashSet" target="java.io.Serializable" relationship="REALIZATION">
+      <point x="27.125" y="-16.5" />
+      <point x="391.89732142857144" y="388.0" />
+      <point x="502.5" y="388.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.util.HashSet" target="java.util.AbstractSet" relationship="GENERALIZATION">
+      <point x="-20.625" y="-16.5" />
+      <point x="292.5736607142857" y="313.0" />
+      <point x="259.0" y="313.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.util.AbstractCollection" target="java.util.Collection" relationship="REALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="211.5" y="141.0" />
+      <point x="271.7388392857143" y="141.0" />
+      <point x="-44.0" y="16.5" />
+    </edge>
+    <edge source="java.util.LinkedHashSet" target="java.util.Set" relationship="REALIZATION">
+      <point x="81.375" y="-16.5" />
+      <point x="446.14732142857144" y="398.0" />
+      <point x="590.5" y="398.0" />
+      <point x="590.5" y="224.0" />
+      <point x="431.09375" y="224.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.util.HashSet" target="java.util.Set" relationship="REALIZATION">
+      <point x="20.625" y="-16.5" />
+      <point x="333.8236607142857" y="303.0" />
+      <point x="414.5" y="303.0" />
+      <point x="414.5" y="224.0" />
+      <point x="431.09375" y="224.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.util.AbstractSet" target="java.util.AbstractCollection" relationship="GENERALIZATION">
+      <point x="-47.5" y="-16.5" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.util.AbstractSet" target="java.util.Set" relationship="REALIZATION">
+      <point x="47.5" y="-16.5" />
+      <point x="306.5" y="224.0" />
+      <point x="431.09375" y="224.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.util.HashSet" target="java.lang.Cloneable" relationship="REALIZATION">
+      <point x="-61.875" y="-16.5" />
+      <point x="251.32366071428572" y="313.0" />
+      <point x="72.0" y="313.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.util.LinkedHashSet" target="java.util.HashSet" relationship="GENERALIZATION">
+      <point x="-27.125" y="-16.5" />
+      <point x="337.64732142857144" y="398.0" />
+      <point x="313.1986607142857" y="398.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.237234083272643" showDependencies="false" x="409.3009306804735" y="226.89251260316072" />
+  <SelectedNodes>
+    <node>java.util.LinkedHashSet</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

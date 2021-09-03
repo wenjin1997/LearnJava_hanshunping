@@ -38,6 +38,14 @@
     - [`HashSet`底层机制说明](#hashset底层机制说明)
     - [`HashSet`课堂练习1](#hashset课堂练习1)
     - [`HashSet`课堂练习2](#hashset课堂练习2)
+  - [`Set`接口实现类-`LinkedHashSet`](#set接口实现类-linkedhashset)
+    - [`LinkedHashSet`的全面说明](#linkedhashset的全面说明)
+    - [`LinkedHashSet`课后练习题](#linkedhashset课后练习题)
+  - [`Map`接口和常用方法](#map接口和常用方法)
+    - [🚩`Map`接口实现类的特点](#map接口实现类的特点)
+    - [`Map`接口常用方法](#map接口常用方法)
+    - [`Map`接口遍历方法](#map接口遍历方法)
+    - [`Map`接口课堂练习](#map接口课堂练习)
 
 # 第14章 集合
 ## 集合的理解和好处
@@ -378,3 +386,71 @@ System.out.println("set=" + set);
 2. 当`name`和`birthday`的值相同时，认为是相同员工，不能添加到`HashSet`集合中。
 
 * 这里需要在`MyDate`类中重写`hashCode()`和`equals()`方法。
+
+## `Set`接口实现类-`LinkedHashSet`
+### `LinkedHashSet`的全面说明
+* `LinkedHashSet`是`HashSet`的子类
+
+<img src="/notes/img-ch14/hashset/LinkedHashSet.png">
+
+* `LinkedHashSet`底层是一个`LinkedHashMap`，底层维护了一个**数组 + 双向链表**。
+* `LinkedHashSet`根据元素的`hashCode`值来决定元素的存储位置，同时使用链表维护元素的次序，这使得元素看起来是以插入顺序保存的。
+* `LinkedHashSet`不允许添加重复元素。
+
+[LinkedHashSetSource.java](/code/chapter14/src/com/jinjin/set_/LinkedHashSetSource.java):
+
+<img src="/notes/img-ch14/hashset/LinkedHashSetSource.png">
+
+* 添加第一次时，直接将数组`table`扩容到 16 ,存放的结点类型是 `LinkedHashMap$Entry`。数组是`HashMap$Node[]`存放的元素/数据是 `LinkedHashMap$Entry`类型
+
+<img src="/notes/img-ch14/hashset/LinkedHashSetSource02.png">
+
+### `LinkedHashSet`课后练习题
+[LinkedHashSetExercise.java](/code/chapter14/src/com/jinjin/set_/LinkedHashSetExercise.java)
+
+<img src="/notes/img-ch14/hashset/LinkedHashSetExercise.png">
+
+## `Map`接口和常用方法
+### 🚩`Map`接口实现类的特点
+注意：这里讲的是**JDK8**的`Map`接口特点 [Map_.java](/code/chapter14/src/com/jinjin/map_/Map_.java)
+1. `Map`与`Collection`并列存在。用于保存具有映射关系的数据:Key-Value(双列元素)
+2. `Map`中的`key`和`value`可以是任何引用类型的数据，会封装到`HashMap$Node`对象中
+3. `Map`中的`key`不允许重复，原因和`HashSet`一样.
+4. `Map`中的`value`可以重复
+5. `Map`的`key`可以为`null`, `value`也可以为`null`，注意`key`为`null`,只能有一个，`value`为`null`,可以多个
+6. 常用`String`类作为`Map`的`key`
+7. `key`和`value`之间存在单向一对一关系，即通过指定的`key`总能找到对应的 `value`
+8. `Map`存放数据的key-value示意图，一对k-v是放在一个HashMap$Node中的，因为Node实现类Entry接口，有些书上也说一对k-v就是一个Entry。 [MapSource_.java](../code/chapter14/src/com/jinjin/map_/MapSource_.java)
+
+<img src="/notes/img-ch14/map/MapSource.png">
+
+```java
+static class Node<K,V> implements Map.Entry<K,V> //HashMap class
+final class EntrySet extends AbstractSet<Map.Entry<K,V>> //HashMap class
+transient Set<Map.Entry<K,V>> entrySet; //HashMap field
+Set<Map.Entry<K, V>> entrySet(); //Map
+interface Entry<K,V>  //Map
+```
+
+### `Map`接口常用方法
+[MapMethod.java](/code/chapter14/src/com/jinjin/map_/MapMethod.java)
+
+### `Map`接口遍历方法
+Map遍历的示意图（比List和Set复杂点，但是基本原理一样）
+
+<img src="/notes/img-ch14/map/MapFor.png">
+
+Map遍历方式案例 [MapFor.java](/code/chapter14/src/com/jinjin/map_/MapFor.java)
+1. containsKey:查找键是否存在
+2. keySet: 获取所有的键
+3. entrySet: 获取所有关系k-v
+4. values: 获取所有值
+
+### `Map`接口课堂练习
+[MapExercise.java](/code/chapter14/src/com/jinjin/map_/MapExercise.java)
+
+使用HashMap添加3个员工对象，要求  
+1. 键：员工id
+2. 值：员工对象
+  
+遍历显示工资>180000的员工（遍历方式最少两种)，其中员工类:姓名、工资、员工id。
