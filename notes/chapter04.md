@@ -18,7 +18,7 @@
 <img src="/notes/img-ch4/ArithmeticOperator.png">
 
 [ArithmeticOperator.java](/code/chapter04/src/ArithmeticOperator.java)
-* `%`取模：本质是 `a % b = a - a / b * b`
+* **`%`取模：本质是 `a % b = a - a / b * b`**
     ```java
     System.out.println(10 % 3); //1
     System.out.println(-10 % 3); // -1 
@@ -26,9 +26,9 @@
     System.out.println(-10 % -3);//-1
     ```
 * 自增：`++` 自减：`--`
-  * 作为独立语言使用，前`++`和后`++`都完全等价于 `i = i + 1`
-  * 前`++`: `++i`先自增后赋值
-  * 后`++`: `i++`先赋值后自增
+  * **作为独立语言使用，前`++`和后`++`都完全等价于 `i = i + 1`**
+  * 前`++`: `++i`先自增后赋值，底层有一个临时变量。
+  * 后`++`: `i++`先赋值后自增，底层有一个临时变量。
 
 ### 面试题
 **面试题1**
