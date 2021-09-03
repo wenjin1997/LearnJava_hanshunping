@@ -46,6 +46,8 @@
     - [`Map`接口常用方法](#map接口常用方法)
     - [`Map`接口遍历方法](#map接口遍历方法)
     - [`Map`接口课堂练习](#map接口课堂练习)
+  - [`Map`接口实现类——`HashMap`](#map接口实现类hashmap)
+    - [`HashMap`小结](#hashmap小结)
 
 # 第14章 集合
 ## 集合的理解和好处
@@ -420,7 +422,7 @@ System.out.println("set=" + set);
 5. `Map`的`key`可以为`null`, `value`也可以为`null`，注意`key`为`null`,只能有一个，`value`为`null`,可以多个
 6. 常用`String`类作为`Map`的`key`
 7. `key`和`value`之间存在单向一对一关系，即通过指定的`key`总能找到对应的 `value`
-8. `Map`存放数据的key-value示意图，一对k-v是放在一个HashMap$Node中的，因为Node实现类Entry接口，有些书上也说一对k-v就是一个Entry。 [MapSource_.java](../code/chapter14/src/com/jinjin/map_/MapSource_.java)
+8. `Map`存放数据的`key-value`示意图，一对`k-v`是放在一个`HashMap$Node`中的，因为`Node`实现类`Entry`接口，有些书上也说一对`k-v`就是一个`Entry`。 [MapSource_.java](../code/chapter14/src/com/jinjin/map_/MapSource_.java)
 
 <img src="/notes/img-ch14/map/MapSource.png">
 
@@ -436,21 +438,31 @@ interface Entry<K,V>  //Map
 [MapMethod.java](/code/chapter14/src/com/jinjin/map_/MapMethod.java)
 
 ### `Map`接口遍历方法
-Map遍历的示意图（比List和Set复杂点，但是基本原理一样）
+Map遍历的示意图（比`List`和`Set`复杂点，但是基本原理一样）
 
 <img src="/notes/img-ch14/map/MapFor.png">
 
 Map遍历方式案例 [MapFor.java](/code/chapter14/src/com/jinjin/map_/MapFor.java)
-1. containsKey:查找键是否存在
-2. keySet: 获取所有的键
-3. entrySet: 获取所有关系k-v
-4. values: 获取所有值
+1. `containsKey`:查找键是否存在
+2. `keySet`: 获取所有的键
+3. `entrySet`: 获取所有关系k-v
+4. `values`: 获取所有值
 
 ### `Map`接口课堂练习
 [MapExercise.java](/code/chapter14/src/com/jinjin/map_/MapExercise.java)
 
-使用HashMap添加3个员工对象，要求  
-1. 键：员工id
+使用`HashMa`p添加3个员工对象，要求  
+1. 键：员工`id`
 2. 值：员工对象
   
-遍历显示工资>180000的员工（遍历方式最少两种)，其中员工类:姓名、工资、员工id。
+遍历显示工资>180000的员工（遍历方式最少两种)，其中员工类:姓名、工资、员工`id`。
+
+## `Map`接口实现类——`HashMap`
+### `HashMap`小结
+1. `Map`接口的常用实现类：`HashMap`、`Hashtable`和`Properties`。
+2. `HashMap`是`Map`接口使用频率最高的实现类。
+3. `HashMap`是以`key-value`对的方式来存储数据（`HashMap$Node`类型）
+4. `key`不能重复，但是值可以重复，允许使用`null`键和`null`值。
+5. 如果添加相同的`key`，则会覆盖原来的`key-value`，等同于修改。（`key`不会替换，`value`会替换）
+6. 与`HashSet`一样，不保证映射的顺序，因为底层是以`hash`表的方式来存储的。（`JDK8`的`HashMap`底层：数组+链表+红黑树）
+7. `HashMap`没有实现同步，因此是线程不安全的，方法没有做同步互斥的操作，没有`synchronized`。
