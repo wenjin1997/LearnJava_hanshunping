@@ -48,6 +48,17 @@
     - [`Map`接口课堂练习](#map接口课堂练习)
   - [`Map`接口实现类——`HashMap`](#map接口实现类hashmap)
     - [`HashMap`小结](#hashmap小结)
+    - [`HashMap`底层机制及源码剖析](#hashmap底层机制及源码剖析)
+  - [`Map`接口实现类—`Hashtable`](#map接口实现类hashtable)
+    - [`Hashtable`的基本介绍](#hashtable的基本介绍)
+    - [`Hashtable`和`HashMap`对比](#hashtable和hashmap对比)
+  - [`Map`接口实现类——`Properties`](#map接口实现类properties)
+  - [🚩总结——开发中如何选择集合实现类](#总结开发中如何选择集合实现类)
+    - [`TreeSet`](#treeset)
+    - [`TreeMap`](#treemap)
+  - [`Collections`工具类](#collections工具类)
+    - [`Collections`工具类介绍](#collections工具类介绍)
+    - [排序操作（均为`static`方法）](#排序操作均为static方法)
 
 # 第14章 集合
 ## 集合的理解和好处
@@ -466,3 +477,136 @@ Map遍历方式案例 [MapFor.java](/code/chapter14/src/com/jinjin/map_/MapFor.j
 5. 如果添加相同的`key`，则会覆盖原来的`key-value`，等同于修改。（`key`不会替换，`value`会替换）
 6. 与`HashSet`一样，不保证映射的顺序，因为底层是以`hash`表的方式来存储的。（`JDK8`的`HashMap`底层：数组+链表+红黑树）
 7. `HashMap`没有实现同步，因此是线程不安全的，方法没有做同步互斥的操作，没有`synchronized`。
+
+### `HashMap`底层机制及源码剖析
+
+<img src="/notes/img-ch14/map/Source.png">
+
+* 扩容机制：和`HashSet`相同
+
+1. `HashMap`底层维护了`Node`类型的数组`table`，默认为`null`
+2. 当创建对象时，将加载因子（`loadFactor`）初始化为0.75.
+3. 当添加`key-val`时，通过`key`的哈希值得到在`table`索引。然后判断该索引处是否有元素，如果没有元素直接添加。如果该索引处有元素，继续判断该元素的`key`和准备加入的`key`是否相等，如果相等，则直接替换val；如果不相等需要判断是树结构还是链表结构，作出相应处理。如果添加时发现容量不够，则需要扩容。
+4. 第1次添加，则需要扩容`table`容量为16，临界值（`threshold`）为12（16*0.75）
+5. 以后再扩容，则需要扩容table容量为原来的2倍（32），临界值为原来的2倍，即24，以此类推。
+6. 在`Java8`中，如果一条链表的元素个数超过`TREEIFY_THRESHOLD`（默认是8），并且`table`的大小>=`MIN_TREEIFY_CAPACITY`（默认64），就会进行树化（红黑树）
+
+* 源码分析：[HashMapSource1.java](/code/chapter14/src/com/jinjin/map_/HashMapSource1.java)
+* 模拟`HashMap`触发扩容、树化情况，并Debug验证。[HashMapSource2.java](/code/chapter14/src/com/jinjin/map_/HashMapSource2.java)
+
+## `Map`接口实现类—`Hashtable`
+### `Hashtable`的基本介绍
+1. 存放的元素是键值对，即K-V
+2. `Hashtable`的键和值都不能为`null`，否则会排除`NullPointerException`
+3. `Hashtable`使用方法基本上和`HashMap`一样
+4. `Hashtable`是线程安全的（`synchronized`），`HashMap`是线程不安全的
+
+应用案例：[HashTableExercise.java](/code/chapter14/src/com/jinjin/map_/HashTableExercise.java)
+
+### `Hashtable`和`HashMap`对比
+||版本|线程安全（同步）|效率|允许`null`键和`null`值|
+|----|----|----|----|----|
+|`HashMap`|1.2|不安全|高|可以|
+|`Hashtable`|1.0|安全|低|不可以|
+
+## `Map`接口实现类——`Properties`
+1. `Properties`类继承自`Hashtable`类并且实现了`Map`接口，也是使用一种键值对的形式来保存数据。
+2. 它的使用特点和`Hashtable`类似
+3. `Properties`还可以用于从`xxx.properties`文件中，加载数据到`Properties`类对象，并进行读取和修改
+4. 说明：工作后`xxx.properties`文件通常作为配置文件，这个知识点在IO流中再详细讲。
+
+* 基本使用：[Properties_.java](/code/chapter14/src/com/jinjin/map_/Properties_.java)
+
+## 🚩总结——开发中如何选择集合实现类
+
+<img src="/notes/img-ch14/HowToChoose.png">
+
+### `TreeSet`
+[TreeSet_.java](/code/chapter14/src/com/jinjin/set_/TreeSet_.java)
+
+1. 构造器把传入的比较器对象，赋给了`TreeSet`的底层的`TreeMap`的属性`this.comparator`
+```java
+public TreeMap(Comparator<? super K> comparator) {
+  this.comparator = comparator;
+}
+```
+2. 在调用`treeSet.add("tom")`, 在底层会执行到
+```java
+if (cpr != null) {//cpr 就是我们的匿名内部类(对象)
+  do {
+      parent = t;
+      //动态绑定到我们的匿名内部类(对象)compare
+      cmp = cpr.compare(key, t.key);
+      if (cmp < 0)
+          t = t.left;
+      else if (cmp > 0)
+          t = t.right;
+      else //如果相等，即返回0,这个Key就没有加入
+          return t.setValue(value);
+  } while (t != null);
+}
+```
+### `TreeMap`
+[TreeMap_.java](/code/chapter14/src/com/jinjin/map_/TreeMap_.java)
+
+1. 构造器. 把传入的实现了`Comparator`接口的匿名内部类(对象)，传给给`TreeMap`的`comparator`
+```java
+public TreeMap(Comparator<? super K> comparator) {
+  this.comparator = comparator;
+}
+```
+2. 调用`put`方法
+2.1 第一次添加, 把`k-v`封装到`Entry`对象，放入`root`
+```java
+Entry<K,V> t = root;
+if (t == null) {
+  compare(key, key); // type (and possibly null) check
+
+  root = new Entry<>(key, value, null);
+  size = 1;
+  modCount++;
+  return null;
+}
+```
+2.2 以后添加
+```java
+Comparator<? super K> cpr = comparator;
+if (cpr != null) {
+  do { //遍历所有的key , 给当前key找到适当位置
+    parent = t;
+    cmp = cpr.compare(key, t.key);//动态绑定到我们的匿名内部类的compare
+    if (cmp < 0)
+      t = t.left;
+    else if (cmp > 0)
+      t = t.right;
+    else  //如果遍历过程中，发现准备添加Key 和当前已有的Key 相等，就不添加
+      return t.setValue(value);
+  } while (t != null);
+}
+```
+## `Collections`工具类
+### `Collections`工具类介绍
+1. `Collections`是一个操作`Set`、List和Map等集合的工具类
+2. `Collections`中提供了一系列静态的方法对集合元素进行排序、查询和修改等操作
+
+### 排序操作（均为`static`方法）
+1. `reverse(List)`：反转`List`中元素的顺序
+2. `shuffle(List)`：对`List`集合元素进行随机排序
+3. `sort(List)`：根据元素的自然顺序对指定`List`集合元素按升序排序
+4. `sort(List，Comparator)`：根据指定的`Comparator`产生的顺序对`List`集合元素进行排序
+5. `swap(List，int， int)`：将指定`List`集合中的`i`处元素和`j`处元素进行交换
+6. `Object max(Collection)`：根据元素的自然顺序，返回给定集合中的最大元素
+7. `Object max(Collection，Comparator)`：根据`Comparator`指定的顺序，返回给定集合中的最大元素
+8. `Object min(Collection)`
+9. `Object min(Collection，Comparator)`
+10. `int frequency(Collection，Object)`：返回指定集合中指定元素的出现次数
+11. `void copy(List dest,List src)`：将`src`中的内容复制到`dest`中
+  * 注意`dest`的大小，如果不合适，会抛出异常
+  ```java
+  public static <T> void copy(List<? super T> dest, List<? extends T> src) {
+    int srcSize = src.size();
+    if (srcSize > dest.size())
+        throw new IndexOutOfBoundsException("Source does not fit in dest");
+  }
+  ```
+12. `boolean replaceAll(List list，Object oldVal，Object newVal)`：使用新值替换`List`对象的所有旧值
