@@ -65,7 +65,7 @@
     - [🔺作业3](#作业3)
     - [🔺作业4](#作业4)
     - [🔺作业5](#作业5)
-    - [⭐️⁉️作业6](#️️作业6)
+    - [⭐️作业6](#️作业6)
     - [作业7](#作业7)
 
 # 第14章 集合
@@ -706,7 +706,7 @@ class Person implements Comparable{
 }
 ```
 
-### ⭐️⁉️作业6
+### ⭐️作业6
 下面代码输出什么？已知：`Person`类按照`id`和`name`重写了`hashCode`和`equals`方法。答案见[Homework06.java](/code/chapter14/src/com/jinjin/homework/homework06/Homework06.java)
 ```java
 HashSet set = new HashSet();
@@ -723,9 +723,13 @@ set.add(new Person(1001,"AA"));
 System.out.println(set);
 ```
 * 注意`set.remove(p1);`，由于前面已经修改了`p1.name`，因此`p1`的`hash`值已经发生了变化，找不到`p1`，因此`p1`不会删除。
-* ❓和老师评讲有些出路。
+* 和老师评讲有些出路:
 
 <img src="/notes/img-ch14/homework/homework06.png">
+
+原因如下：
+
+<img src="/notes/img-ch14/homework/homework06-2.png">
 
 ### 作业7
 试写出`Vector`和`ArrayList`的比较，见[🚩`Vector`和`ArrayList`的比较](#vector和arraylist的比较)
