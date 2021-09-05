@@ -66,6 +66,7 @@
     - [🔺作业4](#作业4)
     - [🔺作业5](#作业5)
     - [⭐️⁉️作业6](#️️作业6)
+    - [作业7](#作业7)
 
 # 第14章 集合
 ## 集合的理解和好处
@@ -725,3 +726,6 @@ System.out.println(set);
 * ❓和老师评讲有些出路。
 
 <img src="/notes/img-ch14/homework/homework06.png">
+
+### 作业7
+试写出`Vector`和`ArrayList`的比较，见[🚩`Vector`和`ArrayList`的比较](#vector和arraylist的比较)
