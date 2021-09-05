@@ -722,3 +722,6 @@ set.add(new Person(1001,"AA"));
 System.out.println(set);
 ```
 * 注意`set.remove(p1);`，由于前面已经修改了`p1.name`，因此`p1`的`hash`值已经发生了变化，找不到`p1`，因此`p1`不会删除。
+* ❓和老师评讲有些出路。
+
+<img src="/notes/img-ch14/homework/homework06.png">
