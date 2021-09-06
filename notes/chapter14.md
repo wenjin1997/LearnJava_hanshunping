@@ -659,12 +659,12 @@ if (cpr != null) {
 使用增强for和 迭代器来遍历所有的car, 需要重写 Car 的toString方法
 
 ### 🔺作业3
-按要求完成下列任务 [Homework03.java](/code/chapter14/src/com/jinjin/homework/Homework03.java)
-1）使用HashMap类实例化一个Map类型的对象m，键（String）和值（int）分别用于存储员工的姓名和工资，存入数据如下：	jack—650元；tom—1200元；smith——2900元；
-2）将jack的工资更改为2600元
-3）为所有员工工资加薪100元；
-4）遍历集合中所有的员工
-5）遍历集合中所有的工资
+按要求完成下列任务[Homework03.java](/code/chapter14/src/com/jinjin/homework/Homework03.java)
+1. 使用HashMap类实例化一个Map类型的对象m，键（String）和值（int）分别用于存储员工的姓名和工资，存入数据如下：	jack—650元；tom—1200元；smith——2900元；
+2. 将jack的工资更改为2600元
+3. 为所有员工工资加薪100元；
+4. 遍历集合中所有的员工
+5. 遍历集合中所有的工资
 
 ✏️**Remark**
 * 将jack的工资更改为2600元，有两种方法
@@ -685,7 +685,7 @@ if (cpr != null) {
   ```
 ### 🔺作业4
 试分析`HashSet`和`TreeSet`分别如何去重的？
-1. `HashSet`的去重机制：`hashCode()`+`equals`，底层是先通过存入对象，进行运算得到一个`hash`值，通过hash值得到对应的索引，如果发现`table`索引所在的位置没有数据，就直接存放。如果有数据，就进行`equals`比较[遍历比较]，如果比较后，不相同就加入，否则就不加入。
+1. `HashSet`的去重机制：`hashCode()`+`equals`，底层是先通过存入对象，进行运算得到一个`hash`值，通过`hash`值得到对应的索引，如果发现`table`索引所在的位置没有数据，就直接存放。如果有数据，就进行`equals`比较[遍历比较]，如果比较后，不相同就加入，否则就不加入。
 2. `TreeSet`的去重机制：如果你传入了一个`Comparator`匿名对象，就使用实现的`compare`去重，如果方法返回0，就认为是相同的元素/数据，就不添加，**如果你没有传入一个`Comparator`匿名对象，则以你添加的对象实现的`Compareable`接口的`compareTo`去重**。
 
 ### 🔺作业5
