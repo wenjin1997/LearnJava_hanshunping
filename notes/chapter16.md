@@ -20,7 +20,7 @@
 ### 坐标体系介绍
 下图说明了Java坐标系。坐标原点额日语左上角，以像素为单位。在Java坐标系中，第一个是x坐标，表示当前位置为水平方向，距离坐标原点x个像素；第二个是y坐标，表示当前位置为垂直方向，距离坐标原点y个像素。
 
-<img src="/notes/img-ch16/draw01.png">
+<img src="/notes/img-ch16/draw/draw01.png">
 
 ### 坐标体系-像素
 * 计算机在屏幕上显示的内容都是由屏幕上的每一个像素组成的。例如，计算机显示器的分辨率是800 x 600，表示计算机屏幕上的每一行由800个点组成，共有600行，整个计算机屏幕共有480 000个像素。
@@ -48,11 +48,14 @@
   g.fillRect(10, 10, 100, 100);
   ```
 * 填充椭圆 `fillOval(int x, int y, int width, int height)`
-* 画图片 `drawImage(Image img, int x, int y, ..)`，这里需要获取图片资源，要将图片放在out根目录下，写上相应路径
-    ```java
-    Image image = Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/bg.png"));
-    g.drawImage(image, 10, 10, 175, 221, this);
-    ```
+* 画图片 `drawImage(Image img, int x, int y, ..)`，这里需要获取图片资源，要将图片放在`out/production/chapter16`根目录下，写上相应路径
+
+<img src="/notes/img-ch16/draw/path.png">
+
+```java
+Image image = Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/bg.png"));
+g.drawImage(image, 10, 10, 175, 221, this);
+```
 * 画字符串 `drawString(String str, int x, int y)//写字`，注意x和y设定的坐标式文字左下角的坐标。
     ```java
     //给画笔设置颜色和字体
