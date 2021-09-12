@@ -16,6 +16,10 @@
   - [do..while循环控制](#dowhile循环控制)
     - [基本语法](#基本语法-2)
   - [多重循环控制](#多重循环控制)
+  - [跳转控制语句-break](#跳转控制语句-break)
+  - [跳转控制语句-continue](#跳转控制语句-continue)
+  - [跳转控制语句-return](#跳转控制语句-return)
+  - [本章作业](#本章作业)
 # 第5章 程序控制结构
 ## 程序流程控制介绍
 主要有三大流程控制语句：
@@ -213,3 +217,83 @@ do{
 分析思路，一步步完成，不断改进，找出其中的规律。注意到中间可以先打印出空格，再打印星星。
 
 <img src="/notes/img-ch5/stars.png">
+
+## 跳转控制语句-break
+▶️  基本介绍
+break语句用于终止某个语句块的执行，一般使用在 switch 或者循环[for , while , do-while]中。
+
+▶️  基本语法
+```java
+{
+    ......
+    break;
+    ......
+}
+```
+
+<img src="/notes/img-ch5/break.png">
+
+▶️  注意事项和细节说明
+1. break语句出现在多层嵌套的语句块中时，可以通过**标签**指明要终止的是哪一层语句块。
+2. 标签的基本使用
+    ```java
+    label1:{.....
+    label2: {......
+    label3:     {   ......
+                    break labelx;
+            }
+        }
+    }
+    ```
+3. break语句可以指定退出哪层
+4. label1是标签，名字由程序员指定
+5. break后指定到哪个label就退出到哪里
+6. 在实际开发中，尽量不要使用标签
+7. **如果没有指定break，默认退出最近的循环体**
+
+## 跳转控制语句-continue
+▶️  基本介绍
+1) continue 语句用于结束本次循环，继续执行下一次循环。
+2) continue 语句出现在多层嵌套的循环语句体中时，可以通过标签指明要跳过的是哪一层循环 , 这个和前面的标签的
+使用的规则一样.
+
+▶️  基本语法
+```java
+{   ......
+    continue;
+    ......
+}
+```
+
+<img src="/notes/img-ch5/continue.png">
+
+## 跳转控制语句-return
+return使用在方法，表示跳出所在的方法。注意：如果return写在main方法，则退出程序。
+
+## 本章作业
+▶️  作业1 [Homework01.java](/code/chapter05/src/Homework01.java)
+某人有100，000元，每经过一次路口，需要交费，规则如下：
+* 当现金>50000时，每次交5%
+* 当现金<=50000时，每次交1000
+编程计算该人可以经过多少次路口。
+
+▶️  作业2 [Homework02.java](/code/chapter05/src/Homework02.java)
+实现判断一个整数，属于哪个范围：大于0；小于0；等于0
+
+▶️  作业3 [Homework03.java](/code/chapter05/src/Homework03.java)
+判断一个年份是否为闰年
+
+▶️  作业4 [Homework04.java](/code/chapter05/src/Homework04.java)
+判断一个整数是否是水仙花数，所谓水仙花数是指一个3位数，其个位数上数字立方和等于其本身。例如：153 = 1\*1*1 + 3\*3*3 + 5\*5*5
+
+▶️  作业6 [Homework06.java](/code/chapter05/src/Homework06.java)
+输出1-100之间不能被5整除的数，每5个一行
+
+▶️  作业7 [Homework06.java](/code/chapter05/src/Homework07.java)
+输出小写的a-z以及大写的Z-A
+
+▶️  作业6 [Homework06.java](/code/chapter05/src/Homework06.java)
+求出1-1/2+1/3-1/4.......1/100的和
+
+▶️  作业6 [Homework06.java](/code/chapter05/src/Homework06.java)
+求1+(1+2)+(1+2+3)+(1+2+3+4)+...+(1+2+3+...+100)的结果

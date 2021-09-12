@@ -25,12 +25,16 @@ public class Plan {
         //计算倒计时
         LocalDate now = LocalDate.now();
         LocalDate lastDate = LocalDate.of(2021, 9, 30);
+//        int day = lastDate.compareTo(now);
         int day = lastDate.compareTo(now) + 15;
         System.out.println("\t剩余天数:"+ day + "\n每天应学习" + (courses/day) + "节课，" +
                 "补充" + (courses - (courses/day) * day) + "节课！");
+//        if ((courses/day) != 18) {
         if ((courses/day) != 12) {
             System.out.print("按计划每天学习12节课程" + "(截止日期10-15)：");
+//            System.out.print("按计划每天学习18节课程" + "(截止日期9-30)：");
             int planDay = courses - 12 * day;
+//            int planDay = courses - 18 * day;
             if (planDay < 0) {
                 System.out.println("已超前完成" + (-planDay) + "节课！👍");
             } else if (planDay > 0) {
