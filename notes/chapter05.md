@@ -20,6 +20,14 @@
   - [跳转控制语句-continue](#跳转控制语句-continue)
   - [跳转控制语句-return](#跳转控制语句-return)
   - [本章作业](#本章作业)
+    - [作业1](#作业1)
+    - [作业2](#作业2)
+    - [作业3](#作业3)
+    - [作业4](#作业4)
+    - [作业6](#作业6)
+    - [作业7](#作业7)
+    - [作业8](#作业8)
+    - [作业9](#作业9)
 # 第5章 程序控制结构
 ## 程序流程控制介绍
 主要有三大流程控制语句：
@@ -271,29 +279,45 @@ break语句用于终止某个语句块的执行，一般使用在 switch 或者�
 return使用在方法，表示跳出所在的方法。注意：如果return写在main方法，则退出程序。
 
 ## 本章作业
-▶️  作业1 [Homework01.java](/code/chapter05/src/Homework01.java)
+### 作业1 
+[Homework01.java](/code/chapter05/src/Homework01.java)
+
 某人有100，000元，每经过一次路口，需要交费，规则如下：
 * 当现金>50000时，每次交5%
 * 当现金<=50000时，每次交1000
 编程计算该人可以经过多少次路口。
 
-▶️  作业2 [Homework02.java](/code/chapter05/src/Homework02.java)
+### 作业2 
+[Homework02.java](/code/chapter05/src/Homework02.java)
+
 实现判断一个整数，属于哪个范围：大于0；小于0；等于0
 
-▶️  作业3 [Homework03.java](/code/chapter05/src/Homework03.java)
+### 作业3 
+[Homework03.java](/code/chapter05/src/Homework03.java)
+
 判断一个年份是否为闰年
 
-▶️  作业4 [Homework04.java](/code/chapter05/src/Homework04.java)
+### 作业4 
+[Homework04.java](/code/chapter05/src/Homework04.java)
+
 判断一个整数是否是水仙花数，所谓水仙花数是指一个3位数，其个位数上数字立方和等于其本身。例如：153 = 1\*1*1 + 3\*3*3 + 5\*5*5
 
-▶️  作业6 [Homework06.java](/code/chapter05/src/Homework06.java)
+### 作业6 
+[Homework06.java](/code/chapter05/src/Homework06.java)
+
 输出1-100之间不能被5整除的数，每5个一行
 
-▶️  作业7 [Homework06.java](/code/chapter05/src/Homework07.java)
+### 作业7 
+[Homework07.java](/code/chapter05/src/Homework07.java)
+
 输出小写的a-z以及大写的Z-A
 
-▶️  作业6 [Homework06.java](/code/chapter05/src/Homework06.java)
+### 作业8 
+[Homework08.java](/code/chapter05/src/Homework08.java)
+
 求出1-1/2+1/3-1/4.......1/100的和
 
-▶️  作业6 [Homework06.java](/code/chapter05/src/Homework06.java)
+### 作业9 
+[Homework09.java](/code/chapter05/src/Homework09.java)
+
 求1+(1+2)+(1+2+3)+(1+2+3+4)+...+(1+2+3+...+100)的结果
