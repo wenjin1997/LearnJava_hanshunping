@@ -6,6 +6,7 @@
 * [第3章 变量](/notes/chapter03.md)
 * [第4章 运算符](/notes/chapter04.md)
 * [第5章 程序控制结构](/notes/chapter05.md)
+* [第6章 数组、排序和查找](/notes/chapter06.md)
 * [第7章 面向对象编程（基础部分）](/notes/chapter07.md)
 * [第8章 面向对象编程（中级部分）](/notes/chapter08.md)
 * [第9章 项目-房屋出租系统](/notes/chapter09.md)
