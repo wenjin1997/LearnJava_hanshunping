@@ -5,6 +5,13 @@
     - [坐标体系-像素](#坐标体系-像素)
     - [绘图原理](#绘图原理)
     - [Graphics类](#graphics类)
+    - [绘制坦克](#绘制坦克)
+  - [Java事件处理机制](#java事件处理机制)
+    - [基本说明](#基本说明)
+    - [示意图](#示意图)
+    - [机制分析](#机制分析)
+    - [事件处理机制深入理解](#事件处理机制深入理解)
+  - [坦克大战游戏](#坦克大战游戏)
 # 第16章 坦克大战1
 ## 游戏介绍
 ▶️  为什么写这个项目
@@ -66,3 +73,48 @@ g.drawImage(image, 10, 10, 175, 221, this);
     ```
 * 设置画笔的字体 `setFont(Font font)`
 * 设置画笔的颜色 `setColor(Color c)`
+
+### 绘制坦克
+坦克的整个图形是由一些简单的几何图形组合而成，首先要清楚各图形的坐标。
+
+<img src="/notes/img-ch16/drawTank.png">
+
+代码：
+- [Tank.java](/code/chapter16/src/com/jinjin/tankgame/Tank.java)
+- [Hero.java](/code/chapter16/src/com/jinjin/tankgame/Hero.java)
+- [MyPanel.java](/code/chapter16/src/com/jinjin/tankgame/MyPanel.java)
+- [JinTankGame01.java](/code/chapter16/src/com/jinjin/tankgame/JinTankGame01.java)
+
+## Java事件处理机制
+小程序：让小球受到键盘的控制，可以上下左右移动。[BallMove.java](/code/chapter16/src/com/jinjin/event/BallMove.java)
+
+### 基本说明
+java事件处理是采取“委派事件模型”。当事件发生时，产生事件的对象，会把此“信息”传递给“事件的监听者”处理，这里所说的“信息”实际上就是java.awt.event事件类库里某个类创建的对象，把它称为“事件的对象”。
+
+### 示意图
+
+<img src="/notes/img-ch16/event.png">
+
+### 机制分析
+
+<img src="/notes/img-ch16/eventAnalysis.png">
+
+### 事件处理机制深入理解
+1. 事件源：事件源是一个产生事件的对象，比如按钮，窗口等。
+2. 事件：事件就是承载事件源状态改变时的对象，比如当键盘事件、鼠标事件、窗口事件等等，会产生一个事件对象，该对象保存着当时事件很多信息，比如KeyEvent对象有含有被按下键的Code值。java.awt.event包和javax.swing.event包中定义了各种事件类型。
+3. 事件类型：查阅jdk文档
+
+  <img src="/notes/img-ch16/EventClass.png">
+
+4. 事件监听器接口：
+   1. 当事件源产生一个事件，可以传送给事件监听者处理
+   2. 事件监听者实际上就是一个类。该类实现了某个事件监听器接口。比如前面案例中的MyPanle就是一个类，它实现了KeyListener接口，它就可以作为一个事件监听者，对接受到的事件进行处理
+   3. 事件监听器接口有多种，不同的事件监听器接口可以监听不同的事件，一个类可以实现多个监听接口
+   4. 这些接口在java.awt.event包和javax.swing.event包中定义。
+
+## 坦克大战游戏
+用Java事件处理机制和Java绘图技术，通过按键控制上右下左的移动。
+- [Tank.java](/code/chapter16/src/com/jinjin/tankgame2/Tank.java)
+- [Hero.java](/code/chapter16/src/com/jinjin/tankgame2/Hero.java)
+- [MyPanel.java](/code/chapter16/src/com/jinjin/tankgame2/MyPanel.java)
+- [JinTankGame02.java](/code/chapter16/src/com/jinjin/tankgame2/JinTankGame02.java)
