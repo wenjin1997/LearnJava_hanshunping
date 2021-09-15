@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Vector;
 
 /**
  * @author 文进
@@ -13,10 +14,17 @@ import java.awt.event.KeyListener;
 public class MyPanel extends JPanel implements KeyListener {
     //定义我的坦克
     Hero hero = null;
-    int type = 1;
+    Vector<EnemyTank> enemyTanks = new Vector<>();
+    int enemyTankSize = 3;
 
     public MyPanel() {
         hero = new Hero(100, 100); //初始化自己坦克
+        hero.setSpeed(2); //设置坦克的速度
+        for (int i = 0; i < enemyTankSize; i++) {
+            EnemyTank enemyTank = new EnemyTank(100 * (i + 1), 0);
+            enemyTank.setDirect(2);
+            enemyTanks.add(enemyTank);
+        }
     }
 
     @Override
@@ -25,7 +33,11 @@ public class MyPanel extends JPanel implements KeyListener {
         g.fillRect(0, 0, 1000, 750); //填充颜色，默认黑色
 
         //画出坦克-封装方法
-        drawTank(hero.getX(), hero.getY(), g, hero.getDirect(), type);
+        drawTank(hero.getX(), hero.getY(), g, hero.getDirect(), 1);
+        for (int i = 0; i < enemyTanks.size(); i++) {
+            EnemyTank enemyTank = enemyTanks.get(i);
+            drawTank(enemyTank.getX(), enemyTank.getY(), g, enemyTank.getDirect(), 0);
+        }
     }
 
     /**
@@ -91,16 +103,16 @@ public class MyPanel extends JPanel implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_W) {
             hero.setDirect(0);
-            hero.setY(hero.getY() - 1);
+            hero.moveUp();
         } else if (e.getKeyCode() == KeyEvent.VK_D) {
             hero.setDirect(1);
-            hero.setX(hero.getX() + 1);
+            hero.moveRight();
         } else if (e.getKeyCode() == KeyEvent.VK_S) {
             hero.setDirect(2);
-            hero.setY(hero.getY() + 1);
+            hero.moveDown();
         } else if (e.getKeyCode() == KeyEvent.VK_A) {
             hero.setDirect(3);
-            hero.setX(hero.getX() - 1);
+            hero.moveLeft();
         }
         repaint();
     }
