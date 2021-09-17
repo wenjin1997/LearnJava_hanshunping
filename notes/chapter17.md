@@ -22,17 +22,18 @@
     - [用户线程和守护线程](#用户线程和守护线程)
   - [线程的生命周期](#线程的生命周期)
     - [JDK中Thread.State枚举线程的状态](#jdk中threadstate枚举线程的状态)
-    - [🌟线程状态转换图](#线程状态转换图)
+    - [🌟🌟🌟线程状态转换图](#线程状态转换图)
   - [Synchronized](#synchronized)
     - [线程同步机制](#线程同步机制)
     - [同步具体方法-Synchronized](#同步具体方法-synchronized)
   - [分析同步原理](#分析同步原理)
   - [互斥锁](#互斥锁)
+    - [注意事项和细节](#注意事项和细节-1)
   - [线程的死锁](#线程的死锁)
   - [释放锁](#释放锁)
     - [下面操作会释放锁](#下面操作会释放锁)
     - [下面操作不会释放锁](#下面操作不会释放锁)
-  - [本章作业](#本章作业)
+  - [🌟🌟🌟本章作业](#本章作业)
     - [作业1](#作业1)
     - [作业2](#作业2)
 # 第17章 多线程基础
@@ -63,6 +64,7 @@
 2. 实现Runnable接口，重写run方法
 
 * Thread类图
+
     <img src="/notes/img-ch17/Thread.png">
 
 ### 线程应用案例-继承Thread类
@@ -119,14 +121,14 @@
 
 ## 继承Thread与实现Runnable的区别
 1. 从java的设计来看，通过继承Thread或者实现Runnable接口来创建线程本质上没有区别，从JDK帮助文档我们可以看到Thread类本身就实现了Runnable接口。
-2. 实现Runnable接口方式更加适合多个线程共享一个资源的情况，并且避免了单继承的限制，建议使用Runnable。
+2. **实现Runnable接口方式更加适合多个线程共享一个资源的情况，并且避免了单继承的限制，建议使用Runnable。**
 3. 售票系统，编程模拟三个售票窗口售票100张，分别使用继承Thread和实现Runnable方式，并分析有什么问题。[SellTicket.java](/code/chapter17/src/com/jinjin/ticket/SellTicket.java)
     * 会出现超卖现象，因为有多个线程同时进来判断。
 
 ## 线程终止
 ### 基本说明
 1. 当线程完成任务后，会自动退出。
-2. 还可以通过使用变量来控制run方法退出的方式停止线程，即通知方式。
+2. 还可以通过使用变量来控制run方法退出的方式停止线程，即**通知方式**。
 
 ### 应用案例
 启动一个线程T，要求在main线程中去停止线程T。[ThreadExit_.java](/code/chapter17/src/com/jinjin/exit_/ThreadExit_.java)
@@ -176,7 +178,7 @@
 2. 守护线程：一般是为工作线程服务的，当所有的用户线程结束，守护线程自动结束
 3. 常见的守护线程：垃圾回收机制
 
-* 注意要先设置为守护线程，再让子线程开始。[ThreadMethod03.java](/code/chapter17/src/com/jinjin/method/ThreadMethod03.java)
+* **注意要先设置为守护线程，再让该线程开始。**[ThreadMethod03.java](/code/chapter17/src/com/jinjin/method/ThreadMethod03.java)
   ```java
   MyDaemonThread myDaemonThread = new MyDaemonThread();
   //如果我们希望当main线程结束后，子线程自动结束
@@ -189,7 +191,7 @@
 ### JDK中Thread.State枚举线程的状态
 <img src="/notes/img-ch17/ThreadState.png">
 
-### 🌟线程状态转换图
+### 🌟🌟🌟线程状态转换图
 
 <img src="/notes/img-ch17/ThreadState02.png">
 
@@ -225,15 +227,15 @@
 * 每个对象都对应于一个可称为“互斥锁”的标记，这个标记用来保证在任一时刻，只能有一个线程访问该对象。
 * 关键字synchronized来与对象的互斥锁联系。当某个对象用synchronized修饰时，表明该对象在任一时刻只能由一个线程访问
 * 同步的局限性：导致程序的执行效率要降低
-* 同步方法（非静态的）的锁可以是this，也可以是其他对象（要求是同一个对象）
-* 同步方法（静态的）的锁为当前类本身
+* **同步方法（非静态的）的锁可以是this，也可以是其他对象（要求是同一个对象）**
+* **同步方法（静态的）的锁为当前类本身**
 * 使用互斥锁来解决售票问题：[SellTicket.java](/code/chapter17/src/com/jinjin/syn/SellTicket.java)
   * `public synchronized void sell() {}`就是一个同步方法，这时锁在this对象
   * 也可以在代码块上写 synchronize ,同步代码块, 互斥锁还是在this对象
 
-注意事项和细节
-* 同步方法如果没有static修饰：默认锁对象为this
-* 如果方法使用static修饰，默认锁对象：当前类.class
+### 注意事项和细节
+* 同步方法如果**没有static修饰**：**默认锁对象为this**
+* 如果方法**使用static修饰**，默认锁对象：**当前类.class**
 * 实现的落地步骤：
   * 需要先分析上锁的代码
   * 选择同步代码块或同步方法
@@ -258,7 +260,7 @@
 2. 线程执行同步代码块时，其他线程调用了该线程的suspend()方法将该线程挂起，该线程不会释放锁。
   * 提示：应尽量避免使用suspend()和resume()来控制线程，方法不再推荐使用。
 
-## 本章作业
+## 🌟🌟🌟本章作业
 ### 作业1
 * 在main方法中启动两个线程
 * 第一个线程循环随机打印100以内的整数
