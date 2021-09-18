@@ -15,21 +15,23 @@ public class Plan {
         计算学习Java课程的进度
          */
         Scanner scanner = new Scanner(System.in);
-        System.out.print("第一部分课程看到多少节？");
-        int end1 = scanner.nextInt();
-        System.out.print("第二部分看到多少节？");
-        int end2 = scanner.nextInt();
-        int courses = 910 - end2 + 191 - end1;
-        System.out.print("剩余课程数：" + courses);
+        System.out.print("课程看到多少节？");
+        int end = scanner.nextInt();
+        int courses = 910 - end;
+        System.out.println("剩余课程数：" + courses);
 
         //计算倒计时
         LocalDate now = LocalDate.now();
         LocalDate lastDate = LocalDate.of(2021, 9, 30);
-//        int day = lastDate.compareTo(now);
+        int day1 = lastDate.compareTo(now);
         int day = lastDate.compareTo(now) + 15;
-        System.out.println("\t剩余天数:"+ day + "\n每天应学习" + (courses/day) + "节课，" +
+        System.out.println("-----------");
+        System.out.println("距离9-30剩余天数:"+ day1 + "\n每天应学习" + (courses/day1) + "节课，" +
+                "补充" + (courses - (courses/day1) * day1) + "节课！");
+        System.out.println("-----------");
+        System.out.println("距离10-15剩余天数:"+ day + "\n每天应学习" + (courses/day) + "节课，" +
                 "补充" + (courses - (courses/day) * day) + "节课！");
-//        if ((courses/day) != 18) {
+//        if ((courses/day1) != 18) {
         if ((courses/day) != 12) {
             System.out.print("按计划每天学习12节课程" + "(截止日期10-15)：");
 //            System.out.print("按计划每天学习18节课程" + "(截止日期9-30)：");
