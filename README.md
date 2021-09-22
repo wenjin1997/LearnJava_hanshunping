@@ -18,3 +18,4 @@
 * [第15章 泛型](/notes/chapter15.md)
 * [第16章 坦克大战1](/notes/chapter16.md)
 * [第17章 多线程基础](/notes/chapter17.md)
+* [第18章 坦克大战2](/notes/chapter18.md)
