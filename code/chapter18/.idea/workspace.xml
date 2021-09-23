@@ -5,43 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0698dd82-8471-461c-bc98-6df348504a80" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapter18.iml" beforeDir="false" afterPath="$PROJECT_DIR$/chapter18.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/bomb_1.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/bomb_2.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/bomb_3.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/com/hspedu/tankgame3/EnemyTank.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/com/hspedu/tankgame3/Hero.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/com/hspedu/tankgame3/HspTankGame03.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/com/hspedu/tankgame3/MyPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/com/hspedu/tankgame3/Shot.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/com/hspedu/tankgame3/Tank.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/com/hspedu/tankgame4/Bomb.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/com/hspedu/tankgame4/EnemyTank.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/com/hspedu/tankgame4/Hero.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/com/hspedu/tankgame4/HspTankGame04.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/com/hspedu/tankgame4/MyPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/com/hspedu/tankgame4/Shot.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chapter18/com/hspedu/tankgame4/Tank.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hspedu/tankgame3/EnemyTank.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hspedu/tankgame3/Hero.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hspedu/tankgame3/HspTankGame03.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hspedu/tankgame3/MyPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hspedu/tankgame3/Shot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hspedu/tankgame3/Tank.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hspedu/tankgame4/Bomb.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hspedu/tankgame4/EnemyTank.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hspedu/tankgame4/Hero.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hspedu/tankgame4/HspTankGame04.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hspedu/tankgame4/MyPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hspedu/tankgame4/Shot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hspedu/tankgame4/Tank.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/jinjin/tankgame03/EnemyTank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/jinjin/tankgame03/EnemyTank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../notes/chapter18.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../notes/chapter18.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +38,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/com/jinjin/tankgame03" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/com/jinjin/tankgame04" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -80,10 +46,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/com/jinjin/tankgame04" />
       <recent name="$PROJECT_DIR$/src/com/jinjin/tankgame03" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.JinTankGame04">
     <configuration name="JinTankGame03" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.jinjin.tankgame03.JinTankGame03" />
       <module name="chapter18" />
@@ -97,8 +64,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="JinTankGame04" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.jinjin.tankgame04.JinTankGame04" />
+      <module name="chapter18" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jinjin.tankgame04.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.JinTankGame04" />
         <item itemvalue="Application.JinTankGame03" />
       </list>
     </recent_temporary>
@@ -111,7 +92,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1632319555736</updated>
-      <workItem from="1632319563811" duration="2046000" />
+      <workItem from="1632319563811" duration="4714000" />
     </task>
     <servers />
   </component>

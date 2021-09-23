@@ -1,4 +1,4 @@
-package com.jinjin.tankgame03;
+package com.jinjin.tankgame04;
 
 import java.util.Vector;
 
@@ -7,7 +7,8 @@ import java.util.Vector;
  * @version 1.0
  * 敌人的坦克
  */
-public class EnemyTank extends Tank{
+public class EnemyTank extends Tank {
+    public Vector<Shot> shots = new Vector<>();
     public EnemyTank(int x, int y) {
         super(x, y);
     }
