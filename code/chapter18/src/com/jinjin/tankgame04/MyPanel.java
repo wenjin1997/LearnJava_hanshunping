@@ -12,21 +12,21 @@ import java.util.Vector;
  * 坦克大战的绘图区域
  */
 //由于要不断重绘子弹，因此要继承Runnable
-public class MyPanel extends JPanel implements KeyListener,Runnable {
+public class MyPanel extends JPanel implements KeyListener, Runnable {
     //定义我的坦克
     Hero hero = null;
     Vector<EnemyTank> enemyTanks = new Vector<>();
     int enemyTankSize = 3;
 
     public MyPanel() {
-        hero = new Hero(100, 100); //初始化自己坦克
-        hero.setSpeed(2); //设置坦克的速度
+        hero = new Hero(100, 100); // 初始化自己坦克
+        hero.setSpeed(2); // 设置坦克的速度
         for (int i = 0; i < enemyTankSize; i++) {
             EnemyTank enemyTank = new EnemyTank(100 * (i + 1), 0);
             enemyTank.setDirect(2);
             enemyTanks.add(enemyTank);
 
-            //坦克的子弹
+            // 坦克的子弹
             Shot shot = new Shot(enemyTank.getX() + 20, enemyTank.getY() + 60, enemyTank.getDirect());
             enemyTank.shots.add(shot);
             new Thread(shot).start();
@@ -50,7 +50,7 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
                 //取出敌人的子弹
                 Shot shot = enemyTank.shots.get(j);
                 if (shot.isLive) {
-                    g.fillOval(shot.x, shot.y, 2,2);
+                    g.fillOval(shot.x, shot.y, 2, 2);
                 } else {
                     enemyTank.shots.remove(shot);
                 }
@@ -59,7 +59,7 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
 
         //画出子弹
         if (hero.shot != null && hero.shot.isLive == true) {
-            g.fillOval(hero.shot.x, hero.shot.y, 2,2);
+            g.fillOval(hero.shot.x, hero.shot.y, 2, 2);
         }
     }
 
@@ -148,6 +148,15 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
 
     }
 
+
+    //击中敌人的坦克
+//    public void hitEnemyTank() {
+//        for (int i = 0; i < hero.shots.size; i++) {
+//
+//        }
+//    }
+
+
     @Override
     public void run() {
         while (true) {
@@ -156,7 +165,7 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-           repaint();
+            repaint();
         }
     }
 }
