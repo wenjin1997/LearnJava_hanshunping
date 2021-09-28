@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0698dd82-8471-461c-bc98-6df348504a80" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/jinjin/tankgame03/EnemyTank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/jinjin/tankgame03/EnemyTank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../notes/chapter18.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../notes/chapter18.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/jinjin/tankgame04/MyPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/jinjin/tankgame04/MyPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +92,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1632319555736</updated>
-      <workItem from="1632319563811" duration="4714000" />
+      <workItem from="1632319563811" duration="6148000" />
+      <workItem from="1632710697212" duration="2271000" />
     </task>
     <servers />
   </component>
@@ -109,6 +110,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
