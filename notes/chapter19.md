@@ -14,6 +14,7 @@
     - [FileOutputStream](#fileoutputstream)
     - [FileReader](#filereader)
     - [FileWriter](#filewriter)
+  - [节点流和处理流](#节点流和处理流)
 # 第19章 IO流
 ## 文件
 ### 什么是文件
@@ -153,4 +154,6 @@ fileOutputStream = new FileOutputStream(filePath, true);
 7. `writer(String, off, len)` 写入字符串的指定部分
 
 * 相关API：String类，toCharArray 将String转换成char[]
-* FileWriter使用后，**必须要关闭(close)或刷新(flush)**，否则写入不到指定的文件，追源码可以直到关闭文件流，等价于 flush() + 关闭。
+* FileWriter使用后，**必须要关闭(close)或刷新(flush)**，否则写入不到指定的文件，追源码可以知道关闭文件流，等价于 flush() + 关闭。
+
+## 节点流和处理流
