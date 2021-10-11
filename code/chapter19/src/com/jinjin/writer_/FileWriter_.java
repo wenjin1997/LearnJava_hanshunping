@@ -1,5 +1,6 @@
 package com.jinjin.writer_;
 
+import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -64,7 +65,6 @@ public class FileWriter_ {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
 
         System.out.println("程序结束...");

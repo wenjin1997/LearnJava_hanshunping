@@ -15,6 +15,8 @@
     - [FileReader](#filereader)
     - [FileWriter](#filewriter)
   - [节点流和处理流](#节点流和处理流)
+    - [基本介绍](#基本介绍)
+    - [节点流和处理流一览图](#节点流和处理流一览图)
 # 第19章 IO流
 ## 文件
 ### 什么是文件
@@ -157,3 +159,25 @@ fileOutputStream = new FileOutputStream(filePath, true);
 * FileWriter使用后，**必须要关闭(close)或刷新(flush)**，否则写入不到指定的文件，追源码可以知道关闭文件流，等价于 flush() + 关闭。
 
 ## 节点流和处理流
+### 基本介绍
+1. 节点流可以从一个特定的数据源**读写数据**，如FileReader、FileWriter[源码]
+
+<img src="/notes/img-ch19/节点流.png">
+
+2. 处理流（也叫包装流）是“链接”在已存在的流（节点流或处理流）之上，为程序提供更为强大的读写功能，也更加灵活，如BufferedReader、BufferedWriter[源码]
+
+```java
+public class BufferedReader extends Reader {
+  private Reader in;
+
+  private char cb[];
+
+  //...
+}
+```
+
+<img src="/notes/img-ch19/包装流.png">
+
+### 节点流和处理流一览图
+
+<img src="/notes/img-ch19/节点流和处理流一览图.png">
