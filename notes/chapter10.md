@@ -166,6 +166,7 @@ public static void main(String[] args){}
 
 **Remark**：
 如果要传递的参数是文件，例如传递的参数是三个文件`m1.txt`、`m2.txt`、`m3.txt`，在这里设置需要输入文件的绝对路径。在IDEA中获得文件的绝对路径很简单，选择到相应的文件，右键复制路径就可以了，可以选择绝对路径或者相对路径。
+参考问题：[IntelliJ IDEA cannot locate my txt file](https://stackoverflow.com/questions/39279009/intellij-idea-cannot-locate-my-txt-file)
 
 <img src="/notes/img-ch10/idea-传递参数/add1.png">
 
