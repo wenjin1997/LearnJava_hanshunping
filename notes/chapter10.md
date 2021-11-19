@@ -164,6 +164,13 @@ public static void main(String[] args){}
 
 <img src="/notes/img-ch10/main-idea3.png">
 
+**Remark**：
+如果要传递的参数是文件，例如传递的参数是三个文件`m1.txt`、`m2.txt`、`m3.txt`，在这里设置需要输入文件的绝对路径。在IDEA中获得文件的绝对路径很简单，选择到相应的文件，右键复制路径就可以了，可以选择绝对路径或者相对路径。
+
+<img src="/notes/img-ch10/idea-传递参数/add1.png">
+
+<img src="/notes/img-ch10/idea-传递参数/add2.png">
+
 ## 10.3 代码块
 ### 基本介绍
 代码块又称为初始化块，属于类中的成员[即是类的一部分]，类似于方法，将逻辑语句封装在方法体中，通过`{}`包围起来。
