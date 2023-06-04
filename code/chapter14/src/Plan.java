@@ -16,8 +16,13 @@ public class Plan {
          */
         Scanner scanner = new Scanner(System.in);
         System.out.print("课程看到多少节？");
+
+        int chapter20 = 658 - 645 + 1; // P645-658、660
+        int chapter26 = 877 - 858 + 1; // P858-877
+        int chapter28 = 909 - 905 + 1; // P905-909
+
         int end = scanner.nextInt();
-        int courses = 910 - end;
+        int courses = 910 - end - chapter20 - chapter26 - chapter28;
         System.out.println("剩余课程数：" + courses);
 
         //计算倒计时
